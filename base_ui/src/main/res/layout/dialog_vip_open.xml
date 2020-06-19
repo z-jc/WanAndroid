@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="341dp"
+        android:layout_height="230dp"
+        android:layout_centerInParent="true"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_dialog_vip">
+
+        <ImageView
+            android:id="@+id/imgVipopen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btnStart"
+            android:layout_marginLeft="@dimen/dp12"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/dp12"
+            android:layout_marginRight="@dimen/dp12"
+            android:src="@drawable/icon_dialog_vip_open" />
+
+        <com.dq.ui.button.DrawablwButton
+            android:id="@+id/btnStart"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/dp16"
+            android:background="@drawable/bg_select_grade_finish"
+            android:drawableLeft="@drawable/icon_btn_left_video"
+            android:drawablePadding="@dimen/dp8"
+            android:includeFontPadding="false"
+            android:text="试用一天"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imgClose"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/rl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/icon_dialog_open_close" />
+
+</RelativeLayout>

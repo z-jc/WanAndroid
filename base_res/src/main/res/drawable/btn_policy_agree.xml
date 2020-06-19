@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="false">
+        <shape>
+            <!-- 填充的颜色 -->
+            <solid android:color="#434FF2" />
+            <!--设置渐变-->
+            <gradient
+                android:angle="180"
+                android:startColor="#8757F2"
+                android:endColor="#434FF2" />
+            <!--angle控制渐变的方向-->
+            <!-- 设置按钮的四个角为弧形 -->
+            <!-- android:radius 弧形的半径 -->
+            <corners android:radius="35dp" />
+        </shape>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape>
+            <!-- 填充的颜色 -->
+            <solid android:color="#8757F2" />
+            <!--设置渐变-->
+            <gradient
+                android:angle="180"
+                android:endColor="#8757F2"
+                android:startColor="#8757F2" />
+            <!--angle控制渐变的方向-->
+            <!-- 设置按钮的四个角为弧形 -->
+            <!-- android:radius 弧形的半径 -->
+            <corners android:radius="35dp" />
+        </shape>
+    </item>
+
+</selector>

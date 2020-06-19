@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_policy">隐私政策</string>
+    <string name="text_cancel">不同意</string>
+    <string name="text_agreed">同意</string>
+</resources>

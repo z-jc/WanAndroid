@@ -1,0 +1,61 @@
+package com.dq.mine.activity
+
+import android.app.Activity
+import android.content.Intent
+import android.os.Build
+import android.view.View
+import com.bumptech.glide.Glide
+import com.dq.base_mine.R
+import com.dq.mine.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_about.*
+import kotlinx.android.synthetic.main.title_bar_base.*
+
+/**
+ * Author:ZJC
+ * Date:2020/2/7  15:55
+ * Description:AboutActivity
+ */
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+class AboutActivity : BaseActivity() {
+
+    private var verName = ""
+    private var appName = ""
+    private var icon = 0
+
+    override fun initData() {
+        verName = intent.getStringExtra(VER_NAME)
+        appName = intent.getStringExtra(APP_NAME)
+        icon = intent.getIntExtra(ICON, -1)
+        tvTitle.text = "关于"
+        Glide.with(this).load(icon).into(imgIcon)
+        tvVersion.text = "$appName\tV$verName"
+        imgBack.setOnClickListener { finish() }
+    }
+
+    override fun getContentView(): Int? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }
+        return R.layout.activity_about
+    }
+
+    companion object {
+        const val VER_NAME = "ver_name"
+        const val ICON = "icon"
+        const val APP_NAME = "app_name"
+
+        /**
+         * @param a
+         * @param verName 版本号
+         * @param icon    app图标
+         */
+        fun startAct(a: Activity, verName: String?, appName: String?, icon: Int) {
+            val intent = Intent(a, AboutActivity::class.java)
+            intent.putExtra(VER_NAME, verName)
+            intent.putExtra(APP_NAME, appName)
+            intent.putExtra(ICON, icon)
+            a.startActivity(intent)
+        }
+    }
+}

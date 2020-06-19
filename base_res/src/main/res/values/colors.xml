@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!-- Grey-->
+    <color name="Grey_50">#FAFAFA</color>
+    <color name="Grey_100">#F5F5F5</color>
+    <color name="Grey_200">#EEEEEE</color>
+    <color name="Grey_300">#E0E0E0</color>
+    <color name="Grey_400">#BDBDBD</color>
+    <color name="Grey_500">#9E9E9E</color>
+    <color name="Grey_600">#757575</color>
+    <color name="Grey_700">#616161</color>
+    <color name="Grey_800">#424242</color>
+    <color name="Grey_900">#212121</color>
+
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="black_3">#333</color>
+    <color name="black_6">#666</color>
+    <color name="black_9">#999</color>
+    <color name="blue_1">#5DA0FF</color>
+    <color name="blue_2">#86BFFF</color>
+    <color name="black_d">#DDDDDD</color>
+    <color name="black_50">#505050</color>
+    <color name="black_f6">#f6f2eb</color>
+    <color name="eee">#eee</color>
+    <color name="eee_5">#e5e5e5</color>
+    <color name="f_0">#F0F0F0</color>
+    <color name="red">#FF3B3B</color>
+    <color name="yellow">#FFE033</color>
+    <color name="yellow_2">#FFC300</color>
+    <color name="divider">#FFEFDB</color>
+
+    <color name="grey_50">#fffafafa</color>
+    <color name="grey_600">#ff757575</color>
+    <color name="black_f2">#F2F2F2</color>
+    <color name="black_f5">#F5F5F5</color>
+
+    <color name="red_1">#FF0000</color>
+    <color name="red_2">#A33C46</color>
+
+    <color name="gray">#e2e8ec</color>
+    <color name="btn_orange">#f5a300</color>
+    <color name="btn_red">#ef3e21</color>
+
+    <color name="text_hint">#999</color>
+    <color name="text_666">#666</color>
+
+    <color name="text_top_1">#13b823</color>
+    <color name="text_top_2">#1dadfa</color>
+    <color name="text_top_3">#ef3e21</color>
+
+    <color name="icon_bg_1">#622703</color>
+    <color name="icon_bg_2">#6f2f08</color>
+    <color name="icon_bg_3">#75340c</color>
+    <color name="icon_bg_pressed">#9a4815</color>
+
+    <color name="submit_bg">#9a4815</color>
+
+</resources>

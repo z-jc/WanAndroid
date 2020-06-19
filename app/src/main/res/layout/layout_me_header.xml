@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/fl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp8"
+        android:layout_marginRight="@dimen/dp16"
+        android:layout_marginBottom="@dimen/dp8"
+        android:background="@drawable/icon_me_top_bg">
+
+        <FrameLayout
+            android:id="@+id/fl_top_ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/white" />
+    </FrameLayout>
+</LinearLayout>

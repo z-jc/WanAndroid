@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dq.base_mine">
+    <application>
+        <activity
+            android:name="com.dq.mine.activity.AboutActivity"
+            android:theme="@style/Theme.Act" />
+        <activity
+            android:name="com.dq.mine.activity.UserServiceAgreementActivity"
+            android:theme="@style/Theme.Act" />
+        <activity
+            android:name="com.dq.mine.activity.FeedBackActivity"
+            android:theme="@style/Theme.Act" />
+    </application>
+</manifest>
