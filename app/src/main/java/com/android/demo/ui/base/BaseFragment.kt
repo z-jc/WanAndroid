@@ -73,8 +73,4 @@ abstract class BaseFragment : SupportFragment() {
     open fun initData() {}
 
     open fun initView() {}
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
 }
