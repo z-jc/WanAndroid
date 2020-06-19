@@ -5,4 +5,6 @@ package com.android.demo.model.http
  * Date : 2020/1/12
  * Description :
  */
-class HttpConfig
+class HttpConfig {
+    
+}

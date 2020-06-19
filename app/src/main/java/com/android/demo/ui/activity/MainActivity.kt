@@ -43,7 +43,7 @@ class MainActivity : BaseActivity() {
         navigation.setOnNavigationItemSelectedListener(object :
             BottomNavigationView.OnNavigationItemSelectedListener {
             override fun onNavigationItemSelected(@NonNull menuItem: MenuItem): Boolean {
-                when (menuItem.getItemId()) {
+                when (menuItem.itemId) {
                     R.id.main_1 -> {
                         selectFragment(0)
                         return true

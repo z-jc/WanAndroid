@@ -51,7 +51,7 @@ abstract class BaseFragment : SupportFragment() {
 
     protected abstract fun getContentView(): Int?
 
-    open fun setTitleBackground(back: Int) {
+    open fun setTitleBackground(back: Int?) {
         if (back == 1) {//深色
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 activity!!.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR

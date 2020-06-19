@@ -7,9 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.view.animation.AnimationUtils
-import android.view.animation.LayoutAnimationController
-import com.dq.base_mine.R
 import me.yokeyword.fragmentation.SupportActivity
 
 /**
@@ -44,7 +41,7 @@ abstract class BaseActivity : SupportActivity() {
     open fun initData() {}
     protected abstract fun getContentView(): Int?
 
-    open fun setTitleBackground(back: Int) {
+    open fun setTitleBackground(back: Int?) {
         if (back == 1) {//深色
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 window.decorView.systemUiVisibility =
