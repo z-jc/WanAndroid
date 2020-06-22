@@ -12,6 +12,7 @@ import com.dq.mine.base.BaseActivity
 import com.dq.ui.dialog.DialogCustom
 import com.dq.ui.dialog.DialogCustom.ActionLister
 import com.dq.util.DisplayUtil
+import com.dq.util.ToastUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import me.yokeyword.fragmentation.SupportFragment
@@ -49,6 +50,12 @@ class MainActivity : BaseActivity() {
         tvTitle.textSize = 16F
         imgBack.setOnClickListener {
             drawerLayout.openDrawer(Gravity.LEFT)
+        }
+        imgMenuTitle.setOnClickListener {
+            ToastUtil.showShortToast(this, "积分排行榜")
+        }
+        imgMenuHeader.setOnClickListener {
+            ToastUtil.showShortToast(this, "去登陆")
         }
 
         var lp: DrawerLayout.LayoutParams = layoutMenu.layoutParams as DrawerLayout.LayoutParams
