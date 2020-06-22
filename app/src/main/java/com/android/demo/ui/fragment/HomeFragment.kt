@@ -38,10 +38,6 @@ class HomeFragment : BaseFragment() {
         return list
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
     override fun onSupportVisible() {
         super.onSupportVisible()
         setTitleBackground(BG_WHITE)
