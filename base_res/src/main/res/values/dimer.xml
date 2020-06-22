@@ -69,8 +69,10 @@
     <dimen name="dp180">180dp</dimen>
     <dimen name="dp190">190dp</dimen>
     <dimen name="dp200">200dp</dimen>
+    <dimen name="dp240">240dp</dimen>
+    <dimen name="dp300">300dp</dimen>
 
-    <dimen name="design_bottom_navigation_active_text_size" tools:ignore="PrivateResource">12sp</dimen>
-    <dimen name="design_bottom_navigation_text_size" tools:ignore="PrivateResource">12sp</dimen>
+<!--    <dimen name="design_bottom_navigation_active_text_size" tools:ignore="PrivateResource">12sp</dimen>-->
+<!--    <dimen name="design_bottom_navigation_text_size" tools:ignore="PrivateResource">12sp</dimen>-->
 
 </resources>

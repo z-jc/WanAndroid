@@ -1,6 +1,6 @@
 include ':base_ui'
-include ':base_mine'
+include ':module_mine'
 include ':base_util'
 include ':base_res'
-include ':app'
-rootProject.name = "BaseProject"
+include ':module_app'
+rootProject.name = "WanAndroid"

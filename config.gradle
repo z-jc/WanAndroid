@@ -1,5 +1,5 @@
 ext {
-    app_code = 100
+    app_code = 1
     app_version = "1.0.0"
     csv = 29
     tsv = 29
