@@ -38,6 +38,7 @@ class MenuAdapter : BaseQuickAdapter<MenuBean, BaseViewHolder>(R.layout.item_mai
                 4 -> {}
                 5 -> {}
                 6 -> {}
+                7 -> {}
             }
         })
     }

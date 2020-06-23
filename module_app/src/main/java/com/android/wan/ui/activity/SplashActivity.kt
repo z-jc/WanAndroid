@@ -53,7 +53,7 @@ class SplashActivity : BaseActivity() {
         Handler().postDelayed(Runnable {
             startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finish()
-        }, 1500)
+        }, 2000)
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

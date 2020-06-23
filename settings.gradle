@@ -1,6 +1,7 @@
 include ':base_ui'
 include ':module_mine'
 include ':base_util'
+include ':base_zbarlibary'
 include ':base_res'
 include ':module_app'
 rootProject.name = "WanAndroid"
