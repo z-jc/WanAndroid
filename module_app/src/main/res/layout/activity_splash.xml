@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="@dimen/dp240"
         android:layout_height="@dimen/dp240"
-        android:background="@mipmap/ic_launcher_foreground"
+        android:background="@mipmap/ic_splash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
