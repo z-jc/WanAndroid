@@ -16,6 +16,7 @@ class AppDataSourse {
             list.add(MenuBean(R.drawable.icon_menu_collection,"我的收藏"))
             list.add(MenuBean(R.drawable.icon_menu_share,"我的分享"))
             list.add(MenuBean(R.drawable.icon_menu_todo,"TODO"))
+            list.add(MenuBean(R.drawable.icon_menu_qrcode,"扫一扫"))
             list.add(MenuBean(R.drawable.icon_menu_setting,"系统设置"))
             list.add(MenuBean(R.drawable.icon_menu_logout,"退出登录"))
             return list

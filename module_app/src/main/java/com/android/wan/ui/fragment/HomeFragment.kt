@@ -40,12 +40,6 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
         super.initView()
         mAdapter = HomeAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                activity,
-                DividerItemDecoration.VERTICAL
-            )
-        )
         recyclerView.adapter = mAdapter
         headerView = LayoutInflater.from(activity).inflate(R.layout.layout_home_header, null)
         banner = headerView!!.findViewById(R.id.banner)
