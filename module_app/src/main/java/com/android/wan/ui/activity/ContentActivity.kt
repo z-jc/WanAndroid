@@ -3,14 +3,17 @@ package com.android.wan.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
-import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
 import com.android.wan.R
+import com.android.wan.ui.dialog.DialogTitle
 import com.android.wan.ui.view.LoadingUtil
+import com.android.wan.util.BrowserUtil
 import com.dq.mine.base.BaseActivity
+import com.dq.util.ShareUtil
+import com.dq.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_content.*
 import kotlinx.android.synthetic.main.title_bar_base.*
 
@@ -19,15 +22,17 @@ import kotlinx.android.synthetic.main.title_bar_base.*
  * Date:2020/2/7  16:01
  * Description:UserServiceAgreementActivity
  */
-class ContentActivity : BaseActivity(),
-    View.OnClickListener {
+class ContentActivity : BaseActivity() {
+
+    private var dialogTitle: DialogTitle? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initView() {
-        LoadingUtil.showLoading(this,"加载中...")
+        LoadingUtil.showLoading(this, "加载中...")
         webUrl = intent.getStringExtra(URL)
         webTitle = intent.getStringExtra(TITLE)
-        imgBack.setOnClickListener(this)
+        imgBack.setOnClickListener { finish() }
+        imgTitle.setOnClickListener { showTitlePop() }
         val settings = webView.settings
         // 设置缩放
         settings.builtInZoomControls = false
@@ -55,12 +60,6 @@ class ContentActivity : BaseActivity(),
         return R.layout.activity_content
     }
 
-    override fun onClick(v: View) {
-        if (v.id == R.id.imgBack) {
-            finish()
-        }
-    }
-
     companion object {
         var webUrl: String? = null
         var webTitle: String? = null
@@ -76,8 +75,32 @@ class ContentActivity : BaseActivity(),
         }
     }
 
+    fun showTitlePop() {
+        dialogTitle = DialogTitle(this, object : DialogTitle.OnActionLister {
+            override fun onShare() {
+                dialogTitle!!.dismiss()
+                ShareUtil.shareTxt(this@ContentActivity, javaClass.simpleName, webTitle, webUrl)
+            }
+
+            override fun onCollection() {
+                dialogTitle!!.dismiss()
+                ToastUtil.showShortToast(this@ContentActivity, "已添加收藏")
+            }
+
+            override fun onBrowser() {
+                dialogTitle!!.dismiss()
+                BrowserUtil.startBrowser(this@ContentActivity, webUrl)
+            }
+        })
+        dialogTitle!!.show()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         LoadingUtil.dismissLoading()
+        if (dialogTitle != null) {
+            dialogTitle!!.dismiss()
+            dialogTitle = null
+        }
     }
 }
