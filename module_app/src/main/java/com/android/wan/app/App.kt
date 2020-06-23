@@ -2,8 +2,10 @@ package com.android.wan.app
 
 import android.app.Application
 import android.content.Context
+import com.android.wan.config.AppConfig
 import com.dq.util.SPUtil
 import com.dq.util.http.RxhttpUtil
+import com.tencent.bugly.crashreport.CrashReport
 import org.litepal.LitePal
 
 /**
@@ -14,7 +16,7 @@ import org.litepal.LitePal
  */
 class App : Application() {
 
-    var context : Context? = null
+    var context: Context? = null
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
@@ -22,8 +24,9 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        CrashReport.initCrashReport(this, AppConfig.buglyAppId, false);
         LitePal.initialize(this);//初始化litepal数据库
-        context = getApplicationContext();
+        context = this
         SPUtil.getInstance(context);
         RxhttpUtil.init(true);
     }

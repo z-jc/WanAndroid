@@ -8,6 +8,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import com.android.wan.model.model.ApiModel
+import com.android.wan.model.model.ApiModelImpl
+import com.android.wan.ui.activity.MainActivity
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
@@ -17,11 +21,13 @@ import me.yokeyword.fragmentation.SupportFragment
  * @class describe
  */
 abstract class BaseFragment : SupportFragment() {
-    var activity: Activity? = null
+    var activity: AppCompatActivity? = null
+    var apiModel: ApiModel? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        activity = getActivity()
+        activity = getActivity() as MainActivity?
+        apiModel = ApiModelImpl()
     }
 
     /**
@@ -54,13 +60,15 @@ abstract class BaseFragment : SupportFragment() {
     open fun setTitleBackground(back: Int?) {
         if (back == 1) {//深色
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                activity!!.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                activity!!.window.decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             }
         }
 
         if (back == 0) {//浅色
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                activity!!.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                activity!!.window.decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             }
         }
     }

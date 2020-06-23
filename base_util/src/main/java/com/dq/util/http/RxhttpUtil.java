@@ -31,7 +31,7 @@ import rxhttp.wrapper.param.RxHttp;
 public class RxhttpUtil {
 
     @DefaultDomain
-    public static String baseUrl = "http://www.baidu.com/";
+    public static String baseUrl = "https://www.wanandroid.com/";
 
     private static volatile RxhttpUtil instance = null;
 

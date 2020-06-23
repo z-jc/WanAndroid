@@ -1,15 +1,36 @@
 package com.android.wan.ui.fragment
 
+import android.view.LayoutInflater
+import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
+import com.android.wan.model.entity.HomeBannerEntity
+import com.android.wan.model.entity.HomeListEntity
+import com.android.wan.model.http.JsonUtil
+import com.android.wan.ui.activity.ContentActivity
 import com.android.wan.ui.adapter.HomeAdapter
 import com.android.wan.ui.base.BaseFragment
+import com.android.wan.ui.holder.CustomViewHolder
+import com.dq.util.ILog
+import com.dq.util.ToastUtil
+import com.dq.util.http.RxhttpUtil
+import com.dq.util.http.RxhttpUtil.RxHttpCallBack
+import com.ms.banner.Banner
+import com.ms.banner.BannerConfig
+import com.scwang.smartrefresh.header.MaterialHeader
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
 
-    var mAdapter : HomeAdapter? = null
+    var mAdapter: HomeAdapter? = null
+    var headerView: View? = null
+    var banner: Banner? = null
+    var pageIndex: Int? = 0
+    var isRefresh: Boolean? = false
 
     override fun getContentView(): Int? {
         return R.layout.fragment_home
@@ -19,24 +40,134 @@ class HomeFragment : BaseFragment() {
         super.initView()
         mAdapter = HomeAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                activity,
+                DividerItemDecoration.VERTICAL
+            )
+        )
         recyclerView.adapter = mAdapter
-        mAdapter!!.setList(getList())
+        headerView = LayoutInflater.from(activity).inflate(R.layout.layout_home_header, null)
+        banner = headerView!!.findViewById(R.id.banner)
+        mAdapter!!.addHeaderView(headerView!!)
+        refreshLayout.setRefreshHeader(MaterialHeader(activity))
+        refreshLayout.setOnLoadMoreListener(this)
+        refreshLayout.setOnRefreshListener(this)
+        getHomeBanner()
     }
 
-    fun getList(): ArrayList<String> {
-        var list = arrayListOf<String>()
-        var index: Int = 0
-        while (index < 200) {
-            index++
-            list.add("第" + index.toString() + "行")
+    fun getHomeBanner() {
+        activity?.let {
+            apiModel!!.getHomeBanner(it, object : RxHttpCallBack {
+                override fun onSuccess(response: String?) {
+                    val bannerEntity: HomeBannerEntity =
+                        JsonUtil.fromJson<HomeBannerEntity>(
+                            response,
+                            HomeBannerEntity()
+                        ) as HomeBannerEntity
+                    if (bannerEntity.errorCode == 0) {
+                        startBanner(bannerEntity)
+                    } else {
+                        ToastUtil.showShortToast(activity, bannerEntity.errorMsg)
+                    }
+                }
+
+                override fun onFinish() {
+                    refreshLayout.autoRefresh()
+                }
+
+                override fun onError(error: String?) {
+                }
+
+                override fun onStart() {
+                }
+            })
         }
-        return list
+    }
+
+    private fun getHomeList() {
+        activity?.let {
+            apiModel!!.getHomeList(pageIndex!!, it, object : RxhttpUtil.RxHttpCallBack {
+                override fun onSuccess(response: String?) {
+                    var listEntity: HomeListEntity =
+                        JsonUtil.fromJson<HomeListEntity>(
+                            response,
+                            HomeListEntity()
+                        ) as HomeListEntity
+                    if (listEntity.errorCode == 0) {
+                        if (isRefresh!!) {
+                            mAdapter!!.addData((listEntity.data!!.datas as MutableList<HomeListEntity.DataBean.DatasBean>?)!!)
+                        } else {
+                            mAdapter!!.setNewInstance((listEntity.data!!.datas as MutableList<HomeListEntity.DataBean.DatasBean>?)!!)
+                        }
+                    } else {
+                        ToastUtil.showShortToast(activity, listEntity.errorMsg)
+                    }
+                }
+
+                override fun onFinish() {
+                    ILog.e("请求结束")
+                    refreshLayout.finishLoadMore()
+                    refreshLayout.finishRefresh()
+                }
+
+                override fun onError(error: String?) {
+                    ILog.e("请求失败:$error")
+                    ToastUtil.showShortToast(activity, "网络异常")
+                }
+
+                override fun onStart() {
+                    ILog.e("开始请求")
+                }
+            })
+        }
+    }
+
+    private fun startBanner(bannerEntity: HomeBannerEntity) {
+
+        val imageList: MutableList<String> = mutableListOf()
+        val titleList: MutableList<String> = mutableListOf()
+        for (item: HomeBannerEntity.DataBean in bannerEntity.data!!) {
+            imageList.add(item.imagePath!!)
+            titleList.add(item.title!!)
+        }
+
+        banner!!.setAutoPlay(true)
+            .setPages(imageList, CustomViewHolder())
+            .setBannerTitles(titleList)
+            .setBannerStyle(BannerConfig.LEFT)
+            .setDelayTime(3000)
+            .start()
+
+        banner!!.setOnBannerClickListener { _, position ->
+            bannerEntity.data!![position].url?.let {
+                activity?.let { it1 ->
+                    bannerEntity.data!![position].title?.let { it2 ->
+                        ContentActivity.startAct(
+                            it1,
+                            it, it2
+                        )
+                    }
+                }
+            }
+        }
     }
 
     companion object {
         fun createFragment(): HomeFragment {
             return HomeFragment()
         }
+    }
+
+    override fun onLoadMore(refreshLayout: RefreshLayout) {
+        pageIndex = pageIndex!! + 1
+        isRefresh = true
+        getHomeList()
+    }
+
+    override fun onRefresh(refreshLayout: RefreshLayout) {
+        pageIndex = 0
+        isRefresh = false
+        getHomeList()
     }
 }

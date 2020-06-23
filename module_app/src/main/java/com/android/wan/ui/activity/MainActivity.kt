@@ -1,12 +1,16 @@
 package com.android.wan.ui.activity
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.NonNull
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
+import com.android.wan.config.AppDataSourse
+import com.android.wan.ui.adapter.MenuAdapter
 import com.android.wan.ui.fragment.*
 import com.dq.mine.base.BaseActivity
 import com.dq.ui.dialog.DialogCustom
@@ -26,11 +30,12 @@ import me.yokeyword.fragmentation.SupportFragment
 class MainActivity : BaseActivity() {
 
     private val fragments = arrayOfNulls<SupportFragment>(5)
+    private var menuAdapter: MenuAdapter? = null
 
     override fun initView() {
         super.initView()
         imgBack.visibility = View.VISIBLE
-        imgBack.setImageResource(R.drawable.icon_mian_title_left)
+        imgBack.setImageResource(R.drawable.icon_main_title_left)
         fragments[0] = HomeFragment.createFragment()
         fragments[1] = SquareFragment.createFragment()
         fragments[2] = PublicFragment.createFragment()
@@ -46,7 +51,6 @@ class MainActivity : BaseActivity() {
             fragments[4]
         )
         navigation.selectedItemId = R.id.main_1
-        tvTitle.text = resources.getText(R.string.text_main_bottom_home)
         tvTitle.textSize = 16F
         imgBack.setOnClickListener {
             drawerLayout.openDrawer(Gravity.LEFT)
@@ -57,10 +61,18 @@ class MainActivity : BaseActivity() {
         imgMenuHeader.setOnClickListener {
             ToastUtil.showShortToast(this, "去登陆")
         }
+        imgTitle.setOnClickListener {
+            ToastUtil.showShortToast(this, "去搜索")
+        }
 
         var lp: DrawerLayout.LayoutParams = layoutMenu.layoutParams as DrawerLayout.LayoutParams
         lp.width = DisplayUtil.getScreenWidth(this) / 20 * 13
         layoutMenu.requestLayout()
+
+        menuAdapter = MenuAdapter()
+        recyclerViewMenu.layoutManager = LinearLayoutManager(this)
+        recyclerViewMenu.adapter = menuAdapter
+        menuAdapter!!.setList(AppDataSourse.getMenuList())
 
         navigation.setOnNavigationItemSelectedListener(object :
             BottomNavigationView.OnNavigationItemSelectedListener {
@@ -99,9 +111,10 @@ class MainActivity : BaseActivity() {
 
     private var nowPosition = 0
 
+    @SuppressLint("SetTextI18n")
     private fun selectFragment(index: Int) {
         when (index) {
-            0 -> tvTitle.text = resources.getText(R.string.text_main_bottom_home)
+            0 -> tvTitle.text = "玩Android"
             1 -> tvTitle.text = resources.getText(R.string.text_main_bottom_square)
             2 -> tvTitle.text = resources.getText(R.string.text_main_bottom_the_public)
             3 -> tvTitle.text = resources.getText(R.string.text_main_bottom_the_system)
