@@ -40,9 +40,11 @@ class LoginFragment : BaseFragment() {
         tvLogin.setOnClickListener {
             if (TextUtils.isEmpty(getUserName())) {
                 ToastUtil.showShortToast(loginActivity, "请输入用户名")
+                return@setOnClickListener
             }
             if (TextUtils.isEmpty(getPsw())) {
                 ToastUtil.showShortToast(loginActivity, "请输入密码")
+                return@setOnClickListener
             }
             login()
         }

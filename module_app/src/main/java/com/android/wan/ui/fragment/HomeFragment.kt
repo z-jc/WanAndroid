@@ -133,7 +133,7 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
         banner!!.setAutoPlay(true)
             .setPages(imageList, CustomViewHolder())
             .setBannerTitles(titleList)
-            .setBannerStyle(BannerConfig.LEFT)
+            .setBannerStyle(BannerConfig.NOT_INDICATOR)
             .setDelayTime(3000)
             .start()
 

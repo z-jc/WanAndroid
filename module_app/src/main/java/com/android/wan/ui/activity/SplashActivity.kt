@@ -3,10 +3,16 @@ package com.android.wan.ui.activity
 import android.Manifest
 import android.content.Intent
 import android.os.Build
-import android.os.Handler
 import android.view.KeyEvent
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.android.wan.R
 import com.dq.ui.base.BaseActivity
+import com.qw.soul.permission.SoulPermission
+import com.qw.soul.permission.bean.Permission
+import com.qw.soul.permission.bean.Permissions
+import com.qw.soul.permission.callbcak.CheckRequestPermissionsListener
+import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : BaseActivity() {
 
@@ -47,10 +53,18 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun startAct() {
-        Handler().postDelayed(Runnable {
-            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-            finish()
-        }, 2000)
+        var animation : Animation = AnimationUtils.loadAnimation(this,R.anim.splash_alpha);
+        imgSplash.startAnimation(animation);//开始动画
+        animation!!.setAnimationListener(object : Animation.AnimationListener{
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+            override fun onAnimationEnd(animation: Animation?) {
+                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                finish()
+            }
+            override fun onAnimationStart(animation: Animation?) {
+            }
+        })
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
