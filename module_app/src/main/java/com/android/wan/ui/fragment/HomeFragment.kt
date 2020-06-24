@@ -11,6 +11,7 @@ import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.activity.ContentActivity
 import com.android.wan.ui.adapter.HomeAdapter
 import com.android.wan.ui.holder.CustomViewHolder
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
@@ -53,7 +54,7 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
         getHomeBanner()
     }
 
-    fun getHomeBanner() {
+    private fun getHomeBanner() {
         activity?.let {
             apiModel!!.getHomeBanner(it, object : RxHttpCallBack {
                 override fun onSuccess(response: String?) {
@@ -97,6 +98,8 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
                         } else {
                             mAdapter!!.setNewInstance((listEntity.data!!.datas as MutableList<HomeListEntity.DataBean.DatasBean>?)!!)
                         }
+                        mAdapter!!.animationEnable = true
+                        mAdapter!!.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
                     } else {
                         ToastUtil.showShortToast(activity, listEntity.errorMsg)
                     }

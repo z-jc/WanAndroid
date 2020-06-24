@@ -101,8 +101,8 @@ class RegisteredFragment : BaseFragment() {
         return edRegisteredRePsw.text.toString()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onSupportInvisible() {
+        super.onSupportInvisible()
         edRegisteredUser.setText("")
         edRegisteredPsw.setText("")
         edRegisteredRePsw.setText("")

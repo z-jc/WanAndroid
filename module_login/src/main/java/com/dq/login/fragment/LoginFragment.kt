@@ -66,6 +66,7 @@ class LoginFragment : BaseFragment() {
                         LoginConfig().setIsLogin(true)
                         getUserIntegral()
                     } else {
+                        LoadUtil.dismissLoading()
                         ToastUtil.showShortToast(loginActivity, loginEntity.errorMsg)
                     }
                 }
@@ -121,8 +122,8 @@ class LoginFragment : BaseFragment() {
         return edLoginPsw.text.toString()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onSupportInvisible() {
+        super.onSupportInvisible()
         edLoginUser.setText("")
         edLoginPsw.setText("")
     }
