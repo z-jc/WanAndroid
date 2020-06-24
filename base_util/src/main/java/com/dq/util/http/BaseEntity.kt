@@ -1,4 +1,4 @@
-package com.android.wan.model.entity
+package com.dq.util.http
 
 /**
  * Author : Z-JC

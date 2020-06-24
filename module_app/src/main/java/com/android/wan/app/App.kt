@@ -24,10 +24,10 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        CrashReport.initCrashReport(this, AppConstant.buglyAppId, false);
-        LitePal.initialize(this);//初始化litepal数据库
+        CrashReport.initCrashReport(this, AppConstant.buglyAppId, false)
+        LitePal.initialize(this)//初始化litepal数据库
         context = this
-        SPUtil.getInstance(context);
-        RxhttpUtil.init(true);
+        SPUtil.getInstance(context)
+        RxhttpUtil.init(this,true)
     }
 }

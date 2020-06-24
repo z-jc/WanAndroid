@@ -1,5 +1,7 @@
 package com.android.wan.model.entity
 
+import com.dq.util.http.BaseEntity
+
 /**
  * FileName: HomeBannerEntity
  * Author: admin

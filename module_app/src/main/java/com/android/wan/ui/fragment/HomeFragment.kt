@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
 import com.android.wan.model.entity.HomeBannerEntity
 import com.android.wan.model.entity.HomeListEntity
-import com.android.wan.model.http.JsonUtil
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.activity.ContentActivity
@@ -15,6 +14,7 @@ import com.android.wan.ui.holder.CustomViewHolder
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
+import com.dq.util.http.JsonUtil
 import com.dq.util.http.RxhttpUtil
 import com.dq.util.http.RxhttpUtil.RxHttpCallBack
 import com.ms.banner.Banner

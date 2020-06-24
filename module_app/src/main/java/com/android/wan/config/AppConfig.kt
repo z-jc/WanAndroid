@@ -7,5 +7,4 @@ package com.android.wan.config
  */
 class AppConfig {
 
-
 }

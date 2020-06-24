@@ -9,12 +9,13 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
 import com.dq.login.R
 import com.dq.login.adapter.LoginFragmentPagerAdapter
 import com.dq.login.fragment.LoginFragment
 import com.dq.login.fragment.RegisteredFragment
+import com.dq.login.view.LoadUtil
 import com.dq.ui.base.BaseActivity
+import com.dq.util.EdittorUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 import kotlin.math.abs
@@ -51,10 +52,23 @@ class LoginActivity : BaseActivity() {
         imgClose.setOnClickListener { finish() }
     }
 
+    fun showLogin() {
+        EdittorUtil.hideInput(this)
+        if (viewPager != null) {
+            viewPager!!.currentItem = 0
+        }
+    }
+
+    fun showRegistered() {
+        EdittorUtil.hideInput(this)
+        if (viewPager != null) {
+            viewPager!!.currentItem = 1
+        }
+    }
+
     override fun initData() {
         super.initData()
     }
-
 
     companion object {
         fun start(context: Context) {
@@ -163,6 +177,7 @@ class LoginActivity : BaseActivity() {
 
     override fun finish() {
         super.finish()
+        LoadUtil.dismissLoading()
         overridePendingTransition(
             R.anim.swipeback_activity_close_top_in,
             R.anim.swipeback_activity_close_bottom_out

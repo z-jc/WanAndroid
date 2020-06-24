@@ -1,7 +1,6 @@
-package com.android.wan.model.http
+package com.dq.util.http
 
 import android.content.Context
-import com.dq.util.http.BaseEntity
 import com.google.gson.Gson
 import org.json.JSONException
 import org.json.JSONObject
@@ -15,6 +14,7 @@ import java.io.InputStreamReader
  * Description :
  */
 object JsonUtil {
+
     /**
      * json串转实体类对象
      *

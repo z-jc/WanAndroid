@@ -12,10 +12,15 @@ import com.android.wan.R
 import com.android.wan.bean.MenuBean
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.dq.login.config.LoginConfig
 import com.dq.util.ToastUtil
 
-
 class MenuAdapter : BaseQuickAdapter<MenuBean, BaseViewHolder>(R.layout.item_main_menu, null) {
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun convert(helper: BaseViewHolder, item: MenuBean) {
         val tvItem: TextView = helper.getView(R.id.tv_item)
         val tvContent: TextView = helper.getView(R.id.tv_content)
@@ -30,8 +35,10 @@ class MenuAdapter : BaseQuickAdapter<MenuBean, BaseViewHolder>(R.layout.item_mai
         tvItem.compoundDrawablePadding = 32
         tvItem.text = item.menuText
 
-        if(helper.layoutPosition == 0){
-            tvContent.text = "21"
+        if(position == 0){
+            tvContent.text = LoginConfig().getUserIntegral().toString()
+        }else{
+            tvContent.visibility = View.GONE
         }
     }
 

@@ -13,12 +13,17 @@ interface ApiModel {
     /**
      * 首页banner接口
      */
-    fun getHomeBanner(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack);
+    fun getHomeBanner(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
 
     /**
      * 首页列表接口
      * @param index 页码
      */
-    fun getHomeList(index: Int, a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack);
+    fun getHomeList(index: Int, a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
+
+    /**
+     * 退出登录接口
+     */
+    fun logOut(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
 
 }

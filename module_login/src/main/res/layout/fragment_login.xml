@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -14,6 +15,56 @@
         android:drawablePadding="@dimen/dp8"
         android:text="@string/text_goto_registered"
         android:textColor="@color/Color_4184F2"
+        android:textSize="@dimen/sp14" />
+
+    <EditText
+        android:id="@+id/edLoginUser"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_below="@id/tvGotoRegistered"
+        android:layout_marginStart="@dimen/dp50"
+        android:layout_marginTop="@dimen/dp32"
+        android:layout_marginEnd="@dimen/dp50"
+        android:digits="qwertyuiopasdfghjklzxcvbnm1234567890._ZXCVBNMASDFGHJKLQWERTYUIOP"
+        android:hint="请输入用户名"
+        android:maxLength="20"
+        android:singleLine="true"
+        android:textColor="@color/black_6"
+        android:textCursorDrawable="@drawable/bg_edit_cursor"
+        android:textSize="@dimen/sp14"
+        android:theme="@style/AppTheme"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/edLoginPsw"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_below="@id/edLoginUser"
+        android:layout_marginStart="@dimen/dp50"
+        android:layout_marginEnd="@dimen/dp50"
+        android:digits="qwertyuiopasdfghjklzxcvbnm1234567890._ZXCVBNMASDFGHJKLQWERTYUIOP"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:maxLength="20"
+        android:singleLine="true"
+        android:textColor="@color/black_6"
+        android:textCursorDrawable="@drawable/bg_edit_cursor"
+        android:textSize="@dimen/sp14"
+        android:theme="@style/AppTheme"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_below="@id/edLoginPsw"
+        android:layout_marginStart="@dimen/dp50"
+        android:layout_marginTop="@dimen/dp16"
+        android:layout_marginEnd="@dimen/dp50"
+        android:background="@drawable/bg_tv_login"
+        android:gravity="center"
+        android:text="@string/text_tv_login"
+        android:textColor="@color/white"
         android:textSize="@dimen/sp14" />
 
 </RelativeLayout>

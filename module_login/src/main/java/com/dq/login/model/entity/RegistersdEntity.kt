@@ -1,4 +1,6 @@
-package com.android.wan.model.entity
+package com.dq.login.model.entity
+
+import com.dq.util.http.BaseEntity
 
 /**
  * FileName: RegistersdEntity

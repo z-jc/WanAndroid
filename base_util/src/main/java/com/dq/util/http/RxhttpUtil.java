@@ -1,9 +1,13 @@
 package com.dq.util.http;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.rxjava.rxlife.RxLife;
 
 import java.io.File;
@@ -34,6 +38,7 @@ public class RxhttpUtil {
     public static String baseUrl = "https://www.wanandroid.com/";
 
     private static volatile RxhttpUtil instance = null;
+    private static PersistentCookieJar mCookieJar = null;
 
     public static RxhttpUtil getInstance() {
         if (instance == null) {
@@ -52,11 +57,11 @@ public class RxhttpUtil {
      * @param debug false:非debug模式，true:debug模式
      * @param url   更换BaseUrl
      */
-    public static void init(boolean debug, String url) {
+    public static void init(Context c, boolean debug, String url) {
         if (!TextUtils.isEmpty(url)) {
             baseUrl = url;
         }
-        setOkhttp(debug);
+        setOkhttp(c, debug);
     }
 
     /**
@@ -64,11 +69,11 @@ public class RxhttpUtil {
      *
      * @param debug false:非debug模式，true:debug模式
      */
-    public static void init(boolean debug) {
-        setOkhttp(debug);
+    public static void init(Context c, boolean debug) {
+        setOkhttp(c, debug);
     }
 
-    private static void setOkhttp(boolean debug) {
+    private static void setOkhttp(Context c, boolean debug) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .readTimeout(30 * 1000, TimeUnit.MILLISECONDS)
                 .writeTimeout(30 * 1000, TimeUnit.MILLISECONDS)
@@ -79,7 +84,15 @@ public class RxhttpUtil {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         builder.addInterceptor(loggingInterceptor);
+        builder.cookieJar(getCookieJar(c));
         RxHttp.init(builder.build(), debug);
+    }
+
+    public static PersistentCookieJar getCookieJar(Context c) {
+        if (mCookieJar == null) {
+            mCookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(c));
+        }
+        return mCookieJar;
     }
 
     /**

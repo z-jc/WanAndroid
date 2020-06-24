@@ -2,6 +2,7 @@ package com.android.wan.config
 
 import com.android.wan.R
 import com.android.wan.bean.MenuBean
+import com.dq.login.config.LoginConfig
 
 /**
  * Author : Z-JC
@@ -19,7 +20,9 @@ class AppDataSourse {
             list.add(MenuBean(R.drawable.icon_menu_todo,"TODO"))
             list.add(MenuBean(R.drawable.icon_menu_qrcode,"扫一扫"))
             list.add(MenuBean(R.drawable.icon_menu_setting,"系统设置"))
-            list.add(MenuBean(R.drawable.icon_menu_logout,"退出登录"))
+            if(LoginConfig().getIsLogin()){
+                list.add(MenuBean(R.drawable.icon_menu_logout,"退出登录"))
+            }
             return list
         }
     }

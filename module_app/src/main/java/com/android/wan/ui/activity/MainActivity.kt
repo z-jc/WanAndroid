@@ -15,15 +15,23 @@ import cn.bertsir.zbar.QrConfig
 import cn.bertsir.zbar.QrManager
 import com.android.wan.R
 import com.android.wan.config.AppDataSourse
+import com.android.wan.model.entity.LogoutEntity
+import com.android.wan.model.model.ApiModel
+import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.adapter.MenuAdapter
 import com.android.wan.ui.fragment.*
+import com.android.wan.ui.view.LoadingUtil
 import com.android.wan.util.BrowserUtil
 import com.dq.login.activity.LoginActivity
+import com.dq.login.config.LoginConfig
 import com.dq.ui.base.BaseActivity
 import com.dq.ui.dialog.DialogCustom
 import com.dq.ui.dialog.DialogCustom.ActionLister
 import com.dq.util.DisplayUtil
+import com.dq.util.ILog
 import com.dq.util.ToastUtil
+import com.dq.util.http.JsonUtil
+import com.dq.util.http.RxhttpUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_bar_base.imgBack
@@ -42,9 +50,11 @@ class MainActivity : BaseActivity() {
     private val fragments = arrayOfNulls<SupportFragment>(5)
     private var menuAdapter: MenuAdapter? = null
     private var vibrator: Vibrator? = null
+    private var apiModel: ApiModel? = null
 
     override fun initView() {
         super.initView()
+        apiModel = ApiModelImpl()
         vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator?
         imgBack.visibility = View.VISIBLE
         imgBack.setImageResource(R.drawable.icon_main_title_left)
@@ -71,7 +81,9 @@ class MainActivity : BaseActivity() {
             ToastUtil.showShortToast(this, "积分排行榜")
         }
         imgMenuHeader.setOnClickListener {
-            LoginActivity.start(this@MainActivity)
+            if (!LoginConfig().getIsLogin()) {
+                LoginActivity.start(this@MainActivity)
+            }
         }
         imgTitle.setOnClickListener {
             ToastUtil.showShortToast(this, "去搜索")
@@ -84,7 +96,6 @@ class MainActivity : BaseActivity() {
         menuAdapter = MenuAdapter()
         recyclerViewMenu.layoutManager = LinearLayoutManager(this)
         recyclerViewMenu.adapter = menuAdapter
-        menuAdapter!!.setList(AppDataSourse.getMenuList())
 
         navigation.setOnNavigationItemSelectedListener(object :
             BottomNavigationView.OnNavigationItemSelectedListener {
@@ -124,7 +135,7 @@ class MainActivity : BaseActivity() {
                 4 -> return@setOnItemClickListener
                 5 -> startQrCode(QrConfig.TYPE_ONCE)
                 6 -> return@setOnItemClickListener
-                7 -> return@setOnItemClickListener
+                7 -> logout()
             }
         }
     }
@@ -167,6 +178,49 @@ class MainActivity : BaseActivity() {
     override fun getContentView(): Int? {
         setTitleBackground(BG_WHITE)
         return R.layout.activity_main
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onResume() {
+        super.onResume()
+        menuAdapter!!.setList(AppDataSourse.getMenuList())
+        tvMenuRank.text = "等级" + LoginConfig().getUserLevel() + "  排名" + LoginConfig().getUserRank()
+        if (LoginConfig().getIsLogin()) {
+            tvMenuUser.text = LoginConfig().getUserName()
+        } else {
+            tvMenuUser.text = "去登陆"
+        }
+    }
+
+    /**
+     * 退出登录
+     */
+    private fun logout() {
+        apiModel!!.logOut(this, object : RxhttpUtil.RxHttpCallBack {
+            override fun onSuccess(response: String?) {
+                ILog.e("退出成功$response")
+                var logoutEntity: LogoutEntity =
+                    JsonUtil.fromJson<LogoutEntity>(response, LogoutEntity()) as LogoutEntity
+                if (logoutEntity.errorCode == 0) {
+                    LoginConfig().clear()
+                    onResume()
+                } else {
+                    ToastUtil.showShortToast(this@MainActivity, logoutEntity.errorMsg)
+                }
+            }
+
+            override fun onFinish() {
+                LoadingUtil.dismissLoading()
+            }
+
+            override fun onError(error: String?) {
+                ToastUtil.showShortToast(this@MainActivity, "网络异常")
+            }
+
+            override fun onStart() {
+                LoadingUtil.showLoading(this@MainActivity, "正在退出...")
+            }
+        })
     }
 
     private var nowPosition = 0

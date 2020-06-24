@@ -19,5 +19,11 @@ class HttpConfig {
         fun homeListUrl(int: Int): String {
             return "https://www.wanandroid.com/article/list/$int/json"
         }
+
+        /**
+         * 退出登录
+         */
+        var logOutUrl: String = "https://www.wanandroid.com/user/logout/json"
+
     }
 }
