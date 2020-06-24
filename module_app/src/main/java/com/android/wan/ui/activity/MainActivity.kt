@@ -14,14 +14,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cn.bertsir.zbar.QrConfig
 import cn.bertsir.zbar.QrManager
 import com.android.wan.R
+import com.android.wan.config.AppConstant
 import com.android.wan.config.AppDataSourse
 import com.android.wan.model.entity.LogoutEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.adapter.MenuAdapter
 import com.android.wan.ui.fragment.*
+import com.android.wan.ui.holder.GlideEngine
 import com.android.wan.ui.view.LoadingUtil
 import com.android.wan.util.BrowserUtil
+import com.bumptech.glide.Glide
 import com.dq.login.activity.LoginActivity
 import com.dq.login.config.LoginConfig
 import com.dq.ui.base.BaseActivity
@@ -33,11 +36,15 @@ import com.dq.util.ToastUtil
 import com.dq.util.http.JsonUtil
 import com.dq.util.http.RxhttpUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.huantansheng.easyphotos.EasyPhotos
+import com.huantansheng.easyphotos.callback.SelectCallback
+import com.huantansheng.easyphotos.models.album.entity.Photo
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_bar_base.imgBack
 import kotlinx.android.synthetic.main.title_bar_base.imgTitle
 import kotlinx.android.synthetic.main.title_bar_base.tvTitle
 import me.yokeyword.fragmentation.SupportFragment
+import java.util.*
 
 /**
  * FileName: MainActivity
@@ -83,6 +90,15 @@ class MainActivity : BaseActivity() {
         imgMenuHeader.setOnClickListener {
             if (!LoginConfig().getIsLogin()) {
                 LoginActivity.start(this@MainActivity)
+            } else {
+                EasyPhotos.createAlbum(this, true, GlideEngine.instance!!)
+                    .setFileProviderAuthority(AppConstant.provider)
+                    .start(object : SelectCallback(){
+                        override fun onResult(photos: ArrayList<Photo>?, isOriginal: Boolean) {
+                            LoginConfig().setUserHeader(photos!![0].path)
+                            onResume()
+                        }
+                    })
             }
         }
         imgTitle.setOnClickListener {
@@ -187,8 +203,16 @@ class MainActivity : BaseActivity() {
         tvMenuRank.text = "等级" + LoginConfig().getUserLevel() + "  排名" + LoginConfig().getUserRank()
         if (LoginConfig().getIsLogin()) {
             tvMenuUser.text = LoginConfig().getUserName()
+            Glide.with(this)
+                .load(LoginConfig().getUserHeader())
+                .error(R.mipmap.ic_default_avatar)
+                .placeholder(R.mipmap.ic_default_avatar)
+                .into(imgMenuHeader)
         } else {
             tvMenuUser.text = "去登陆"
+            Glide.with(this)
+                .load(R.mipmap.ic_default_avatar)
+                .into(imgMenuHeader)
         }
     }
 

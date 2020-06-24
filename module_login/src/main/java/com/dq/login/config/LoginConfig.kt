@@ -55,7 +55,7 @@ class LoginConfig {
     /**
      * 保存用户排名
      */
-    fun setUseRank(rank: String) {
+    fun setUserRank(rank: String) {
         SPUtil.setString("user_rank", rank)
     }
 
@@ -64,6 +64,20 @@ class LoginConfig {
      */
     fun getUserRank(): String? {
         return SPUtil.getString("user_rank")
+    }
+
+    /**
+     * 保存用户头像
+     */
+    fun setUserHeader(rank: String) {
+        SPUtil.setString("user_header", rank)
+    }
+
+    /**
+     * 获取用户头像
+     */
+    fun getUserHeader(): String? {
+        return SPUtil.getString("user_header")
     }
 
     /**
@@ -87,7 +101,7 @@ class LoginConfig {
         setIsLogin(false)
         setUserName("")
         setUseLevel(0)
-        setUseRank("")
+        setUserRank("")
         setUserIntegral(0)
     }
 }

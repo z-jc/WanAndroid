@@ -99,7 +99,7 @@ class LoginFragment : BaseFragment() {
                     JsonUtil.fromJson<IntegralEntity>(response, IntegralEntity()) as IntegralEntity
                 if (integralEntity.errorCode == 0) {
                     LoginConfig().setUserIntegral(integralEntity.data!!.coinCount)
-                    LoginConfig().setUseRank(integralEntity!!.data!!.rank!!)
+                    LoginConfig().setUserRank(integralEntity!!.data!!.rank!!)
                     LoginConfig().setUseLevel(integralEntity!!.data!!.level!!)
                 }
             }

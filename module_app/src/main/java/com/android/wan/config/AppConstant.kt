@@ -16,5 +16,6 @@ class AppConstant {
         var buglyAppKey: String = "04d7edba-883e-44ef-934c-92875dbe93ae"
         var buglyAppId: String = "16636a04f3"
 
+        var provider : String = "com.android.wan.custom.provider"
     }
 }
