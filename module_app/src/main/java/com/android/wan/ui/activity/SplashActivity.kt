@@ -7,10 +7,6 @@ import android.os.Handler
 import android.view.KeyEvent
 import com.android.wan.R
 import com.dq.ui.base.BaseActivity
-import com.qw.soul.permission.SoulPermission
-import com.qw.soul.permission.bean.Permission
-import com.qw.soul.permission.bean.Permissions
-import com.qw.soul.permission.callbcak.CheckRequestPermissionsListener
 
 class SplashActivity : BaseActivity() {
 

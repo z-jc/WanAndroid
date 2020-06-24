@@ -1,0 +1,10 @@
+<resources>
+    <style name="Theme.Open" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/Color_4184F2</item>
+        <item name="colorPrimaryDark">@color/Color_4184F2</item>
+        <item name="colorControlActivated">@color/Color_4184F2</item>
+        <item name="colorAccent">@color/Color_4184F2</item>
+        <item name="android:windowBackground">@drawable/ic_splash</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+</resources>
