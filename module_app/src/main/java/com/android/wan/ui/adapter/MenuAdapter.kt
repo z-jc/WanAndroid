@@ -3,12 +3,17 @@ package com.android.wan.ui.adapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.view.View
 import android.widget.TextView
+import cn.bertsir.zbar.QrConfig
+import cn.bertsir.zbar.QrManager
 import com.android.wan.R
 import com.android.wan.bean.MenuBean
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.dq.util.ToastUtil
+
 
 class MenuAdapter : BaseQuickAdapter<MenuBean, BaseViewHolder>(R.layout.item_main_menu, null) {
     override fun convert(helper: BaseViewHolder, item: MenuBean) {
@@ -28,19 +33,6 @@ class MenuAdapter : BaseQuickAdapter<MenuBean, BaseViewHolder>(R.layout.item_mai
         if(helper.layoutPosition == 0){
             tvContent.text = "21"
         }
-
-        helper.itemView.setOnClickListener(View.OnClickListener {
-            when (position) {
-                0 -> {}
-                1 -> {}
-                2 -> {}
-                3 -> {}
-                4 -> {}
-                5 -> {}
-                6 -> {}
-                7 -> {}
-            }
-        })
     }
 
     /**

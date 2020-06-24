@@ -9,6 +9,7 @@ android {
         targetSdkVersion tsv
         versionCode app_code
         versionName app_version
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -20,13 +21,14 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.core:core-ktx:1.3.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.android.support:design:28.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-}
-repositories {
-    mavenCentral()
+    implementation 'me.yokeyword:fragmentationx:1.0.2'
+    implementation 'com.github.goweii:percentimageview:1.0.2'
+    implementation project(path: ':base_util')
+    implementation project(path: ':base_res')
+    implementation project(path: ':base_ui')
 }

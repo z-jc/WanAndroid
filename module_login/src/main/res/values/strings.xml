@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_welcome">欢迎使用</string>
+    <string name="text_goto_registered">去注册</string>
+    <string name="text_login">去登陆</string>
+</resources>

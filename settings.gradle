@@ -1,3 +1,4 @@
+include ':module_login'
 include ':base_ui'
 include ':module_mine'
 include ':base_util'

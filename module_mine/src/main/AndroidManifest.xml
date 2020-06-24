@@ -1,14 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dq.base_mine">
+    package="com.dq.mine">
+
     <application>
         <activity
-            android:name="com.dq.mine.activity.AboutActivity"
+            android:name="com.dq.mine.AboutActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Act" />
         <activity
-            android:name="com.dq.mine.activity.UserServiceAgreementActivity"
+            android:name="com.dq.mine.UserServiceAgreementActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Act" />
         <activity
-            android:name="com.dq.mine.activity.FeedBackActivity"
+            android:name="com.dq.mine.FeedBackActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Act" />
     </application>
 </manifest>

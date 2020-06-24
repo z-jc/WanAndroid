@@ -2,23 +2,33 @@ package com.android.wan.ui.activity
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.graphics.Color
+import android.os.Vibrator
+import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.NonNull
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import cn.bertsir.zbar.QrConfig
+import cn.bertsir.zbar.QrManager
 import com.android.wan.R
 import com.android.wan.config.AppDataSourse
 import com.android.wan.ui.adapter.MenuAdapter
 import com.android.wan.ui.fragment.*
-import com.dq.mine.base.BaseActivity
+import com.android.wan.util.BrowserUtil
+import com.dq.login.activity.LoginActivity
+import com.dq.ui.base.BaseActivity
 import com.dq.ui.dialog.DialogCustom
 import com.dq.ui.dialog.DialogCustom.ActionLister
 import com.dq.util.DisplayUtil
 import com.dq.util.ToastUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.title_bar_base.imgBack
+import kotlinx.android.synthetic.main.title_bar_base.imgTitle
+import kotlinx.android.synthetic.main.title_bar_base.tvTitle
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
@@ -31,9 +41,11 @@ class MainActivity : BaseActivity() {
 
     private val fragments = arrayOfNulls<SupportFragment>(5)
     private var menuAdapter: MenuAdapter? = null
+    private var vibrator: Vibrator? = null
 
     override fun initView() {
         super.initView()
+        vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator?
         imgBack.visibility = View.VISIBLE
         imgBack.setImageResource(R.drawable.icon_main_title_left)
         fragments[0] = HomeFragment.createFragment()
@@ -59,7 +71,7 @@ class MainActivity : BaseActivity() {
             ToastUtil.showShortToast(this, "积分排行榜")
         }
         imgMenuHeader.setOnClickListener {
-            ToastUtil.showShortToast(this, "去登陆")
+            LoginActivity.start(this@MainActivity)
         }
         imgTitle.setOnClickListener {
             ToastUtil.showShortToast(this, "去搜索")
@@ -102,6 +114,54 @@ class MainActivity : BaseActivity() {
                 return false
             }
         })
+
+        menuAdapter!!.setOnItemClickListener { _, _, position ->
+            when (position) {
+                0 -> return@setOnItemClickListener
+                1 -> return@setOnItemClickListener
+                2 -> return@setOnItemClickListener
+                3 -> return@setOnItemClickListener
+                4 -> return@setOnItemClickListener
+                5 -> startQrCode(QrConfig.TYPE_ONCE)
+                6 -> return@setOnItemClickListener
+                7 -> return@setOnItemClickListener
+            }
+        }
+    }
+
+    /**
+     * 扫码界面
+     */
+    private fun startQrCode(code: Int) {
+        val scan_type = 0
+        val scan_view_type = 0
+        val qrConfig = QrConfig.Builder()
+            .setDesText("开始扫码") //扫描框下文字
+            .setShowDes(true) //是否显示扫描框下面文字
+            .setShowLight(true) //显示手电筒按钮
+            .setShowTitle(false) //显示Title
+            .setShowAlbum(true) //显示从相册选择按钮
+            .setCornerColor(Color.parseColor("#4184F2")) //设置扫描框颜色
+            .setLineColor(Color.parseColor("#4184F2")) //设置扫描线颜色
+            .setLineSpeed(QrConfig.LINE_FAST) //设置扫描线速度
+            .setScanType(scan_type) //设置扫码类型（二维码，条形码，全部，自定义，默认为二维码）
+            .setScanViewType(scan_view_type) //设置扫描框类型（二维码还是条形码，默认为二维码）
+            .setCustombarcodeformat(QrConfig.BARCODE_EAN13) //此项只有在扫码类型为TYPE_CUSTOM时才有效
+            .setPlaySound(false) //是否扫描成功后bi~的声音
+            .setIsOnlyCenter(true) //是否只识别框中内容(默认为全屏识别)
+            .setTitleText("扫描二维码") //设置Tilte文字
+            .setIdentify_type(code) //1:连续扫码  2:单次扫码
+            .setTitleBackgroudColor(Color.parseColor("#262020")) //设置状态栏颜色
+            .setTitleTextColor(Color.WHITE) //设置Title文字颜色
+            .create()
+        QrManager.getInstance().init(qrConfig)
+            .startScan(
+                this@MainActivity
+            ) { code, result ->
+                Log.e(TAG, "result:$result,code:$code")
+                vibrator!!.vibrate(30)
+                BrowserUtil.startBrowser(this@MainActivity, result)
+            }
     }
 
     override fun getContentView(): Int? {

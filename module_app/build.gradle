@@ -63,4 +63,5 @@ dependencies {
     implementation project(path: ':base_res')
     implementation project(path: ':base_ui')
     implementation project(path: ':base_zbarlibary')
+    implementation project(path: ':module_login')
 }

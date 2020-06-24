@@ -1,4 +1,4 @@
-package com.dq.mine.base
+package com.dq.ui.base
 
 import android.app.Activity
 import android.content.Intent
@@ -69,8 +69,8 @@ abstract class BaseActivity : SupportActivity() {
      * @param endAct
      * @return
      */
-    fun startAct(startAct: Activity?, endAct: Activity) {
-        startActivity(Intent(startAct, endAct.javaClass))
+    fun startAct(startAct: Activity?, endAct: Activity?) {
+        startActivity(Intent(startAct, endAct!!.javaClass))
     }
 
 }

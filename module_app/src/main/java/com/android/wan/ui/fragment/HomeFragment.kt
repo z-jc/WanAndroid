@@ -2,16 +2,17 @@ package com.android.wan.ui.fragment
 
 import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
 import com.android.wan.model.entity.HomeBannerEntity
 import com.android.wan.model.entity.HomeListEntity
 import com.android.wan.model.http.JsonUtil
+import com.android.wan.model.model.ApiModel
+import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.activity.ContentActivity
 import com.android.wan.ui.adapter.HomeAdapter
-import com.android.wan.ui.base.BaseFragment
 import com.android.wan.ui.holder.CustomViewHolder
+import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
 import com.dq.util.http.RxhttpUtil
@@ -31,6 +32,7 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
     var banner: Banner? = null
     var pageIndex: Int? = 0
     var isRefresh: Boolean? = false
+    var apiModel: ApiModel? = null
 
     override fun getContentView(): Int? {
         return R.layout.fragment_home
@@ -38,6 +40,7 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
 
     override fun initView() {
         super.initView()
+        apiModel = ApiModelImpl()
         mAdapter = HomeAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = mAdapter
@@ -100,7 +103,6 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
                 }
 
                 override fun onFinish() {
-                    ILog.e("请求结束")
                     refreshLayout.finishLoadMore()
                     refreshLayout.finishRefresh()
                 }
@@ -111,7 +113,6 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
                 }
 
                 override fun onStart() {
-                    ILog.e("开始请求")
                 }
             })
         }

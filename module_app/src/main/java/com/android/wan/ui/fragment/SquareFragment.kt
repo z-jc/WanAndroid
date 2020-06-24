@@ -1,7 +1,7 @@
 package com.android.wan.ui.fragment
 
 import com.android.wan.R
-import com.android.wan.ui.base.BaseFragment
+import com.dq.ui.base.BaseFragment
 
 class SquareFragment : BaseFragment() {
 

@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dq.login">
+
+    <application>
+        <activity
+            android:name="com.dq.login.activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Act" />
+    </application>
+</manifest>

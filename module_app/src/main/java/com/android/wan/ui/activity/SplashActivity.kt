@@ -6,7 +6,7 @@ import android.os.Build
 import android.os.Handler
 import android.view.KeyEvent
 import com.android.wan.R
-import com.dq.mine.base.BaseActivity
+import com.dq.ui.base.BaseActivity
 import com.qw.soul.permission.SoulPermission
 import com.qw.soul.permission.bean.Permission
 import com.qw.soul.permission.bean.Permissions
@@ -19,7 +19,8 @@ class SplashActivity : BaseActivity() {
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.READ_PHONE_STATE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
-        Manifest.permission.READ_EXTERNAL_STORAGE
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.CAMERA
     )
 
     override fun initView() {

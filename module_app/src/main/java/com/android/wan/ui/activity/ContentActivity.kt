@@ -11,7 +11,7 @@ import com.android.wan.R
 import com.android.wan.ui.dialog.DialogTitle
 import com.android.wan.ui.view.LoadingUtil
 import com.android.wan.util.BrowserUtil
-import com.dq.mine.base.BaseActivity
+import com.dq.ui.base.BaseActivity
 import com.dq.util.ShareUtil
 import com.dq.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_content.*

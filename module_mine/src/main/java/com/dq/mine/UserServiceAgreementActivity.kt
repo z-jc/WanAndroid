@@ -1,12 +1,10 @@
-package com.dq.mine.activity
+package com.dq.mine
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import android.view.View
 import android.webkit.WebSettings
-import com.dq.base_mine.R
-import com.dq.mine.base.BaseActivity
+import com.dq.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_user_service_agreement.*
 import kotlinx.android.synthetic.main.title_bar_base.*
 
@@ -41,10 +39,7 @@ class UserServiceAgreementActivity : BaseActivity(),
     }
 
     override fun getContentView(): Int? {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        }
+        setTitleBackground(BG_WHITE)
         return R.layout.activity_user_service_agreement
     }
 

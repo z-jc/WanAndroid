@@ -1,4 +1,4 @@
-package com.android.wan.ui.base
+package com.dq.ui.base
 
 import android.app.Activity
 import android.content.Context
@@ -9,9 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.android.wan.model.model.ApiModel
-import com.android.wan.model.model.ApiModelImpl
-import com.android.wan.ui.activity.MainActivity
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
@@ -22,12 +19,10 @@ import me.yokeyword.fragmentation.SupportFragment
  */
 abstract class BaseFragment : SupportFragment() {
     var activity: AppCompatActivity? = null
-    var apiModel: ApiModel? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        activity = getActivity() as MainActivity?
-        apiModel = ApiModelImpl()
+        activity = getActivity() as AppCompatActivity?
     }
 
     /**
