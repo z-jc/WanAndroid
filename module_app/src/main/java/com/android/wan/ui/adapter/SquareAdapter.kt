@@ -4,6 +4,7 @@ import android.app.Activity
 import android.widget.ImageView
 import com.android.wan.R
 import com.android.wan.model.entity.HomeListEntity
+import com.android.wan.model.entity.SquareListEntity
 import com.android.wan.ui.activity.ContentActivity
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
@@ -15,12 +16,13 @@ import com.dq.util.ToastUtil
  * Date: 2020/6/19 17:30
  * Description:
  */
-class HomeAdapter : BaseQuickAdapter<HomeListEntity.DataBean.DatasBean, BaseViewHolder>(
+class SquareAdapter :
+    BaseQuickAdapter<SquareListEntity.DataBean.DatasBean, BaseViewHolder>(
         R.layout.item_home_list,
         null
     ) {
 
-    override fun convert(helper: BaseViewHolder, item: HomeListEntity.DataBean.DatasBean) {
+    override fun convert(helper: BaseViewHolder, item: SquareListEntity.DataBean.DatasBean) {
         helper.setText(R.id.tv_author_name, item.shareUser)
             .setText(R.id.tv_public_date, item.niceDate)
             .setText(R.id.tv_public_content, item.title)

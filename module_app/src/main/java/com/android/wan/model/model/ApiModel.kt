@@ -26,4 +26,10 @@ interface ApiModel {
      */
     fun logOut(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
 
+    /**
+     * 广场列表接口
+     * @param index 页码
+     */
+    fun getSquareList(index: Int, a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
+
 }

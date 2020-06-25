@@ -1,6 +1,6 @@
 include ':module_login'
 include ':base_ui'
-include ':module_mine'
+include ':module_setting'
 include ':base_util'
 include ':base_zbarlibary'
 include ':base_res'

@@ -98,14 +98,13 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
                         } else {
                             mAdapter!!.setNewInstance((listEntity.data!!.datas as MutableList<HomeListEntity.DataBean.DatasBean>?)!!)
                         }
-                        mAdapter!!.animationEnable = true
-                        mAdapter!!.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
                     } else {
                         ToastUtil.showShortToast(activity, listEntity.errorMsg)
                     }
                 }
 
                 override fun onFinish() {
+                    mAdapter!!.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
                     refreshLayout.finishLoadMore()
                     refreshLayout.finishRefresh()
                 }

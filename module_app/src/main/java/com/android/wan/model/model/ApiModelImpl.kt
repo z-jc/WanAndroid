@@ -21,7 +21,11 @@ class ApiModelImpl : ApiModel {
     /**
      * 首页列表接口
      */
-    override fun getHomeList(index: Int, a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
+    override fun getHomeList(
+        index: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
         RxhttpUtil.getInstance().get(HttpConfig.homeListUrl(index), a, callback)
     }
 
@@ -30,5 +34,16 @@ class ApiModelImpl : ApiModel {
      */
     override fun logOut(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
         RxhttpUtil.getInstance().get(HttpConfig.logOutUrl, a, callback)
+    }
+
+    /**
+     * 广场列表接口
+     */
+    override fun getSquareList(
+        index: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().get(HttpConfig.squareListUrl(index), a, callback)
     }
 }

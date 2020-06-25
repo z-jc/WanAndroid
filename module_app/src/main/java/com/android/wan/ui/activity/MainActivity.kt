@@ -187,7 +187,7 @@ class MainActivity : BaseActivity() {
             ) { code, result ->
                 Log.e(TAG, "result:$result,code:$code")
                 vibrator!!.vibrate(30)
-                BrowserUtil.startBrowser(this@MainActivity, result)
+                BrowserUtil.startLocal(this@MainActivity, result)
             }
     }
 

@@ -21,6 +21,13 @@ class HttpConfig {
         }
 
         /**
+         * 广场列表接口
+         */
+        fun squareListUrl(int: Int): String {
+            return "https://wanandroid.com/user_article/list/" + int + "/json"
+        }
+
+        /**
          * 退出登录
          */
         var logOutUrl: String = "https://www.wanandroid.com/user/logout/json"

@@ -72,4 +72,12 @@ class SplashActivity : BaseActivity() {
             true
         } else super.onKeyDown(keyCode, event)
     }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(
+            com.dq.login.R.anim.swipeback_activity_close_top_in,
+            com.dq.login.R.anim.swipeback_activity_close_bottom_out
+        )
+    }
 }
