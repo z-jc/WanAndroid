@@ -1,6 +1,5 @@
 package com.android.wan.app
 
-import android.app.AppComponentFactory
 import android.app.Application
 import android.content.Context
 import com.android.wan.config.AppConfig

@@ -4,7 +4,6 @@ import android.app.Activity
 import android.widget.ImageView
 import com.android.wan.R
 import com.android.wan.model.entity.PublicListEntity
-import com.android.wan.model.entity.SquareListEntity
 import com.android.wan.ui.activity.ContentActivity
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder

@@ -3,7 +3,6 @@ package com.android.wan.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
-import android.text.method.ScrollingMovementMethod
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient

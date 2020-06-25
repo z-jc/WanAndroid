@@ -4,11 +4,9 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
 import com.android.wan.model.entity.PublicListEntity
-import com.android.wan.model.entity.SquareListEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.adapter.PublicChildAdapter
-import com.android.wan.ui.adapter.SquareAdapter
 import com.android.wan.util.RvAnimUtils
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
@@ -20,9 +18,6 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.fragment_public_child.*
-import kotlinx.android.synthetic.main.fragment_public_child.recyclerView
-import kotlinx.android.synthetic.main.fragment_public_child.refreshLayout
-import kotlinx.android.synthetic.main.fragment_square.*
 
 class PublicChildFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
 
