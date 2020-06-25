@@ -11,6 +11,7 @@ import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.activity.ContentActivity
 import com.android.wan.ui.adapter.HomeAdapter
 import com.android.wan.ui.holder.CustomViewHolder
+import com.android.wan.ui.view.LoadingUtil
 import com.android.wan.util.RvAnimUtils
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
@@ -71,6 +72,7 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
                 }
 
                 override fun onFinish() {
+                    LoadingUtil.dismissLoading()
                     refreshLayout.autoRefresh()
                 }
 
@@ -78,6 +80,7 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
                 }
 
                 override fun onStart() {
+                    LoadingUtil.showLoading(activity,"获取中...")
                 }
             })
         }

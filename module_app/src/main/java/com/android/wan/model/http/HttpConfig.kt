@@ -32,5 +32,18 @@ class HttpConfig {
          */
         var logOutUrl: String = "https://www.wanandroid.com/user/logout/json"
 
+        /**
+         * 公众号标题栏接口
+         */
+        var publicTitleUrl: String = "https://wanandroid.com/wxarticle/chapters/json"
+
+        /**
+         * 获取公众号数据
+         * @param title公众号类型
+         * @param index 页码
+         */
+        fun getPublicList(title: String, index: Int): String {
+            return "https://wanandroid.com/wxarticle/list/"+title+"/"+index+"/json"
+        }
     }
 }

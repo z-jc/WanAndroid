@@ -32,4 +32,18 @@ interface ApiModel {
      */
     fun getSquareList(index: Int, a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
 
+    /**
+     * 公众号标题栏接口
+     */
+    fun getPublicTitleList(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
+
+    /**
+     * 获取公众号列表数据
+     */
+    fun getPublicList(
+        title: String,
+        index: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
 }

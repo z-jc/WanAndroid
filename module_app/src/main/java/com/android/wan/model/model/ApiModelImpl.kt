@@ -46,4 +46,24 @@ class ApiModelImpl : ApiModel {
     ) {
         RxhttpUtil.getInstance().get(HttpConfig.squareListUrl(index), a, callback)
     }
+
+    /**
+     * 公众号标题栏接口
+     */
+    override fun getPublicTitleList(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
+        RxhttpUtil.getInstance().get(HttpConfig.publicTitleUrl, a, callback)
+    }
+
+    /**
+     * 获取公众号列表数据
+     */
+    override fun getPublicList(
+        title: String,
+        index: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().get(HttpConfig.getPublicList(title, index), a, callback)
+    }
+
 }
