@@ -11,7 +11,7 @@ import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.activity.ContentActivity
 import com.android.wan.ui.adapter.HomeAdapter
 import com.android.wan.ui.holder.CustomViewHolder
-import com.chad.library.adapter.base.BaseQuickAdapter
+import com.android.wan.util.RvAnimUtils
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
@@ -104,7 +104,7 @@ class HomeFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
                 }
 
                 override fun onFinish() {
-                    mAdapter!!.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
+                    RvAnimUtils.setAnim(mAdapter!!)
                     refreshLayout.finishLoadMore()
                     refreshLayout.finishRefresh()
                 }

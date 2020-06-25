@@ -3,7 +3,6 @@ package com.android.wan.ui.adapter
 import android.app.Activity
 import android.widget.ImageView
 import com.android.wan.R
-import com.android.wan.model.entity.HomeListEntity
 import com.android.wan.model.entity.SquareListEntity
 import com.android.wan.ui.activity.ContentActivity
 import com.chad.library.adapter.base.BaseQuickAdapter

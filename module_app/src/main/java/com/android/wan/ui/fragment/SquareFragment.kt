@@ -2,13 +2,11 @@ package com.android.wan.ui.fragment
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
-import com.android.wan.model.entity.HomeListEntity
 import com.android.wan.model.entity.SquareListEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
-import com.android.wan.ui.adapter.HomeAdapter
 import com.android.wan.ui.adapter.SquareAdapter
-import com.chad.library.adapter.base.BaseQuickAdapter
+import com.android.wan.util.RvAnimUtils
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
@@ -18,10 +16,7 @@ import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_square.*
-import kotlinx.android.synthetic.main.fragment_square.recyclerView
-import kotlinx.android.synthetic.main.fragment_square.refreshLayout
 
 class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
 
@@ -75,7 +70,7 @@ class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
                 }
 
                 override fun onFinish() {
-                    mAdapter!!.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
+                    RvAnimUtils.setAnim(mAdapter!!)
                     refreshLayout.finishLoadMore()
                     refreshLayout.finishRefresh()
                 }

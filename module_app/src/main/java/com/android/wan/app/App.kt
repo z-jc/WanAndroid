@@ -1,8 +1,11 @@
 package com.android.wan.app
 
+import android.app.AppComponentFactory
 import android.app.Application
 import android.content.Context
+import com.android.wan.config.AppConfig
 import com.android.wan.config.AppConstant
+import com.android.wan.util.RvAnimUtils
 import com.dq.util.SPUtil
 import com.dq.util.http.RxhttpUtil
 import com.tencent.bugly.crashreport.CrashReport
@@ -20,14 +23,15 @@ class App : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
+        context = this
     }
 
     override fun onCreate() {
         super.onCreate()
         CrashReport.initCrashReport(this, AppConstant.buglyAppId, false)
-        LitePal.initialize(this)//初始化litepal数据库
-        context = this
+        LitePal.initialize(this)
         SPUtil.getInstance(context)
+        AppConfig().setAdapterAnim(RvAnimUtils.RvAnim.SCALEIN)
         RxhttpUtil.init(this,true)
     }
 }
