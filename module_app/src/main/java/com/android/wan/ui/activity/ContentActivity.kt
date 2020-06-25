@@ -3,6 +3,7 @@ package com.android.wan.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
+import android.text.method.ScrollingMovementMethod
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -45,6 +46,7 @@ class ContentActivity : BaseActivity() {
         webView.isVerticalScrollBarEnabled = false //隐藏垂直滚动条
 
         tvTitle.text = webTitle
+        tvTitle.isSelected = true
         imgTitle.setImageResource(R.drawable.icon_detail)
         webView.loadUrl(webUrl)
         webView.webViewClient = object : WebViewClient() {

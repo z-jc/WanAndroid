@@ -7,6 +7,8 @@ import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.adapter.SquareAdapter
 import com.android.wan.util.RvAnimUtils
+import com.dq.login.activity.LoginActivity
+import com.dq.login.config.LoginConfig
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
@@ -44,7 +46,11 @@ class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
     override fun initData() {
         super.initData()
         imgFabAdd.setOnClickListener {
-            ToastUtil.showLongToast(activity,"去添加")
+            if(!LoginConfig().getIsLogin()){
+                LoginActivity.start(activity!!)
+            }else{
+                ToastUtil.showLongToast(activity,"去添加")
+            }
         }
     }
 
