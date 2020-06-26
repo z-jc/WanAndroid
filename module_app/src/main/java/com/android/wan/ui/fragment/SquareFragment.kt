@@ -1,10 +1,13 @@
 package com.android.wan.ui.fragment
 
+import android.view.MotionEvent
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
 import com.android.wan.model.entity.SquareListEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
+import com.android.wan.ui.activity.MainActivity
 import com.android.wan.ui.adapter.SquareAdapter
 import com.android.wan.util.RvAnimUtils
 import com.dq.login.activity.LoginActivity
@@ -19,13 +22,16 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 import kotlinx.android.synthetic.main.fragment_square.*
+import kotlinx.android.synthetic.main.title_bar_base.*
 
-class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
+class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener, View.OnTouchListener {
 
     var pageIndex: Int? = 0
     var isRefresh: Boolean? = false
     var apiModel: ApiModel? = null
     var mAdapter: SquareAdapter? = null
+    var slideStatu = true
+    var mainActivity: MainActivity? = null
 
     override fun getContentView(): Int? {
         return R.layout.fragment_square
@@ -33,6 +39,7 @@ class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
 
     override fun initView() {
         super.initView()
+        mainActivity = activity as MainActivity
         apiModel = ApiModelImpl()
         mAdapter = SquareAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -41,15 +48,19 @@ class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
         refreshLayout.setOnLoadMoreListener(this)
         refreshLayout.setOnRefreshListener(this)
         refreshLayout.autoRefresh()
+        recyclerView.setOnTouchListener(this)
     }
 
     override fun initData() {
         super.initData()
-        imgFabAdd.setOnClickListener {
-            if(!LoginConfig().getIsLogin()){
+        imgBack.visibility = View.INVISIBLE
+        tvTitle.text = "广场"
+        imgTitle.setImageResource(R.drawable.icon_title_add)
+        imgTitle.setOnClickListener {
+            if (!LoginConfig().getIsLogin()) {
                 LoginActivity.start(activity!!)
-            }else{
-                ToastUtil.showLongToast(activity,"去添加")
+            } else {
+                ToastUtil.showLongToast(activity, "去添加")
             }
         }
     }
@@ -103,9 +114,34 @@ class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
         getSquareList()
     }
 
+    override fun onSupportVisible() {
+        super.onSupportVisible()
+        slideStatu = true
+    }
+
     companion object {
         fun createFragment(): SquareFragment {
             return SquareFragment()
         }
+    }
+
+    var x1 = 0F
+    var x2 = 0F
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        if (event!!.action == MotionEvent.ACTION_MOVE) {
+            x2 = event.x
+            if (slideStatu) {
+                x1 = x2
+                slideStatu = !slideStatu
+            }
+            var slide1 = x1 - x2
+            if (slide1 > 50) {
+                mainActivity!!.slidePan!!.closePane()
+            }
+        }
+        if (event.action == MotionEvent.ACTION_UP) {
+            slideStatu = true
+        }
+        return false
     }
 }

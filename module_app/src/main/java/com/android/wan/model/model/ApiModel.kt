@@ -46,4 +46,19 @@ interface ApiModel {
         a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
+
+    /**
+     * 项目模块标题栏接口
+     */
+    fun getProjectTitleList(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
+
+    /**
+     * 获取项目列表数据
+     */
+    fun getProjectList(
+        id: Int,
+        index: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
 }

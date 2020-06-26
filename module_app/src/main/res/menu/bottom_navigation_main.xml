@@ -8,20 +8,15 @@
     <item
         android:id="@+id/main_2"
         android:icon="@drawable/main_tab_2"
-        android:title="@string/text_main_bottom_square" />
+        android:title="@string/text_main_bottom_the_public" />
 
     <item
         android:id="@+id/main_3"
         android:icon="@drawable/main_tab_3"
-        android:title="@string/text_main_bottom_the_public" />
+        android:title="@string/text_main_bottom_the_system" />
 
     <item
         android:id="@+id/main_4"
         android:icon="@drawable/main_tab_4"
-        android:title="@string/text_main_bottom_the_system" />
-
-    <item
-        android:id="@+id/main_5"
-        android:icon="@drawable/main_tab_5"
         android:title="@string/text_main_bottom_the_project" />
 </menu>

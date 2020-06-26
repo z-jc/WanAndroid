@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.slidingpanelayout.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/slidingPaneLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Color_4184F2"
     android:fitsSystemWindows="true">
+
+    <fragment
+        android:id="@+id/fragment_leftmenu"
+        android:name="com.android.wan.ui.fragment.SquareFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
@@ -28,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imgBack"
+                    android:id="@+id/imgMainBack"
                     android:layout_width="@dimen/dp45"
                     android:layout_height="@dimen/dp45"
                     android:layout_marginStart="@dimen/dp4"
@@ -40,7 +47,7 @@
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:id="@+id/tvTitle"
+                    android:id="@+id/tvMainTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="?actionBarSize"
                     android:layout_marginStart="@dimen/dp16"
@@ -51,11 +58,11 @@
                     android:text="玩Android"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp16"
-                    app:layout_constraintLeft_toRightOf="@+id/imgBack"
+                    app:layout_constraintLeft_toRightOf="@+id/imgMainBack"
                     tools:ignore="HardcodedText,MissingConstraints" />
 
                 <ImageView
-                    android:id="@+id/imgTitle"
+                    android:id="@+id/imgMainTitle"
                     android:layout_width="@dimen/dp45"
                     android:layout_height="@dimen/dp45"
                     android:layout_marginEnd="@dimen/dp4"
@@ -168,4 +175,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.slidingpanelayout.widget.SlidingPaneLayout>

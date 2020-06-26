@@ -11,6 +11,7 @@ import android.view.View
 import androidx.annotation.NonNull
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import cn.bertsir.zbar.QrConfig
 import cn.bertsir.zbar.QrManager
 import com.android.wan.R
@@ -20,7 +21,10 @@ import com.android.wan.model.entity.LogoutEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.adapter.MenuAdapter
-import com.android.wan.ui.fragment.*
+import com.android.wan.ui.fragment.HomeFragment
+import com.android.wan.ui.fragment.ProjectFragment
+import com.android.wan.ui.fragment.PublicFragment
+import com.android.wan.ui.fragment.SystemFragment
 import com.android.wan.ui.holder.GlideEngine
 import com.android.wan.ui.view.LoadingUtil
 import com.android.wan.util.BrowserUtil
@@ -30,7 +34,6 @@ import com.dq.login.config.LoginConfig
 import com.dq.ui.base.BaseActivity
 import com.dq.ui.dialog.DialogCustom
 import com.dq.ui.dialog.DialogCustom.ActionLister
-import com.dq.ui.dialog.DialogEdit
 import com.dq.util.DisplayUtil
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
@@ -41,10 +44,8 @@ import com.huantansheng.easyphotos.EasyPhotos
 import com.huantansheng.easyphotos.callback.SelectCallback
 import com.huantansheng.easyphotos.models.album.entity.Photo
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.title_bar_base.imgBack
-import kotlinx.android.synthetic.main.title_bar_base.imgTitle
-import kotlinx.android.synthetic.main.title_bar_base.tvTitle
 import me.yokeyword.fragmentation.SupportFragment
+import java.lang.reflect.Field
 import java.util.*
 
 /**
@@ -55,34 +56,34 @@ import java.util.*
  */
 class MainActivity : BaseActivity() {
 
-    private val fragments = arrayOfNulls<SupportFragment>(5)
+    private val fragments = arrayOfNulls<SupportFragment>(4)
     private var menuAdapter: MenuAdapter? = null
     private var vibrator: Vibrator? = null
     private var apiModel: ApiModel? = null
+    var slidePan: SlidingPaneLayout? = null
 
     override fun initView() {
         super.initView()
+        slidePan = slidingPaneLayout
         apiModel = ApiModelImpl()
         vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator?
-        imgBack.visibility = View.VISIBLE
-        imgBack.setImageResource(R.drawable.icon_main_title_left)
+        imgMainBack.visibility = View.VISIBLE
+        imgMainBack.setImageResource(R.drawable.icon_main_title_left)
         fragments[0] = HomeFragment.createFragment()
-        fragments[1] = SquareFragment.createFragment()
-        fragments[2] = PublicFragment.createFragment()
-        fragments[3] = SystemFragment.createFragment()
-        fragments[4] = ProjectFragment.createFramgemt()
+        fragments[1] = PublicFragment.createFragment()
+        fragments[2] = SystemFragment.createFragment()
+        fragments[3] = ProjectFragment.createFragment()
         loadMultipleRootFragment(
             R.id.main_fragment,
             0,
             fragments[0],
             fragments[1],
             fragments[2],
-            fragments[3],
-            fragments[4]
+            fragments[3]
         )
         navigation.selectedItemId = R.id.main_1
-        tvTitle.textSize = 16F
-        imgBack.setOnClickListener {
+        tvMainTitle.textSize = 16F
+        imgMainBack.setOnClickListener {
             drawerLayout.openDrawer(Gravity.LEFT)
         }
         imgMenuTitle.setOnClickListener {
@@ -102,7 +103,7 @@ class MainActivity : BaseActivity() {
                     })
             }
         }
-        imgTitle.setOnClickListener {
+        imgMainTitle.setOnClickListener {
             ToastUtil.showShortToast(this, "去搜索")
         }
 
@@ -134,10 +135,6 @@ class MainActivity : BaseActivity() {
                         selectFragment(3)
                         return true
                     }
-                    R.id.main_5 -> {
-                        selectFragment(4)
-                        return true
-                    }
                 }
                 return false
             }
@@ -154,6 +151,16 @@ class MainActivity : BaseActivity() {
                 6 -> return@setOnItemClickListener
                 7 -> logout()
             }
+        }
+
+        try {
+            slidingPaneLayout.sliderFadeColor = Color.TRANSPARENT;
+            val overhangSize: Field =
+                SlidingPaneLayout::class.java.getDeclaredField("mOverhangSize")
+            overhangSize.setAccessible(true)
+            overhangSize.set(slidingPaneLayout, 0)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -253,11 +260,11 @@ class MainActivity : BaseActivity() {
     @SuppressLint("SetTextI18n")
     private fun selectFragment(index: Int) {
         when (index) {
-            0 -> tvTitle.text = "玩Android"
-            1 -> tvTitle.text = resources.getText(R.string.text_main_bottom_square)
-            2 -> tvTitle.text = resources.getText(R.string.text_main_bottom_the_public)
-            3 -> tvTitle.text = resources.getText(R.string.text_main_bottom_the_system)
-            4 -> tvTitle.text = resources.getText(R.string.text_main_bottom_the_project)
+            0 -> tvMainTitle.text = "玩Android"
+            1 -> tvMainTitle.text = resources.getText(R.string.text_main_bottom_square)
+            2 -> tvMainTitle.text = resources.getText(R.string.text_main_bottom_the_public)
+            3 -> tvMainTitle.text = resources.getText(R.string.text_main_bottom_the_system)
+            4 -> tvMainTitle.text = resources.getText(R.string.text_main_bottom_the_project)
         }
         if (nowPosition != index) {
             val prePosition = nowPosition

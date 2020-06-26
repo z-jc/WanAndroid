@@ -6,7 +6,7 @@ import com.android.wan.model.entity.PublicTitleEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.activity.MainActivity
-import com.android.wan.ui.adapter.PublicPagerAdapter
+import com.android.wan.ui.adapter.BaseViewPagerAdapter
 import com.android.wan.ui.view.LoadingUtil
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
@@ -14,7 +14,6 @@ import com.dq.util.ToastUtil
 import com.dq.util.http.JsonUtil
 import com.dq.util.http.RxhttpUtil
 import kotlinx.android.synthetic.main.fragment_public.*
-
 
 class PublicFragment : BaseFragment() {
 
@@ -70,14 +69,14 @@ class PublicFragment : BaseFragment() {
     }
 
     fun setTitle() {
-        var mAdapter = PublicPagerAdapter(
+        var mAdapter = BaseViewPagerAdapter(
             (activity as MainActivity).supportFragmentManager,
             mFragments,
             titleList
         )
-        viewPager.setAdapter(mAdapter);
-        viewPager.setOffscreenPageLimit(mFragments.size);
-        tabLayout.setViewPager(viewPager);
+        viewPagerPublic.setAdapter(mAdapter);
+        viewPagerPublic.setOffscreenPageLimit(mFragments.size);
+        tabLayout.setViewPager(viewPagerPublic);
         tabLayout.setCurrentTab(0);//指定显示哪个tab
     }
 

@@ -42,8 +42,23 @@ class HttpConfig {
          * @param title公众号类型
          * @param index 页码
          */
-        fun getPublicList(title: String, index: Int): String {
-            return "https://wanandroid.com/wxarticle/list/"+title+"/"+index+"/json"
+        fun getPublicListUrl(title: String, index: Int): String {
+            return "https://wanandroid.com/wxarticle/list/" + title + "/" + index + "/json"
         }
+
+        /**
+         * 项目模块标题栏接口
+         */
+        var projectTitleUrl: String = "https://www.wanandroid.com/project/tree/json"
+
+        /**
+         * 项目列数据
+         * @param id项目类型
+         * @param index 页码
+         */
+        fun getProjectListUrl(id: Int, index: Int): String {
+            return "https://www.wanandroid.com/project/list/" + index + "/json?cid=" + id
+        }
+
     }
 }

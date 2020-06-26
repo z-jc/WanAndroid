@@ -63,7 +63,25 @@ class ApiModelImpl : ApiModel {
         a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     ) {
-        RxhttpUtil.getInstance().get(HttpConfig.getPublicList(title, index), a, callback)
+        RxhttpUtil.getInstance().get(HttpConfig.getPublicListUrl(title, index), a, callback)
     }
 
+    /**
+     * 项目标题栏接口
+     */
+    override fun getProjectTitleList(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
+        RxhttpUtil.getInstance().get(HttpConfig.projectTitleUrl, a, callback)
+    }
+
+    /**
+     * 项目标题栏接口
+     */
+    override fun getProjectList(
+        id: Int,
+        index: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().get(HttpConfig.getProjectListUrl(id, index), a, callback)
+    }
 }
