@@ -30,6 +30,7 @@ import com.dq.login.config.LoginConfig
 import com.dq.ui.base.BaseActivity
 import com.dq.ui.dialog.DialogCustom
 import com.dq.ui.dialog.DialogCustom.ActionLister
+import com.dq.ui.dialog.DialogEdit
 import com.dq.util.DisplayUtil
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
@@ -93,7 +94,7 @@ class MainActivity : BaseActivity() {
             } else {
                 EasyPhotos.createAlbum(this, true, GlideEngine.instance!!)
                     .setFileProviderAuthority(AppConstant.provider)
-                    .start(object : SelectCallback(){
+                    .start(object : SelectCallback() {
                         override fun onResult(photos: ArrayList<Photo>?, isOriginal: Boolean) {
                             LoginConfig().setUserHeader(photos!![0].path)
                             onResume()
