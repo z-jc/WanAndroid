@@ -1,17 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dq.mine">
+    package="com.android.setting">
 
     <application>
         <activity
-            android:name="com.dq.mine.AboutActivity"
+            android:name=".ui.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Act" />
         <activity
-            android:name="com.dq.mine.UserServiceAgreementActivity"
+            android:name=".ui.UserServiceAgreementActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Act" />
         <activity
-            android:name="com.dq.mine.FeedBackActivity"
+            android:name=".ui.FeedBackActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Act" />
     </application>

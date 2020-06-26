@@ -51,6 +51,7 @@ class PublicChildFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListene
         refreshLayout.setRefreshHeader(MaterialHeader(activity))
         refreshLayout.setOnLoadMoreListener(this)
         refreshLayout.setOnRefreshListener(this)
+        refreshLayout.autoRefresh()
     }
 
     fun getPublicList() {
@@ -113,6 +114,5 @@ class PublicChildFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListene
         if (getArguments() != null) {
             parentChapterId = getArguments()!!.getInt("parentChapterId");
         }
-        refreshLayout.autoRefresh()
     }
 }

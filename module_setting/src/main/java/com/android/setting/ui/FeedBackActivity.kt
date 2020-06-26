@@ -1,7 +1,8 @@
-package com.dq.mine
+package com.android.setting.ui
 
 import android.text.TextUtils
 import android.view.View
+import com.android.setting.R
 import com.dq.ui.base.BaseActivity
 import com.dq.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_feedback.*

@@ -1,9 +1,10 @@
-package com.dq.mine
+package com.android.setting.ui
 
 import android.app.Activity
 import android.content.Intent
 import android.view.View
 import android.webkit.WebSettings
+import com.android.setting.R
 import com.dq.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_user_service_agreement.*
 import kotlinx.android.synthetic.main.title_bar_base.*

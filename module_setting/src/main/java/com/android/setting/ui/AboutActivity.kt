@@ -1,7 +1,8 @@
-package com.dq.mine
+package com.android.setting.ui
 
 import android.app.Activity
 import android.content.Intent
+import com.android.setting.R
 import com.bumptech.glide.Glide
 import com.dq.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_about.*

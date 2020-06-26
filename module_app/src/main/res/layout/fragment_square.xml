@@ -17,28 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <LinearLayout
+        <com.android.wan.ui.view.SmartFootView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp40"
-            android:gravity="center">
-
-            <ProgressBar
-                android:layout_width="@dimen/dp15"
-                android:layout_height="@dimen/dp15"
-                android:indeterminate="true"
-                android:indeterminateTint="@color/Color_4184F2"
-                android:visibility="visible"
-                tools:ignore="UnusedAttribute" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/sp8"
-                android:text="正在加载中..."
-                android:textColor="@color/Color_515151"
-                android:textSize="@dimen/sp12"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/dp40" />
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

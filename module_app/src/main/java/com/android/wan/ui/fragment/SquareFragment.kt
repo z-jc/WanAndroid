@@ -58,7 +58,6 @@ class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
         activity?.let {
             apiModel!!.getSquareList(pageIndex!!, it, object : RxhttpUtil.RxHttpCallBack {
                 override fun onSuccess(response: String?) {
-                    ILog.e("请求成功$response")
                     var listEntity: SquareListEntity =
                         JsonUtil.fromJson<SquareListEntity>(
                             response,
