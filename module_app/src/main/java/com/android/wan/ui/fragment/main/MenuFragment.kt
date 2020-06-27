@@ -1,14 +1,12 @@
-package com.android.wan.ui.fragment
+package com.android.wan.ui.fragment.main
 
-import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
 import com.android.wan.model.entity.SquareListEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
-import com.android.wan.ui.activity.MainActivity
-import com.android.wan.ui.adapter.SquareAdapter
+import com.android.wan.ui.adapter.MenuAdapter
 import com.android.wan.util.RvAnimUtils
 import com.dq.login.activity.LoginActivity
 import com.dq.login.config.LoginConfig
@@ -21,34 +19,30 @@ import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import kotlinx.android.synthetic.main.fragment_square.*
+import kotlinx.android.synthetic.main.fragment_menu.*
 import kotlinx.android.synthetic.main.title_bar_base.*
 
-class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener, View.OnTouchListener {
+class MenuFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
 
     var pageIndex: Int? = 0
     var isRefresh: Boolean? = false
     var apiModel: ApiModel? = null
-    var mAdapter: SquareAdapter? = null
-    var slideStatu = true
-    var mainActivity: MainActivity? = null
+    var mAdapter: MenuAdapter? = null
 
     override fun getContentView(): Int? {
-        return R.layout.fragment_square
+        return R.layout.fragment_menu
     }
 
     override fun initView() {
         super.initView()
-        mainActivity = activity as MainActivity
         apiModel = ApiModelImpl()
-        mAdapter = SquareAdapter()
+        mAdapter = MenuAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = mAdapter
         refreshLayout.setRefreshHeader(MaterialHeader(activity))
         refreshLayout.setOnLoadMoreListener(this)
         refreshLayout.setOnRefreshListener(this)
         refreshLayout.autoRefresh()
-        recyclerView.setOnTouchListener(this)
     }
 
     override fun initData() {
@@ -114,34 +108,9 @@ class SquareFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener, Vi
         getSquareList()
     }
 
-    override fun onSupportVisible() {
-        super.onSupportVisible()
-        slideStatu = true
-    }
-
     companion object {
-        fun createFragment(): SquareFragment {
-            return SquareFragment()
+        fun createFragment(): MenuFragment {
+            return MenuFragment()
         }
-    }
-
-    var x1 = 0F
-    var x2 = 0F
-    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        if (event!!.action == MotionEvent.ACTION_MOVE) {
-            x2 = event.x
-            if (slideStatu) {
-                x1 = x2
-                slideStatu = !slideStatu
-            }
-            var slide1 = x1 - x2
-            if (slide1 > 50) {
-                mainActivity!!.slidePan!!.closePane()
-            }
-        }
-        if (event.action == MotionEvent.ACTION_UP) {
-            slideStatu = true
-        }
-        return false
     }
 }

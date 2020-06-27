@@ -1,52 +1,42 @@
 package com.android.wan.ui.adapter
 
 import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.view.View
-import android.widget.TextView
+import android.widget.ImageView
 import com.android.wan.R
-import com.android.wan.bean.MenuBean
+import com.android.wan.model.entity.SquareListEntity
+import com.android.wan.ui.activity.ContentActivity
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.dq.login.config.LoginConfig
+import com.dq.util.ToastUtil
 
-class MenuAdapter : BaseQuickAdapter<MenuBean, BaseViewHolder>(R.layout.item_main_menu, null) {
+/**
+ * FileName: HomeAdapter
+ * Author: admin
+ * Date: 2020/6/19 17:30
+ * Description:
+ */
+class MenuAdapter :
+    BaseQuickAdapter<SquareListEntity.DataBean.DatasBean, BaseViewHolder>(
+        R.layout.item_home_list,
+        null
+    ) {
 
-    override fun getItemViewType(position: Int): Int {
-        return position
-    }
+    override fun convert(helper: BaseViewHolder, item: SquareListEntity.DataBean.DatasBean) {
+        helper.setText(R.id.tv_author_name, item.shareUser)
+            .setText(R.id.tv_public_date, item.niceDate)
+            .setText(R.id.tv_public_content, item.title)
+            .setText(R.id.tv_public_source, item.chapterName + " / " + item.superChapterName)
 
-    override fun convert(helper: BaseViewHolder, item: MenuBean) {
-        val tvItem: TextView = helper.getView(R.id.tv_item)
-        val tvContent: TextView = helper.getView(R.id.tv_content)
-
-        val position: Int = helper.layoutPosition
-        val context: Context = helper.itemView.context
-        val drawableLeft = context.resources.getDrawable(item.menuIcon)
-        tvItem.setCompoundDrawablesWithIntrinsicBounds(
-            drawableLeft,
-            null, null, null
-        )
-        tvItem.compoundDrawablePadding = 32
-        tvItem.text = item.menuText
-
-        if(position == 0){
-            tvContent.text = LoginConfig().getUserIntegral().toString()
-        }else{
-            tvContent.visibility = View.GONE
+        var imgItem: ImageView = helper.getView(R.id.img_collection)
+        imgItem.setImageResource(R.drawable.ic_like)
+        imgItem.setOnClickListener {
+            ToastUtil.showShortToast(helper.itemView.context, "收藏")
         }
-    }
 
-    /**
-     * Activity跳转
-     *
-     * @param startAct
-     * @param endAct
-     * @return
-     */
-    fun startAct(startAct: Activity, endAct: Activity) {
-        val intent = Intent(startAct, endAct.javaClass)
-        startAct.startActivity(intent)
+        helper.itemView.setOnClickListener {
+            ContentActivity.startAct(helper.itemView.context as Activity, item.link!!, item.title!!
+            )
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-package com.android.wan.ui.fragment
+package com.android.wan.ui.fragment.system
 
 import com.android.wan.R
 import com.dq.ui.base.BaseFragment

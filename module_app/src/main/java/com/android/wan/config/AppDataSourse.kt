@@ -11,7 +11,7 @@ import com.dq.login.config.LoginConfig
  */
 class AppDataSourse {
     companion object {
-        fun getMenuList(): List<MenuBean> {
+        fun getMainList(): List<MenuBean> {
             var list : MutableList<MenuBean> = mutableListOf()
             list.add(MenuBean(R.drawable.icon_menu_integral,"我的积分"))
             list.add(MenuBean(R.drawable.icon_menu_collection,"我的收藏"))

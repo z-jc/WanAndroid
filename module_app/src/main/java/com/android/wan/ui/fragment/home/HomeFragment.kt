@@ -1,4 +1,4 @@
-package com.android.wan.ui.fragment
+package com.android.wan.ui.fragment.home
 
 import android.view.LayoutInflater
 import android.view.View

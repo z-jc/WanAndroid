@@ -1,49 +1,53 @@
-package com.android.wan.ui.fragment
+package com.android.wan.ui.fragment.project
 
 import androidx.fragment.app.Fragment
 import com.android.wan.R
-import com.android.wan.model.entity.PublicTitleEntity
+import com.android.wan.model.entity.ProjectTitleEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.activity.MainActivity
 import com.android.wan.ui.adapter.BaseViewPagerAdapter
 import com.android.wan.ui.view.LoadingUtil
+import com.android.wan.ui.view.ViewPagerUtil
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
 import com.dq.util.http.JsonUtil
 import com.dq.util.http.RxhttpUtil
-import kotlinx.android.synthetic.main.fragment_public.*
+import kotlinx.android.synthetic.main.fragment_project.*
 
-class PublicFragment : BaseFragment() {
+class ProjectFragment : BaseFragment() {
 
-    var listEntity: PublicTitleEntity? = null
+    var mainActivity: MainActivity? = null
+    var listEntity: ProjectTitleEntity? = null
     var apiModel: ApiModel? = null
     protected val mFragments: MutableList<Fragment> = mutableListOf()
     protected var titleList: MutableList<String> = mutableListOf()
 
     override fun getContentView(): Int? {
-        return R.layout.fragment_public
+        return R.layout.fragment_project
     }
 
     override fun initView() {
         super.initView()
+        mainActivity = activity as MainActivity
         apiModel = ApiModelImpl()
         getTitleList()
+        ViewPagerUtil().setAnim(viewPagerProject)
     }
 
     fun getTitleList() {
         activity?.let {
-            apiModel!!.getPublicTitleList(it, object : RxhttpUtil.RxHttpCallBack {
+            apiModel!!.getProjectTitleList(it, object : RxhttpUtil.RxHttpCallBack {
                 override fun onSuccess(response: String?) {
-                    listEntity = JsonUtil.fromJson<PublicTitleEntity>(
+                    listEntity = JsonUtil.fromJson<ProjectTitleEntity>(
                         response,
-                        PublicTitleEntity()
-                    ) as PublicTitleEntity
+                        ProjectTitleEntity()
+                    ) as ProjectTitleEntity
                     if (listEntity!!.errorCode == 0) {
-                        for (item: PublicTitleEntity.DataBean in listEntity!!.data!!) {
+                        for (item: ProjectTitleEntity.DataBean in listEntity!!.data!!) {
                             titleList.add(item.name!!)
-                            mFragments.add(PublicChildFragment.createFragment(item.id))
+                            mFragments.add(ProjectChildFragment.createFragment(item.id))
                         }
                         setTitle()
                     } else {
@@ -62,7 +66,7 @@ class PublicFragment : BaseFragment() {
                 }
 
                 override fun onStart() {
-                    LoadingUtil.showLoading(activity,"获取中...")
+                    LoadingUtil.showLoading(activity, "获取中...")
                 }
             })
         }
@@ -74,15 +78,24 @@ class PublicFragment : BaseFragment() {
             mFragments,
             titleList
         )
-        viewPagerPublic.setAdapter(mAdapter);
-        viewPagerPublic.setOffscreenPageLimit(mFragments.size);
-        tabLayout.setViewPager(viewPagerPublic);
-        tabLayout.setCurrentTab(0);//指定显示哪个tab
+        viewPagerProject.setAdapter(mAdapter);
+        viewPagerProject.setOffscreenPageLimit(mFragments.size);
+        tabLayout.setViewPager(viewPagerProject);
+        tabLayout.currentTab = 0;//指定显示哪个tab
+        viewPagerProject.currentItem = 0
+    }
+
+    override fun onSupportInvisible() {
+        super.onSupportInvisible()
+        if(tabLayout != null){
+            tabLayout.currentTab = 0
+            viewPagerProject.currentItem = 0
+        }
     }
 
     companion object {
-        fun createFragment(): PublicFragment {
-            return PublicFragment()
+        fun createFragment(): ProjectFragment {
+            return ProjectFragment()
         }
     }
 }

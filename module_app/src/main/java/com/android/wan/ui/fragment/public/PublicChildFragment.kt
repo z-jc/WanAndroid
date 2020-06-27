@@ -1,4 +1,4 @@
-package com.android.wan.ui.fragment
+package com.android.wan.ui.fragment.public
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
