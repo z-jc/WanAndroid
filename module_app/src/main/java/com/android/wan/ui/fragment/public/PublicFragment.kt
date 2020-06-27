@@ -1,5 +1,6 @@
 package com.android.wan.ui.fragment.public
 
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import com.android.wan.R
 import com.android.wan.model.entity.PublicTitleEntity
@@ -15,6 +16,8 @@ import com.dq.util.ToastUtil
 import com.dq.util.http.JsonUtil
 import com.dq.util.http.RxhttpUtil
 import kotlinx.android.synthetic.main.fragment_public.*
+import kotlinx.android.synthetic.main.fragment_public.tabLayout
+import kotlinx.android.synthetic.main.fragment_system.*
 
 class PublicFragment : BaseFragment() {
 
@@ -83,10 +86,12 @@ class PublicFragment : BaseFragment() {
 
     override fun onSupportInvisible() {
         super.onSupportInvisible()
-        if(tabLayout != null){
-            tabLayout.currentTab = 0
-            viewPagerPublic.currentItem = 0
-        }
+        Handler().postDelayed(Runnable {
+            if(tabLayout != null){
+                tabLayout.currentTab = 0
+                viewPagerPublic.currentItem = 0
+            }
+        }, 300)
     }
 
     companion object {

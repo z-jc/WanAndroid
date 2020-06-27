@@ -1,5 +1,6 @@
 package com.android.wan.ui.fragment.project
 
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import com.android.wan.R
 import com.android.wan.model.entity.ProjectTitleEntity
@@ -15,6 +16,8 @@ import com.dq.util.ToastUtil
 import com.dq.util.http.JsonUtil
 import com.dq.util.http.RxhttpUtil
 import kotlinx.android.synthetic.main.fragment_project.*
+import kotlinx.android.synthetic.main.fragment_project.tabLayout
+import kotlinx.android.synthetic.main.fragment_public.*
 
 class ProjectFragment : BaseFragment() {
 
@@ -87,10 +90,12 @@ class ProjectFragment : BaseFragment() {
 
     override fun onSupportInvisible() {
         super.onSupportInvisible()
-        if(tabLayout != null){
-            tabLayout.currentTab = 0
-            viewPagerProject.currentItem = 0
-        }
+        Handler().postDelayed(Runnable {
+            if (tabLayout != null) {
+                tabLayout.currentTab = 0
+                viewPagerProject.currentItem = 0
+            }
+        }, 300)
     }
 
     companion object {

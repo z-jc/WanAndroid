@@ -1,5 +1,6 @@
 package com.android.wan.ui.fragment.system
 
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import com.android.wan.R
 import com.android.wan.ui.activity.MainActivity
@@ -39,10 +40,12 @@ class SystemFragment : BaseFragment() {
 
     override fun onSupportInvisible() {
         super.onSupportInvisible()
-        if(tabLayout != null){
-            tabLayout.currentTab = 0
-            viewPagerSystem.currentItem = 0
-        }
+        Handler().postDelayed(Runnable {
+            if (tabLayout != null) {
+                tabLayout.currentTab = 0
+                viewPagerSystem.currentItem = 0
+            }
+        }, 300)
     }
 
     companion object {
