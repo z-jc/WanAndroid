@@ -31,6 +31,7 @@ class ContentActivity : BaseActivity() {
         LoadingUtil.showLoading(this, "加载中...")
         webUrl = intent.getStringExtra(URL)
         webTitle = intent.getStringExtra(TITLE)
+        imgBack.setImageResource(R.drawable.icon_back_white)
         imgBack.setOnClickListener { finish() }
         imgTitle.setOnClickListener { showTitlePop() }
         val settings = webView.settings

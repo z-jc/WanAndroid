@@ -84,4 +84,18 @@ class ApiModelImpl : ApiModel {
     ) {
         RxhttpUtil.getInstance().get(HttpConfig.getProjectListUrl(id, index), a, callback)
     }
+
+    /**
+     * 体系模块列表接口
+     */
+    override fun getSystemSysList(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
+        RxhttpUtil.getInstance().get(HttpConfig.systemSysUrl, a, callback)
+    }
+
+    /**
+     * 导航模块列表接口
+     */
+    override fun getSystemNavList(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
+        RxhttpUtil.getInstance().get(HttpConfig.systemNavUrl, a, callback)
+    }
 }

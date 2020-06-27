@@ -61,4 +61,15 @@ interface ApiModel {
         a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
+
+    /**
+     * 体系模块列表接口
+     */
+    fun getSystemSysList(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
+
+    /**
+     * 导航模块列表接口
+     */
+    fun getSystemNavList(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
+
 }

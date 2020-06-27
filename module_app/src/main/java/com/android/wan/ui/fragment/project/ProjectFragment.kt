@@ -78,8 +78,8 @@ class ProjectFragment : BaseFragment() {
             mFragments,
             titleList
         )
-        viewPagerProject.setAdapter(mAdapter);
-        viewPagerProject.setOffscreenPageLimit(mFragments.size);
+        viewPagerProject.adapter = mAdapter;
+        viewPagerProject.offscreenPageLimit = mFragments.size;
         tabLayout.setViewPager(viewPagerProject);
         tabLayout.currentTab = 0;//指定显示哪个tab
         viewPagerProject.currentItem = 0

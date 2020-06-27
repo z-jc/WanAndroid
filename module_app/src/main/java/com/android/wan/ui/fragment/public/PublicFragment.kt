@@ -75,10 +75,10 @@ class PublicFragment : BaseFragment() {
             mFragments,
             titleList
         )
-        viewPagerPublic.setAdapter(mAdapter)
-        viewPagerPublic.setOffscreenPageLimit(mFragments.size)
+        viewPagerPublic.adapter = mAdapter
+        viewPagerPublic.offscreenPageLimit = mFragments.size
         tabLayout.setViewPager(viewPagerPublic)
-        tabLayout.setCurrentTab(0)
+        tabLayout.currentTab = 0
     }
 
     override fun onSupportInvisible() {

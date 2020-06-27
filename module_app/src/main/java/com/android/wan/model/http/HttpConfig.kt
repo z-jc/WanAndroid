@@ -60,5 +60,14 @@ class HttpConfig {
             return "https://www.wanandroid.com/project/list/" + index + "/json?cid=" + id
         }
 
+        /**
+         * 体系列表
+         */
+        var systemSysUrl = "https://www.wanandroid.com/tree/json"
+
+        /**
+         * 导航列表
+         */
+        var systemNavUrl = "https://www.wanandroid.com/navi/json"
     }
 }
