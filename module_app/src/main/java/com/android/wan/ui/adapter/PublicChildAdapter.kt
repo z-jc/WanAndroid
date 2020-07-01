@@ -1,10 +1,8 @@
 package com.android.wan.ui.adapter
 
-import android.app.Activity
 import android.widget.ImageView
 import com.android.wan.R
 import com.android.wan.model.entity.PublicListEntity
-import com.android.wan.ui.activity.ContentActivity
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dq.util.ToastUtil
@@ -32,11 +30,5 @@ class PublicChildAdapter :
         imgItem.setOnClickListener {
             ToastUtil.showShortToast(helper.itemView.context, "收藏")
         }
-
-        helper.itemView.setOnClickListener {
-            ContentActivity.startAct(helper.itemView.context as Activity, item.link!!, item.title!!
-            )
-        }
-
     }
 }

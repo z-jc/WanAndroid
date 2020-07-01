@@ -35,19 +35,19 @@ class SystemSysAdapter :
             list.add(dataBean!!.name!!)
         }
 
-        flowlayout.setAdapter(object : TagAdapter<String?>(list as List<String>) {
+        flowlayout.adapter = object : TagAdapter<String?>(list as List<String>) {
             override fun getView(parent: FlowLayout?, position: Int, s: String?): View? {
                 val tvItem: TextView = LayoutInflater.from(helper.itemView.context).inflate(
                     R.layout.item_flowlayout,
                     flowlayout, false
                 ) as TextView
-                tvItem.setText(s)
+                tvItem.text = s
                 return tvItem
             }
-        })
+        }
 
-        flowlayout.setOnTagClickListener(OnTagClickListener { view, position, parent ->
-            ToastUtil.showShortToast(helper.itemView.context, list.get(position))
+        flowlayout.setOnTagClickListener(OnTagClickListener { _, position, _ ->
+            ToastUtil.showShortToast(helper.itemView.context, list[position])
             false
         })
     }

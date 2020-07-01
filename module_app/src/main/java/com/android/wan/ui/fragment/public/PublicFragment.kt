@@ -16,15 +16,13 @@ import com.dq.util.ToastUtil
 import com.dq.util.http.JsonUtil
 import com.dq.util.http.RxhttpUtil
 import kotlinx.android.synthetic.main.fragment_public.*
-import kotlinx.android.synthetic.main.fragment_public.tabLayout
-import kotlinx.android.synthetic.main.fragment_system.*
 
 class PublicFragment : BaseFragment() {
 
     var listEntity: PublicTitleEntity? = null
     var apiModel: ApiModel? = null
-    protected val mFragments: MutableList<Fragment> = mutableListOf()
-    protected var titleList: MutableList<String> = mutableListOf()
+    val mFragments: MutableList<Fragment> = mutableListOf()
+    var titleList: MutableList<String> = mutableListOf()
 
     override fun getContentView(): Int? {
         return R.layout.fragment_public
@@ -36,6 +34,7 @@ class PublicFragment : BaseFragment() {
         getTitleList()
         ViewPagerUtil().setAnim(viewPagerPublic)
     }
+
     fun getTitleList() {
         activity?.let {
             apiModel!!.getPublicTitleList(it, object : RxhttpUtil.RxHttpCallBack {
@@ -66,7 +65,7 @@ class PublicFragment : BaseFragment() {
                 }
 
                 override fun onStart() {
-                    LoadingUtil.showLoading(activity,"获取中...")
+                    LoadingUtil.showLoading(activity, "获取中...")
                 }
             })
         }
@@ -84,17 +83,25 @@ class PublicFragment : BaseFragment() {
         tabLayout.currentTab = 0
     }
 
+    override fun onSupportVisible() {
+        super.onSupportVisible()
+        isIntercept = true
+    }
+
     override fun onSupportInvisible() {
         super.onSupportInvisible()
-        Handler().postDelayed(Runnable {
-            if(tabLayout != null){
-                tabLayout.currentTab = 0
-                viewPagerPublic.currentItem = 0
-            }
-        }, 300)
+        if(isIntercept){
+            Handler().postDelayed(Runnable {
+                if (tabLayout != null) {
+                    tabLayout.currentTab = 0
+                    viewPagerPublic.currentItem = 0
+                }
+            }, 300)
+        }
     }
 
     companion object {
+        var isIntercept = true
         fun createFragment(): PublicFragment {
             return PublicFragment()
         }

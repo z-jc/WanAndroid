@@ -6,6 +6,7 @@ import com.android.wan.R
 import com.android.wan.model.entity.SystemNavEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
+import com.android.wan.ui.activity.ContentActivity
 import com.android.wan.ui.adapter.SystemNavAdapter
 import com.android.wan.ui.view.LoadingUtil
 import com.dq.ui.base.BaseFragment
@@ -31,6 +32,11 @@ class SystemNavFragment : BaseFragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = mAdapter
         getList()
+        mAdapter!!.setOnItemClickListener { _, _, position ->
+            SystemFragment.isIntercept = false
+            ContentActivity.startAct(activity!!,
+                mAdapter!!.data[position].articles!![position]!!.link!!, mAdapter!!.data[position].articles!![position]!!.title!!)
+        }
     }
 
     fun getList() {

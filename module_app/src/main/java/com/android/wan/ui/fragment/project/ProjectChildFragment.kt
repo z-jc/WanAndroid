@@ -6,6 +6,7 @@ import com.android.wan.R
 import com.android.wan.model.entity.ProjectListEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
+import com.android.wan.ui.activity.ContentActivity
 import com.android.wan.ui.adapter.ProjectChildAdapter
 import com.android.wan.util.RvAnimUtils
 import com.dq.ui.base.BaseFragment
@@ -52,6 +53,14 @@ class ProjectChildFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListen
         refreshLayout.setOnLoadMoreListener(this)
         refreshLayout.setOnRefreshListener(this)
         refreshLayout.autoRefresh()
+        mAdapter!!.setOnItemClickListener { _, _, position ->
+            ProjectFragment.isIntercept = false
+            ContentActivity.startAct(
+                activity!!,
+                mAdapter!!.data[position].link!!,
+                mAdapter!!.data[position].title!!
+            )
+        }
     }
 
     fun getProjectList() {

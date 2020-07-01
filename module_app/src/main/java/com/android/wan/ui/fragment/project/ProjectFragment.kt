@@ -16,8 +16,6 @@ import com.dq.util.ToastUtil
 import com.dq.util.http.JsonUtil
 import com.dq.util.http.RxhttpUtil
 import kotlinx.android.synthetic.main.fragment_project.*
-import kotlinx.android.synthetic.main.fragment_project.tabLayout
-import kotlinx.android.synthetic.main.fragment_public.*
 
 class ProjectFragment : BaseFragment() {
 
@@ -90,15 +88,23 @@ class ProjectFragment : BaseFragment() {
 
     override fun onSupportInvisible() {
         super.onSupportInvisible()
-        Handler().postDelayed(Runnable {
-            if (tabLayout != null) {
-                tabLayout.currentTab = 0
-                viewPagerProject.currentItem = 0
-            }
-        }, 300)
+        if(isIntercept){
+            Handler().postDelayed(Runnable {
+                if (tabLayout != null) {
+                    tabLayout.currentTab = 0
+                    viewPagerProject.currentItem = 0
+                }
+            }, 300)
+        }
+    }
+
+    override fun onSupportVisible() {
+        super.onSupportVisible()
+        isIntercept = true
     }
 
     companion object {
+        var isIntercept = true
         fun createFragment(): ProjectFragment {
             return ProjectFragment()
         }

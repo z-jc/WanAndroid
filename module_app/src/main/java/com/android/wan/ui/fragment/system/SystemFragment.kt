@@ -7,14 +7,13 @@ import com.android.wan.ui.activity.MainActivity
 import com.android.wan.ui.adapter.BaseViewPagerAdapter
 import com.android.wan.ui.view.ViewPagerUtil
 import com.dq.ui.base.BaseFragment
-import com.dq.util.ILog
 import kotlinx.android.synthetic.main.fragment_public.tabLayout
 import kotlinx.android.synthetic.main.fragment_system.*
 
 class SystemFragment : BaseFragment() {
 
-    protected val mFragments: MutableList<Fragment> = mutableListOf()
-    protected var titleList: MutableList<String> = mutableListOf()
+    val mFragments: MutableList<Fragment> = mutableListOf()
+    var titleList: MutableList<String> = mutableListOf()
 
     override fun getContentView(): Int? {
         return R.layout.fragment_system
@@ -40,15 +39,23 @@ class SystemFragment : BaseFragment() {
 
     override fun onSupportInvisible() {
         super.onSupportInvisible()
-        Handler().postDelayed(Runnable {
-            if (tabLayout != null) {
-                tabLayout.currentTab = 0
-                viewPagerSystem.currentItem = 0
-            }
-        }, 300)
+        if (isIntercept) {
+            Handler().postDelayed(Runnable {
+                if (tabLayout != null) {
+                    tabLayout.currentTab = 0
+                    viewPagerSystem.currentItem = 0
+                }
+            }, 300)
+        }
+    }
+
+    override fun onSupportVisible() {
+        super.onSupportVisible()
+        isIntercept = true
     }
 
     companion object {
+        var isIntercept = true
         fun createFragment(): SystemFragment {
             return SystemFragment()
         }
