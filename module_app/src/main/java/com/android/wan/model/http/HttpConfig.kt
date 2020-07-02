@@ -52,7 +52,7 @@ class HttpConfig {
         var projectTitleUrl: String = "https://www.wanandroid.com/project/tree/json"
 
         /**
-         * 项目列数据
+         * 项目列表数据
          * @param id项目类型
          * @param index 页码
          */
@@ -69,5 +69,13 @@ class HttpConfig {
          * 导航列表
          */
         var systemNavUrl = "https://www.wanandroid.com/navi/json"
+
+        /**
+         * 积分排行榜
+         * @param index 页码
+         */
+        fun getIntegralRankingListUrl(index: Int): String {
+            return "https://www.wanandroid.com/coin/rank/" + index + "/json"
+        }
     }
 }

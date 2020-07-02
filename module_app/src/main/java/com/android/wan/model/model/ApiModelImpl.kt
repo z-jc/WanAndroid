@@ -98,4 +98,15 @@ class ApiModelImpl : ApiModel {
     override fun getSystemNavList(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
         RxhttpUtil.getInstance().get(HttpConfig.systemNavUrl, a, callback)
     }
+
+    /**
+     * 积分排行榜接口
+     */
+    override fun getIntegralRankingList(
+        index: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().get(HttpConfig.getIntegralRankingListUrl(index), a, callback)
+    }
 }

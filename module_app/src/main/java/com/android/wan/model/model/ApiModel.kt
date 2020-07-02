@@ -72,4 +72,12 @@ interface ApiModel {
      */
     fun getSystemNavList(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack)
 
+    /**
+     * 积分排行榜
+     */
+    fun getIntegralRankingList(
+        index: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    );
 }

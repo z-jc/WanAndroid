@@ -17,6 +17,7 @@ import com.android.wan.config.AppDataSourse
 import com.android.wan.model.entity.LogoutEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
+import com.android.wan.ui.activity.IntegralRankingActivity
 import com.android.wan.ui.activity.MainActivity
 import com.android.wan.ui.adapter.MainAdapter
 import com.android.wan.ui.fragment.home.HomeFragment
@@ -144,7 +145,9 @@ class MainFragment :BaseFragment() {
                 7 -> logout()
             }
         }
-
+        imgMenuTitle.setOnClickListener {
+            startAct(activity, IntegralRankingActivity())
+        }
         onResume()
     }
 
