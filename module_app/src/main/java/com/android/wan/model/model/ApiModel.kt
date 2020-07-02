@@ -80,4 +80,13 @@ interface ApiModel {
         a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     );
+
+    /**
+     * 我的积分获取记录
+     */
+    fun getMyPointsList(
+        index: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    );
 }

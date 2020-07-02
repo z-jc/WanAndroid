@@ -109,4 +109,15 @@ class ApiModelImpl : ApiModel {
     ) {
         RxhttpUtil.getInstance().get(HttpConfig.getIntegralRankingListUrl(index), a, callback)
     }
+
+    /**
+     * 我的积分获取记录
+     */
+    override fun getMyPointsList(
+        index: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().get(HttpConfig.getMyPointsListUrl(index), a, callback)
+    }
 }

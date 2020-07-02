@@ -9,7 +9,6 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowManager
 import com.dq.ui.R
-import kotlinx.android.synthetic.main.dialog_custom.*
 import kotlinx.android.synthetic.main.dialog_custom.tvCancel
 import kotlinx.android.synthetic.main.dialog_custom.tvEnter
 import kotlinx.android.synthetic.main.dialog_edit.*

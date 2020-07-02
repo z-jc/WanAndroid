@@ -19,6 +19,7 @@ import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.activity.IntegralRankingActivity
 import com.android.wan.ui.activity.MainActivity
+import com.android.wan.ui.activity.MyPointsActivity
 import com.android.wan.ui.adapter.MainAdapter
 import com.android.wan.ui.fragment.home.HomeFragment
 import com.android.wan.ui.fragment.project.ProjectFragment
@@ -45,7 +46,7 @@ import me.yokeyword.fragmentation.SupportActivity
 import me.yokeyword.fragmentation.SupportFragment
 import java.util.*
 
-class MainFragment :BaseFragment() {
+class MainFragment : BaseFragment() {
 
     private val fragments = arrayOfNulls<SupportFragment>(4)
     private var mainAdapter: MainAdapter? = null
@@ -135,7 +136,13 @@ class MainFragment :BaseFragment() {
 
         mainAdapter!!.setOnItemClickListener { _, _, position ->
             when (position) {
-                0 -> return@setOnItemClickListener
+                0 -> {
+                    if (LoginConfig().getIsLogin()) {
+                        startAct(activity, MyPointsActivity())
+                    } else {
+                        LoginActivity.start(activity!!)
+                    }
+                }
                 1 -> return@setOnItemClickListener
                 2 -> return@setOnItemClickListener
                 3 -> return@setOnItemClickListener
@@ -188,7 +195,7 @@ class MainFragment :BaseFragment() {
     @SuppressLint("SetTextI18n")
     override fun onResume() {
         super.onResume()
-        if(mainAdapter != null){
+        if (mainAdapter != null) {
             mainAdapter!!.setList(AppDataSourse.getMainList())
         }
         tvMenuRank.text = "等级" + LoginConfig().getUserLevel() + "  排名" + LoginConfig().getUserRank()

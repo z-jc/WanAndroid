@@ -77,5 +77,13 @@ class HttpConfig {
         fun getIntegralRankingListUrl(index: Int): String {
             return "https://www.wanandroid.com/coin/rank/" + index + "/json"
         }
+
+        /**
+         * 我的获取积分记录
+         * @param index 页码
+         */
+        fun getMyPointsListUrl(index: Int): String {
+            return "https://www.wanandroid.com//lg/coin/list/"+index+"/json"
+        }
     }
 }

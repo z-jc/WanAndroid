@@ -2,7 +2,6 @@ package com.android.wan.ui.activity
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
-import com.android.wan.model.entity.HomeListEntity
 import com.android.wan.model.entity.IntegralRankingEnity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
@@ -17,10 +16,7 @@ import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import kotlinx.android.synthetic.main.activity_integral_ranking.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.recyclerView
-import kotlinx.android.synthetic.main.fragment_home.refreshLayout
 import kotlinx.android.synthetic.main.title_bar_base.*
 
 /**
