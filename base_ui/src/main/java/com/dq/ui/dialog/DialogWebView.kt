@@ -38,7 +38,7 @@ class DialogWebView(a: Activity) : Dialog(a, R.style.dialog_loading) {
         // 使页面适应用户屏幕
         settings.useWideViewPort = true
         settings.loadWithOverviewMode = true
-        settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        //settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
         // 开启JavaScript
         settings.javaScriptEnabled = true
         webView.isHorizontalScrollBarEnabled = false//水平不显示

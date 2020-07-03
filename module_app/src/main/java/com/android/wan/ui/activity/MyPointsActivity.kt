@@ -76,8 +76,9 @@ class MyPointsActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListener {
             runOnUiThread {
                 LoadingUtil.dismissLoading()
                 var loadData = element.html()
-                    .replace("<div class=\"blog_header\"","<div class=\"blog_header\" style=\"font-size:52px\"")
-                    .replace("<div id=\"show\"","<div id=\"show\" style=\"font-size:52px\"")
+                    .replace("<div class=\"blog_header\"","<div class=\"blog_header\" style=\"font-size:40px;word-wrap:break-word;\"")
+                    .replace("<div id=\"show\"","<div id=\"show\" style=\"font-size:40px;word-wrap:break-word;\"")
+                    .replace("<a","<a style=\"text-decoration:none;\"")
                 ILog.e("loadData$loadData")
                 DialogWebView(this@MyPointsActivity)
                     .isShowContent(false)
