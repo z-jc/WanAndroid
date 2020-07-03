@@ -41,6 +41,7 @@ class DialogWebView(a: Activity) : Dialog(a, R.style.dialog_loading) {
         settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
         // 开启JavaScript
         settings.javaScriptEnabled = true
+        webView.isHorizontalScrollBarEnabled = false//水平不显示
         webView.isVerticalScrollBarEnabled = false //隐藏垂直滚动条
 
         if (isShowContent) {
@@ -87,5 +88,20 @@ class DialogWebView(a: Activity) : Dialog(a, R.style.dialog_loading) {
             wm.defaultDisplay.getMetrics(dm)
             return dm.widthPixels
         }
+
+        /**
+         * 获取屏幕的高度
+         *
+         * @param context
+         * @return
+         */
+        fun getScreenHeight(context: Context): Int {
+            val wm =
+                context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val dm = DisplayMetrics()
+            wm.defaultDisplay.getMetrics(dm)
+            return dm.heightPixels
+        }
+
     }
 }

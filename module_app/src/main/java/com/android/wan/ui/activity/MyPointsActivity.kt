@@ -72,10 +72,13 @@ class MyPointsActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListener {
         LoadingUtil.showLoading(this,"请稍候...")
         Thread {
             val doc1: Document = Jsoup.connect(rulesUrl).get()
-            val element: Elements = doc1.select("div.block") //解析题目截图地址
+            val element: Elements = doc1.select("div#blogDetail") //解析题目截图地址
             runOnUiThread {
                 LoadingUtil.dismissLoading()
-                var loadData = element.html().replace("<div id=\"blogDetail\"","<div id=\"blogDetail\" style=\"font-size:44px\"")
+                var loadData = element.html()
+                    .replace("<div class=\"blog_header\"","<div class=\"blog_header\" style=\"font-size:52px\"")
+                    .replace("<div id=\"show\"","<div id=\"show\" style=\"font-size:52px\"")
+                ILog.e("loadData$loadData")
                 DialogWebView(this@MyPointsActivity)
                     .isShowContent(false)
                     .setLoadData(loadData)
