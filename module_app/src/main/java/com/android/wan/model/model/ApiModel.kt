@@ -79,7 +79,7 @@ interface ApiModel {
         index: Int,
         a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
-    );
+    )
 
     /**
      * 我的积分获取记录
@@ -88,5 +88,13 @@ interface ApiModel {
         index: Int,
         a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
-    );
+    )
+
+    /**
+     * 分享文章
+     */
+    fun postShareArticle(
+        map: Map<String, String>, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
 }

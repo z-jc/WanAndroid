@@ -12,5 +12,6 @@
     <string name="cancel_collect_success">已取消收藏</string>
     <string name="new_fresh">新</string>
     <string name="top_tip">置顶</string>
+    <string name="text_share">分享</string>
 
 </resources>

@@ -73,4 +73,8 @@ abstract class BaseActivity : SupportActivity() {
         startActivity(Intent(startAct, endAct!!.javaClass))
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 }

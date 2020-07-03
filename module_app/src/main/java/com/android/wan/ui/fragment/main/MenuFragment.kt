@@ -6,6 +6,7 @@ import com.android.wan.R
 import com.android.wan.model.entity.SquareListEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
+import com.android.wan.ui.activity.ShareArticleActivity
 import com.android.wan.ui.adapter.MenuAdapter
 import com.android.wan.util.RvAnimUtils
 import com.dq.login.activity.LoginActivity
@@ -54,7 +55,7 @@ class MenuFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListener {
             if (!LoginConfig().getIsLogin()) {
                 LoginActivity.start(activity!!)
             } else {
-                ToastUtil.showLongToast(activity, "去添加")
+                startAct(activity,ShareArticleActivity())
             }
         }
     }

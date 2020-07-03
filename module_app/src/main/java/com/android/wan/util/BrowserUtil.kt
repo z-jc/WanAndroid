@@ -11,14 +11,21 @@ import android.net.Uri
  * Description:
  */
 object BrowserUtil {
+
+    /**
+     * 浏览器打开
+     */
     fun startBrowser(a: Activity, url: String?) {
         val intent = Intent()
-        intent.action = "android.intent.action.VIEW"
+        intent.action = "android.intent.category.VIEW"
         val content_url = Uri.parse(url)
         intent.data = content_url
         a.startActivity(intent)
     }
 
+    /**
+     * 网页打开
+     */
     fun startLocal(a: Activity, url: String?) {
         val uri = Uri.parse(url)
         val intent =

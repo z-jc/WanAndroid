@@ -6,6 +6,7 @@ import com.android.wan.model.entity.IntegralRankingEnity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.adapter.IntegralRankingAdapter
+import com.android.wan.ui.view.LoadingUtil
 import com.android.wan.util.RvAnimUtils
 import com.dq.ui.base.BaseActivity
 import com.dq.util.ILog
@@ -103,4 +104,8 @@ class IntegralRankingActivity : BaseActivity(), OnLoadMoreListener, OnRefreshLis
         getIntegralRankingList()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        LoadingUtil.dismissLoading()
+    }
 }

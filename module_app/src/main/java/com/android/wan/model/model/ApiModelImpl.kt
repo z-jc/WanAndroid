@@ -120,4 +120,15 @@ class ApiModelImpl : ApiModel {
     ) {
         RxhttpUtil.getInstance().get(HttpConfig.getMyPointsListUrl(index), a, callback)
     }
+
+    /**
+     * 分享文章
+     */
+    override fun postShareArticle(
+        map: Map<String, String>,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().post(HttpConfig.getShareArticleUrl, map, a, callback)
+    }
 }

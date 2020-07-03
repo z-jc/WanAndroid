@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.title_bar_base.*
 /**
  * Author:ZJC
  * Date:2020/2/7  16:01
- * Description:UserServiceAgreementActivity
+ * Description:ContentActivity
  */
 class ContentActivity : BaseActivity() {
 

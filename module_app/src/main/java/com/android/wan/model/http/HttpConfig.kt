@@ -83,7 +83,12 @@ class HttpConfig {
          * @param index 页码
          */
         fun getMyPointsListUrl(index: Int): String {
-            return "https://www.wanandroid.com//lg/coin/list/"+index+"/json"
+            return "https://www.wanandroid.com//lg/coin/list/" + index + "/json"
         }
+
+        /**
+         * 分享文章
+         */
+        var getShareArticleUrl = "https://www.wanandroid.com/lg/user_article/add/json"
     }
 }

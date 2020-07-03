@@ -28,7 +28,7 @@ import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
 /**
- * FileName: IntegralRankingActivity
+ * FileName: MyPointsActivity
  * Author: admin
  * Date: 2020/7/2 14:08
  * Description:
@@ -135,6 +135,11 @@ class MyPointsActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListener {
         pageIndex = 1
         isRefresh = false
         getMyPointsList()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LoadingUtil.dismissLoading()
     }
 
 }
