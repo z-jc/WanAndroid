@@ -153,7 +153,11 @@ class MainFragment : BaseFragment() {
             }
         }
         imgMenuTitle.setOnClickListener {
-            startAct(activity, IntegralRankingActivity())
+            if (LoginConfig().getIsLogin()) {
+                startAct(activity, IntegralRankingActivity())
+            } else {
+                LoginActivity.start(activity!!)
+            }
         }
         onResume()
     }

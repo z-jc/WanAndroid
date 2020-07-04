@@ -24,7 +24,6 @@
         android:layout_marginLeft="@dimen/dp8"
         android:layout_marginRight="@dimen/dp8"
         android:gravity="center"
-        android:scrollbars="horizontal"
         android:singleLine="true"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"

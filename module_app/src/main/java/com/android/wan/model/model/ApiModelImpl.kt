@@ -131,4 +131,16 @@ class ApiModelImpl : ApiModel {
     ) {
         RxhttpUtil.getInstance().post(HttpConfig.getShareArticleUrl, map, a, callback)
     }
+
+    /**
+     * 分享人文章列表
+     */
+    override fun getSharePerson(
+        userId: Int,
+        pageIndex: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().get(HttpConfig.getSharePersonUrl(userId, pageIndex), a, callback)
+    }
 }

@@ -97,4 +97,12 @@ interface ApiModel {
         map: Map<String, String>, a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
+
+    /**
+     * 分享人文章列表
+     */
+    fun getSharePerson(
+        userId: Int, pageIndex: Int, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
 }

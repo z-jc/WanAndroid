@@ -1,18 +1,19 @@
 package com.android.wan.ui.adapter
 
+import android.app.Activity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.android.wan.R
 import com.android.wan.model.entity.IntegralRankingEnity
+import com.android.wan.ui.activity.SharePersonActivity
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dq.util.DisplayUtil
-import com.dq.util.ILog
 
 /**
- * FileName: HomeAdapter
+ * FileName: IntegralRankingAdapter
  * Author: admin
  * Date: 2020/6/19 17:30
  * Description:
@@ -59,6 +60,10 @@ class IntegralRankingAdapter :
                 imgRank.visibility = View.VISIBLE
                 helper.setImageResource(R.id.imgRank, R.drawable.icon_rank_3)
             }
+        }
+
+        helper.itemView.setOnClickListener {
+            SharePersonActivity.start(helper.itemView.context as Activity, item.userId)
         }
     }
 }

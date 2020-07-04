@@ -16,7 +16,7 @@ import com.zhy.view.flowlayout.TagFlowLayout
 import com.zhy.view.flowlayout.TagFlowLayout.OnTagClickListener
 
 /**
- * FileName: HomeAdapter
+ * FileName: SystemNavAdapter
  * Author: admin
  * Date: 2020/6/19 17:30
  * Description:

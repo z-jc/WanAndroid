@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dq.util.DateUtil
 
 /**
- * FileName: HomeAdapter
+ * FileName: MyPointsAdapter
  * Author: admin
  * Date: 2020/6/19 17:30
  * Description:

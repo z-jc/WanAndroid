@@ -90,5 +90,15 @@ class HttpConfig {
          * 分享文章
          */
         var getShareArticleUrl = "https://www.wanandroid.com/lg/user_article/add/json"
+
+        /**
+         * 分享人文章列表
+         */
+        fun getSharePersonUrl(
+            userId: Int,
+            pageIndex: Int
+        ): String? {
+            return "https://www.wanandroid.com/user/" + userId + "/share_articles/" + pageIndex + "/json"
+        }
     }
 }

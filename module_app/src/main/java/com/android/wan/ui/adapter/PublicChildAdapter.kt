@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dq.util.ToastUtil
 
 /**
- * FileName: HomeAdapter
+ * FileName: PublicChildAdapter
  * Author: admin
  * Date: 2020/6/19 17:30
  * Description:

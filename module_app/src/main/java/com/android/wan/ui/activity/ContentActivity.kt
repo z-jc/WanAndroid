@@ -3,13 +3,13 @@ package com.android.wan.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
+import android.view.View
+import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
 import com.android.wan.R
 import com.android.wan.ui.dialog.DialogTitle
-import com.android.wan.ui.view.LoadingUtil
 import com.android.wan.util.BrowserUtil
 import com.dq.ui.base.BaseActivity
 import com.dq.util.ShareUtil
@@ -28,7 +28,6 @@ class ContentActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun initView() {
-        LoadingUtil.showLoading(this, "加载中...")
         webUrl = intent.getStringExtra(URL)
         webTitle = intent.getStringExtra(TITLE)
         imgBack.setImageResource(R.drawable.icon_back_white)
@@ -47,14 +46,23 @@ class ContentActivity : BaseActivity() {
 
         tvTitle.text = webTitle
         tvTitle.isSelected = true
+        tvTitle.isHorizontalScrollBarEnabled = true
         imgTitle.setImageResource(R.drawable.icon_detail)
         webView.loadUrl(webUrl)
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                LoadingUtil.dismissLoading()
+
+        webView.setWebChromeClient(object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                if (newProgress == 100) {
+                    progressBar.setVisibility(View.INVISIBLE)
+                } else {
+                    if (View.INVISIBLE === progressBar.getVisibility()) {
+                        progressBar.setVisibility(View.VISIBLE)
+                    }
+                    progressBar.setProgress(newProgress)
+                }
+                super.onProgressChanged(view, newProgress)
             }
-        }
+        })
     }
 
     override fun getContentView(): Int? {
@@ -99,7 +107,6 @@ class ContentActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        LoadingUtil.dismissLoading()
         if (dialogTitle != null) {
             dialogTitle!!.dismiss()
             dialogTitle = null
