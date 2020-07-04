@@ -143,4 +143,26 @@ class ApiModelImpl : ApiModel {
     ) {
         RxhttpUtil.getInstance().get(HttpConfig.getSharePersonUrl(userId, pageIndex), a, callback)
     }
+
+    /**
+     * 我的分享列表
+     */
+    override fun getShareMyList(
+        pageIndex: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().get(HttpConfig.getShareMyUrl(pageIndex), a, callback)
+    }
+
+    /**
+     * 删除我的分享
+     */
+    override fun postDeleteShareMyPosition(
+        articleId: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().post(HttpConfig.postDeleteShareMyUrl(articleId), a, callback)
+    }
 }

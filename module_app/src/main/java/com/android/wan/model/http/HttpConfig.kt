@@ -3,7 +3,7 @@ package com.android.wan.model.http
 /**
  * Author : Z-JC
  * Date : 2020/1/12
- * Description :
+ * Description : 接口地址
  */
 class HttpConfig {
     companion object {
@@ -24,7 +24,7 @@ class HttpConfig {
          * 广场列表接口
          */
         fun squareListUrl(int: Int): String {
-            return "https://wanandroid.com/user_article/list/" + int + "/json"
+            return "https://wanandroid.com/user_article/list/$int/json"
         }
 
         /**
@@ -43,7 +43,7 @@ class HttpConfig {
          * @param index 页码
          */
         fun getPublicListUrl(title: String, index: Int): String {
-            return "https://wanandroid.com/wxarticle/list/" + title + "/" + index + "/json"
+            return "https://wanandroid.com/wxarticle/list/$title/$index/json"
         }
 
         /**
@@ -57,7 +57,7 @@ class HttpConfig {
          * @param index 页码
          */
         fun getProjectListUrl(id: Int, index: Int): String {
-            return "https://www.wanandroid.com/project/list/" + index + "/json?cid=" + id
+            return "https://www.wanandroid.com/project/list/$index/json?cid=$id"
         }
 
         /**
@@ -75,7 +75,7 @@ class HttpConfig {
          * @param index 页码
          */
         fun getIntegralRankingListUrl(index: Int): String {
-            return "https://www.wanandroid.com/coin/rank/" + index + "/json"
+            return "https://www.wanandroid.com/coin/rank/$index/json"
         }
 
         /**
@@ -83,7 +83,7 @@ class HttpConfig {
          * @param index 页码
          */
         fun getMyPointsListUrl(index: Int): String {
-            return "https://www.wanandroid.com//lg/coin/list/" + index + "/json"
+            return "https://www.wanandroid.com//lg/coin/list/$index/json"
         }
 
         /**
@@ -98,7 +98,25 @@ class HttpConfig {
             userId: Int,
             pageIndex: Int
         ): String? {
-            return "https://www.wanandroid.com/user/" + userId + "/share_articles/" + pageIndex + "/json"
+            return "https://www.wanandroid.com/user/$userId/share_articles/$pageIndex/json"
+        }
+
+        /**
+         * 我的分享列表
+         */
+        fun getShareMyUrl(
+            pageIndex: Int
+        ): String? {
+            return "https://wanandroid.com/user/lg/private_articles/$pageIndex/json"
+        }
+
+        /**
+         * 删除我的分享
+         */
+        fun postDeleteShareMyUrl(
+            articleId: Int
+        ): String? {
+            return "https://wanandroid.com/lg/user_article/delete/$articleId/json"
         }
     }
 }

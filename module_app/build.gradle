@@ -60,6 +60,7 @@ dependencies {
     implementation 'com.github.HuanTanSheng:EasyPhotos:3.0.6'
     //implementation 'com.hyman:flowlayout-lib:1.1.2'
     implementation 'org.jsoup:jsoup:1.9.2'
+    implementation 'com.lxj:xpopup:1.8.9-x'
 
     implementation project(path: ':base_util')
     implementation project(path: ':module_setting')

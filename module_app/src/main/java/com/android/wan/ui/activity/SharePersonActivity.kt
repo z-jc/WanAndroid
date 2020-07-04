@@ -9,7 +9,6 @@ import com.android.wan.model.entity.SharePersonEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.adapter.SharePersonAdapter
-import com.android.wan.ui.view.LoadingUtil
 import com.android.wan.util.RvAnimUtils
 import com.dq.ui.base.BaseActivity
 import com.dq.util.ILog
@@ -112,11 +111,6 @@ class SharePersonActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListene
         pageIndex = 1
         isRefresh = false
         getSharePersonList()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        LoadingUtil.dismissLoading()
     }
 
     companion object {

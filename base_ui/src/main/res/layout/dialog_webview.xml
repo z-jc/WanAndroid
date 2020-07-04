@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/layoutWeb"
         android:layout_width="match_parent"
-        android:layout_height="700dp"
+        android:layout_height="600dp"
         android:background="@drawable/bg_dialog_web"
         android:padding="@dimen/dp16"
         app:layout_constraintLeft_toLeftOf="parent"

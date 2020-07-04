@@ -20,6 +20,7 @@ import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.activity.IntegralRankingActivity
 import com.android.wan.ui.activity.MainActivity
 import com.android.wan.ui.activity.MyPointsActivity
+import com.android.wan.ui.activity.ShareMyActivity
 import com.android.wan.ui.adapter.MainAdapter
 import com.android.wan.ui.fragment.home.HomeFragment
 import com.android.wan.ui.fragment.project.ProjectFragment
@@ -144,7 +145,13 @@ class MainFragment : BaseFragment() {
                     }
                 }
                 1 -> return@setOnItemClickListener
-                2 -> return@setOnItemClickListener
+                2 -> {
+                    if (LoginConfig().getIsLogin()) {
+                        startAct(activity, ShareMyActivity())
+                    } else {
+                        LoginActivity.start(activity!!)
+                    }
+                }
                 3 -> return@setOnItemClickListener
                 4 -> return@setOnItemClickListener
                 5 -> startQrCode(QrConfig.TYPE_ONCE)

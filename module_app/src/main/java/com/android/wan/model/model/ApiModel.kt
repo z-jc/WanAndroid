@@ -105,4 +105,20 @@ interface ApiModel {
         userId: Int, pageIndex: Int, a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
+
+    /**
+     * 分享人文章列表
+     */
+    fun getShareMyList(
+        pageIndex: Int, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
+
+    /**
+     * 删除我的分享
+     */
+    fun postDeleteShareMyPosition(
+        articleId: Int, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
 }

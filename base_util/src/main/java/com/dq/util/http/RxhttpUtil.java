@@ -246,6 +246,41 @@ public class RxhttpUtil {
      * post请求
      *
      * @param url          接口地址
+     * @param a
+     * @param httpCallBack
+     */
+    public void post(String url, FragmentActivity a, RxHttpCallBack httpCallBack) {
+        RxHttp.postForm(url)
+                .asString()
+                .observeOn(AndroidSchedulers.mainThread())
+                .as(RxLife.asOnMain(a))
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        httpCallBack.onStart();
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        httpCallBack.onSuccess(s);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        httpCallBack.onError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        httpCallBack.onFinish();
+                    }
+                });
+    }
+
+    /**
+     * post请求
+     *
+     * @param url          接口地址
      * @param map          请求参数
      * @param baseResponse 请求返回的数据对象
      * @param a

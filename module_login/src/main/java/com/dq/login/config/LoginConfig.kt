@@ -41,7 +41,7 @@ class LoginConfig {
     /**
      * 保存用户等级
      */
-    fun setUseLevel(level: Int) {
+    fun setUserLevel(level: Int) {
         SPUtil.setInteger("user_level", level)
     }
 
@@ -100,7 +100,7 @@ class LoginConfig {
     fun clear() {
         setIsLogin(false)
         setUserName("")
-        setUseLevel(0)
+        setUserLevel(0)
         setUserRank("")
         setUserIntegral(0)
     }

@@ -103,7 +103,7 @@ class LoginFragment : BaseFragment() {
                 if (integralEntity.errorCode == 0) {
                     LoginConfig().setUserIntegral(integralEntity.data!!.coinCount)
                     LoginConfig().setUserRank(integralEntity!!.data!!.rank!!)
-                    LoginConfig().setUseLevel(integralEntity!!.data!!.level!!)
+                    LoginConfig().setUserLevel(integralEntity!!.data!!.level!!)
                 }
             }
 

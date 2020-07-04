@@ -96,6 +96,12 @@
             android:theme="@style/Theme.Act"
             tools:ignore="Instantiatable" />
 
+        <activity
+            android:name=".ui.activity.ShareMyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Act"
+            tools:ignore="Instantiatable" />
+
     </application>
 
 </manifest>
