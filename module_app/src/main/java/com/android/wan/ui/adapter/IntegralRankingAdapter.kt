@@ -3,10 +3,13 @@ package com.android.wan.ui.adapter
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.android.wan.R
 import com.android.wan.model.entity.IntegralRankingEnity
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.dq.util.DisplayUtil
+import com.dq.util.ILog
 
 /**
  * FileName: HomeAdapter
@@ -28,6 +31,16 @@ class IntegralRankingAdapter :
         helper.setText(R.id.tvRank, item.rank)
             .setText(R.id.tvAuthor, item.username)
             .setText(R.id.tvIntegral, item.coinCount.toString())
+
+        var view: View = helper.getView(R.id.view)
+        var w = data.get(0).coinCount
+        var i = item.coinCount
+        var b: Double = (i * 1.0) / (w * 1.0)                //积分比例
+        var bb = b * 100
+        var lp: ConstraintLayout.LayoutParams = view.layoutParams as ConstraintLayout.LayoutParams
+        lp.width = (DisplayUtil.getScreenWidth(helper.itemView.context) * bb.toInt() / 100)
+        view.requestLayout()
+
         var imgRank = helper.getView<ImageView>(R.id.imgRank)
         var tvRank = helper.getView<TextView>(R.id.tvRank)
         when (helper.layoutPosition) {
