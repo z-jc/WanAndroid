@@ -31,11 +31,5 @@ class SystemActAdapter : BaseQuickAdapter<SystemActEntity.DataBean.DatasBean, Ba
         imgItem.setOnClickListener {
             ToastUtil.showShortToast(helper.itemView.context, "收藏")
         }
-
-        helper.itemView.setOnClickListener {
-            ContentActivity.startAct(helper.itemView.context as Activity, item.link!!, item.title!!
-            )
-        }
-
     }
 }

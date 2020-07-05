@@ -3,6 +3,7 @@ package com.android.wan.util
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import com.dq.util.ILog
 
 /**
  * FileName: BrowserUtil
@@ -16,6 +17,7 @@ object BrowserUtil {
      * 手机自带浏览器打开
      */
     fun startLocal(a: Activity, url: String?) {
+        ILog.e("跳转到浏览器:${a.javaClass.simpleName}")
         val uri = Uri.parse(url)
         val intent =
             Intent(Intent.ACTION_VIEW, uri)

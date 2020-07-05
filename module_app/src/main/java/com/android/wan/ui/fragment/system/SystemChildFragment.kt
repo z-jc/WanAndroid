@@ -1,6 +1,8 @@
 package com.android.wan.ui.fragment.system
 
+import android.app.Activity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
@@ -8,8 +10,11 @@ import com.android.wan.model.entity.SystemActEntity
 import com.android.wan.model.http.JsonUtil
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
+import com.android.wan.ui.activity.ContentActivity
 import com.android.wan.ui.adapter.SystemActAdapter
 import com.android.wan.util.RvAnimUtils
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
@@ -42,6 +47,11 @@ class SystemChildFragment : BaseFragment() , OnLoadMoreListener, OnRefreshListen
         refreshLayout.setOnLoadMoreListener(this)
         refreshLayout.setOnRefreshListener(this)
         refreshLayout.autoRefresh()
+        mAdapter!!.setOnItemClickListener(object:OnItemClickListener{
+            override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
+                ContentActivity.startAct(activity!!, mAdapter!!.data.get(position).link!!, mAdapter!!.data.get(position).title!!)
+            }
+        })
     }
 
     fun getList() {

@@ -11,13 +11,10 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import androidx.annotation.RequiresApi
 import com.android.wan.R
-import com.android.wan.ui.dialog.DialogTitle
 import com.android.wan.ui.view.SatelliteMenuView
 import com.android.wan.util.BrowserUtil
 import com.dq.ui.base.BaseActivity
-import com.dq.util.ILog
 import com.dq.util.ShareUtil
-import com.dq.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_content.*
 
 /**
@@ -27,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_content.*
  */
 class ContentActivity : BaseActivity() {
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun initView() {
         webUrl = intent.getStringExtra(URL)
         webTitle = intent.getStringExtra(TITLE)
@@ -44,19 +40,19 @@ class ContentActivity : BaseActivity() {
         webView.isVerticalScrollBarEnabled = false //隐藏垂直滚动条
         webView.loadUrl(webUrl)
 
-        webView.setWebChromeClient(object : WebChromeClient() {
+        webView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 if (newProgress == 100) {
                     progressBar.setVisibility(View.INVISIBLE)
                 } else {
                     if (View.INVISIBLE === progressBar.getVisibility()) {
-                        progressBar.setVisibility(View.VISIBLE)
+                        progressBar.visibility = View.VISIBLE
                     }
-                    progressBar.setProgress(newProgress)
+                    progressBar.progress = newProgress
                 }
                 super.onProgressChanged(view, newProgress)
             }
-        })
+        }
 
         srcMenu.setOnMenuItemClickListener(object : SatelliteMenuView.OnMenuItemClickListener {
             override fun onClick(view: View?, position: Int) { //子菜单点击事件

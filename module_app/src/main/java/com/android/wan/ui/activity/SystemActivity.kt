@@ -13,7 +13,6 @@ import com.dq.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_system.*
 import kotlinx.android.synthetic.main.title_bar_base.*
 
-
 class SystemActivity : BaseActivity() {
 
     var entity: SystemSysEntity.DataBean? = null
