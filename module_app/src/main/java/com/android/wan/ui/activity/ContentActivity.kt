@@ -99,7 +99,7 @@ class ContentActivity : BaseActivity() {
 
             override fun onBrowser() {
                 dialogTitle!!.dismiss()
-                BrowserUtil.startBrowser(this@ContentActivity, webUrl)
+                BrowserUtil.startLocal(ContentActivity(), webUrl)
             }
         })
         dialogTitle!!.show()
