@@ -14,7 +14,7 @@ import com.dq.util.ILog
 import com.dq.util.ToastUtil
 import com.dq.util.http.JsonUtil
 import com.dq.util.http.RxhttpUtil
-import kotlinx.android.synthetic.main.fragment_public_child.*
+import kotlinx.android.synthetic.main.fragment_system_nav.*
 
 class SystemNavFragment : BaseFragment() {
 

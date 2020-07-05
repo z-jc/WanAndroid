@@ -165,4 +165,16 @@ class ApiModelImpl : ApiModel {
     ) {
         RxhttpUtil.getInstance().post(HttpConfig.postDeleteShareMyUrl(articleId), a, callback)
     }
+
+    /**
+     * 获取体系下的文章列表
+     */
+    override fun getSystemActUrl(
+        pageIndex: Int,
+        cid: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().get(HttpConfig.getSystemActUrl(cid, pageIndex), a, callback)
+    }
 }

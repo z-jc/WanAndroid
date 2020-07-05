@@ -118,5 +118,15 @@ class HttpConfig {
         ): String? {
             return "https://wanandroid.com/lg/user_article/delete/$articleId/json"
         }
+
+        /**
+         * 获取体系下的文章列表
+         */
+        fun getSystemActUrl(
+            cid: Int
+            , pageIndx: Int
+        ): String? {
+            return "https://www.wanandroid.com/article/list/$pageIndx/json?cid=$cid"
+        }
     }
 }

@@ -17,15 +17,15 @@ import com.dq.util.ToastUtil
  */
 class MenuAdapter :
     BaseQuickAdapter<SquareListEntity.DataBean.DatasBean, BaseViewHolder>(
-        R.layout.item_home_list,
+        R.layout.item_menu_list,
         null
     ) {
 
     override fun convert(helper: BaseViewHolder, item: SquareListEntity.DataBean.DatasBean) {
         helper.setText(R.id.tv_author_name, item.shareUser)
-            .setText(R.id.tv_public_date, item.niceDate)
-            .setText(R.id.tv_public_content, item.title)
-            .setText(R.id.tv_public_source, item.chapterName + " / " + item.superChapterName)
+            .setText(R.id.tv_menu_date, item.niceDate)
+            .setText(R.id.tv_menu_content, item.title)
+            .setText(R.id.tv_menu_source, item.chapterName + " / " + item.superChapterName)
 
         var imgItem: ImageView = helper.getView(R.id.img_collection)
         imgItem.setImageResource(R.drawable.ic_like)

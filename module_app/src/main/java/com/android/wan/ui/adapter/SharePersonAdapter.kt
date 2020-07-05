@@ -22,9 +22,9 @@ class SharePersonAdapter : BaseQuickAdapter<SharePersonEntity.DataBean.ShareArti
 
     override fun convert(helper: BaseViewHolder, item: SharePersonEntity.DataBean.ShareArticlesBean.DatasBean) {
         helper.setText(R.id.tv_author_name, item.shareUser)
-            .setText(R.id.tv_public_date, item.niceDate)
-            .setText(R.id.tv_public_content, item.title)
-            .setText(R.id.tv_public_source, item.chapterName + " / " + item.superChapterName)
+            .setText(R.id.tv_share_person_date, item.niceDate)
+            .setText(R.id.tv_share_person_content, item.title)
+            .setText(R.id.tv_share_person_source, item.chapterName + " / " + item.superChapterName)
 
         var imgItem: ImageView = helper.getView(R.id.img_collection)
         imgItem.setImageResource(R.drawable.ic_like)

@@ -121,4 +121,12 @@ interface ApiModel {
         articleId: Int, a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
+
+    /**
+     * 获取体系下的文章列表
+     */
+    fun getSystemActUrl(
+        pageIndex: Int, cid: Int, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
 }
