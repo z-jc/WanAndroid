@@ -6,14 +6,13 @@ import android.os.Build
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebView
+import android.webkit.*
 import androidx.annotation.RequiresApi
 import com.android.wan.R
 import com.android.wan.ui.view.SatelliteMenuView
 import com.android.wan.util.BrowserUtil
 import com.dq.ui.base.BaseActivity
+import com.dq.util.ILog
 import com.dq.util.ShareUtil
 import kotlinx.android.synthetic.main.activity_content.*
 
@@ -38,12 +37,38 @@ class ContentActivity : BaseActivity() {
         // 开启JavaScript
         settings.javaScriptEnabled = true
         webView.isVerticalScrollBarEnabled = false //隐藏垂直滚动条
-        webView.loadUrl(webUrl)
+
+        webView.webViewClient = object :WebViewClient(){
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                //该方法在Build.VERSION_CODES.LOLLIPOP以前有效，从Build.VERSION_CODES.LOLLIPOP起，建议使用shouldOverrideUrlLoading(WebView, WebResourceRequest)} instead
+                //返回false，意味着请求过程里，不管有多少次的跳转请求（即新的请求地址），均交给webView自己处理，这也是此方法的默认处理
+                //返回true，说明你自己想根据url，做新的跳转，比如在判断url符合条件的情况下，我想让webView加载http://ask.csdn.net/questions/178242
+                view!!.loadUrl(webUrl)
+                return false
+            }
+
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                //返回false，意味着请求过程里，不管有多少次的跳转请求（即新的请求地址），均交给webView自己处理，这也是此方法的默认处理
+                //返回true，说明你自己想根据url，做新的跳转，比如在判断url符合条件的情况下，我想让webView加载http://ask.csdn.net/questions/178242
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    if (request != null) {
+                        view!!.loadUrl(webUrl)
+                        return true
+                    }
+                }
+                return false
+            }
+        }
+        ILog.e("加载的地址:$webUrl")
+        webView.run { webView!!.loadUrl(webUrl) }
 
         webView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 if (newProgress == 100) {
-                    progressBar.setVisibility(View.INVISIBLE)
+                    progressBar.visibility = View.INVISIBLE
                 } else {
                     if (View.INVISIBLE === progressBar.getVisibility()) {
                         progressBar.visibility = View.VISIBLE
