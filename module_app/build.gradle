@@ -18,7 +18,17 @@ android {
 
         ndk {
             // 设置支持的SO库架构
-            abiFilters 'armeabi','x86_64', 'x86' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters 'armeabi', 'x86_64', 'x86' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword '12345678'
+            storeFile file('/jks/wan-android.jks')
+            storeFile file(new File(project.rootDir.absolutePath, "/module_app/jks/wan-android.jks").absolutePath)
+            storePassword '12345678'
         }
     }
 
@@ -53,7 +63,7 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.2'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.2'
-    implementation  'com.scwang.smart:refresh-header-material:2.0.1'    //谷歌刷新头
+    implementation 'com.scwang.smart:refresh-header-material:2.0.1'    //谷歌刷新头
     implementation 'me.yokeyword:fragmentationx:1.0.2'
     implementation 'com.ms:Banner:2.3.20'
     implementation 'com.zhy:flowlayout-lib:1.0.3'

@@ -5,7 +5,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 
 object RvAnimUtils {
     fun getName(anim: Int): String {
-        var name = ""
+        var name: String
         when (anim) {
             RvAnim.NONE -> name = "无"
             RvAnim.ALPHAIN -> name = "渐显"
@@ -23,11 +23,11 @@ object RvAnimUtils {
     fun setAnim(adapter: BaseQuickAdapter<*, *>) {
         when (AppConfig().getAdapterAnim()) {
             RvAnim.NONE -> adapter.animationEnable = false
-            RvAnim.ALPHAIN -> adapter!!.setAnimationWithDefault(BaseQuickAdapter.AnimationType.AlphaIn)
-            RvAnim.SCALEIN -> adapter!!.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
-            RvAnim.SLIDEIN_BOTTOM -> adapter!!.setAnimationWithDefault(BaseQuickAdapter.AnimationType.SlideInBottom)
-            RvAnim.SLIDEIN_LEFT -> adapter!!.setAnimationWithDefault(BaseQuickAdapter.AnimationType.SlideInLeft)
-            RvAnim.SLIDEIN_RIGHT -> adapter!!.setAnimationWithDefault(BaseQuickAdapter.AnimationType.SlideInRight)
+            RvAnim.ALPHAIN -> adapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.AlphaIn)
+            RvAnim.SCALEIN -> adapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)
+            RvAnim.SLIDEIN_BOTTOM -> adapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.SlideInBottom)
+            RvAnim.SLIDEIN_LEFT -> adapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.SlideInLeft)
+            RvAnim.SLIDEIN_RIGHT -> adapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.SlideInRight)
             else -> {
                 adapter.animationEnable = false
             }

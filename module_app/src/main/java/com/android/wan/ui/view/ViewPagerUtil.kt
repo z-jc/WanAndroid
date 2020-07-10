@@ -5,7 +5,7 @@ import androidx.viewpager.widget.ViewPager
 
 class ViewPagerUtil {
     fun setAnim(vp: ViewPager) {
-        vp!!.setPageTransformer(false, object : ViewPager.PageTransformer {
+        vp.setPageTransformer(false, object : ViewPager.PageTransformer {
             override fun transformPage(page: View, position: Float) {
                 var normalizedposition = Math.abs(Math.abs(position) - 1);
                 page.setAlpha(normalizedposition);//渐变透明

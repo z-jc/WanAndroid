@@ -5,6 +5,8 @@ import android.content.Context
 import com.android.wan.config.AppConfig
 import com.android.wan.config.AppConstant
 import com.android.wan.util.RvAnimUtils
+import com.dq.util.DateUtil
+import com.dq.util.ILog
 import com.dq.util.SPUtil
 import com.dq.util.http.RxhttpUtil
 import com.tencent.bugly.crashreport.CrashReport
@@ -31,6 +33,6 @@ class App : Application() {
         LitePal.initialize(this)
         SPUtil.getInstance(context)
         AppConfig().setAdapterAnim(RvAnimUtils.RvAnim.SCALEIN)
-        RxhttpUtil.init(this,true)
+        RxhttpUtil.init(this, true)
     }
 }
