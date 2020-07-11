@@ -32,6 +32,8 @@ import com.android.wan.util.BrowserUtil
 import com.bumptech.glide.Glide
 import com.dq.login.activity.LoginActivity
 import com.dq.login.config.LoginConfig
+import com.dq.login.fragment.LoginFragment
+import com.dq.login.model.entity.LoginHistoryEntity
 import com.dq.ui.base.BaseFragment
 import com.dq.util.DisplayUtil
 import com.dq.util.ILog
@@ -45,6 +47,7 @@ import com.huantansheng.easyphotos.models.album.entity.Photo
 import kotlinx.android.synthetic.main.fragment_main.*
 import me.yokeyword.fragmentation.SupportActivity
 import me.yokeyword.fragmentation.SupportFragment
+import org.litepal.LitePal
 import java.util.*
 
 class MainFragment : BaseFragment() {
@@ -92,7 +95,12 @@ class MainFragment : BaseFragment() {
                     .setFileProviderAuthority(AppConstant.provider)
                     .start(object : SelectCallback() {
                         override fun onResult(photos: ArrayList<Photo>?, isOriginal: Boolean) {
-                            LoginConfig().setUserHeader(photos!![0].path)
+                            if (getUserEntity() == null || getUserEntity().size == 0) {
+                            } else {
+                                val loginHistoryEntity = getUserEntity()[0]
+                                loginHistoryEntity.userPhoto = photos!!.get(0).path
+                                loginHistoryEntity.save()
+                            }
                             onResume()
                         }
                     })
@@ -212,17 +220,31 @@ class MainFragment : BaseFragment() {
         tvMenuRank.text = "等级" + LoginConfig().getUserLevel() + "  排名" + LoginConfig().getUserRank()
         if (LoginConfig().getIsLogin()) {
             tvMenuUser.text = LoginConfig().getUserName()
-            Glide.with(this)
-                .load(LoginConfig().getUserHeader())
-                .error(R.mipmap.ic_default_avatar)
-                .placeholder(R.mipmap.ic_default_avatar)
-                .into(imgMenuHeader)
+
+            if (getUserEntity() == null || getUserEntity().size == 0) {
+                Glide.with(this)
+                    .load(R.mipmap.ic_default_avatar)
+                    .into(imgMenuHeader)
+            } else {
+                Glide.with(this)
+                    .load(getUserEntity()[0].userPhoto)
+                    .error(R.mipmap.ic_default_avatar)
+                    .placeholder(R.mipmap.ic_default_avatar)
+                    .into(imgMenuHeader)
+            }
         } else {
             tvMenuUser.text = "去登陆"
             Glide.with(this)
                 .load(R.mipmap.ic_default_avatar)
                 .into(imgMenuHeader)
         }
+    }
+
+    fun getUserEntity(): MutableList<LoginHistoryEntity> {
+        var historyEntity: MutableList<LoginHistoryEntity> =
+            LitePal.where("userName=?", LoginConfig().getUserName())
+                .find(LoginHistoryEntity::class.java)
+        return historyEntity
     }
 
     /**

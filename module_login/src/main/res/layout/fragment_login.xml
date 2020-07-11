@@ -25,7 +25,9 @@
         android:layout_marginStart="@dimen/dp50"
         android:layout_marginTop="@dimen/dp32"
         android:layout_marginEnd="@dimen/dp50"
+        android:background="@drawable/bg_login_edit"
         android:digits="qwertyuiopasdfghjklzxcvbnm1234567890._ZXCVBNMASDFGHJKLQWERTYUIOP"
+        android:gravity="center"
         android:hint="请输入用户名"
         android:maxLength="20"
         android:singleLine="true"
@@ -35,14 +37,28 @@
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedText" />
 
+    <ImageView
+        android:id="@+id/imgHistory"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:layout_below="@id/tvGotoRegistered"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dp32"
+        android:layout_marginEnd="@dimen/dp50"
+        android:padding="@dimen/dp16"
+        android:src="@drawable/icon_login_up" />
+
     <EditText
         android:id="@+id/edLoginPsw"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp50"
         android:layout_below="@id/edLoginUser"
         android:layout_marginStart="@dimen/dp50"
+        android:layout_marginTop="@dimen/dp16"
         android:layout_marginEnd="@dimen/dp50"
+        android:background="@drawable/bg_login_edit"
         android:digits="qwertyuiopasdfghjklzxcvbnm1234567890._ZXCVBNMASDFGHJKLQWERTYUIOP"
+        android:gravity="center"
         android:hint="请输入密码"
         android:inputType="textPassword"
         android:maxLength="20"
@@ -66,5 +82,17 @@
         android:text="@string/text_tv_login"
         android:textColor="@color/white"
         android:textSize="@dimen/sp14" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edLoginUser"
+        android:layout_marginStart="@dimen/dp50"
+        android:layout_marginTop="@dimen/dp8"
+        android:layout_marginEnd="@dimen/dp50"
+        android:layout_marginBottom="@dimen/dp200"
+        android:background="@drawable/bg_login_list"
+        android:visibility="gone" />
 
 </RelativeLayout>

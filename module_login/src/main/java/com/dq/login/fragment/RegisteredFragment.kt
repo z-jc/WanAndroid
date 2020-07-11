@@ -8,6 +8,7 @@ import com.dq.login.model.model.ApiModel
 import com.dq.login.model.model.ApiModelImpl
 import com.dq.login.view.LoadUtil
 import com.dq.ui.base.BaseFragment
+import com.dq.util.EdittorUtil
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
 import com.dq.util.http.JsonUtil
@@ -106,6 +107,7 @@ class RegisteredFragment : BaseFragment() {
 
     override fun onSupportInvisible() {
         super.onSupportInvisible()
+        EdittorUtil.hideInput(activity)
         edRegisteredUser.setText("")
         edRegisteredPsw.setText("")
         edRegisteredRePsw.setText("")

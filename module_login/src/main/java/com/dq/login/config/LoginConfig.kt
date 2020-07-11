@@ -67,20 +67,6 @@ class LoginConfig {
     }
 
     /**
-     * 保存用户头像
-     */
-    fun setUserHeader(rank: String) {
-        SPUtil.setString("user_header", rank)
-    }
-
-    /**
-     * 获取用户头像
-     */
-    fun getUserHeader(): String? {
-        return SPUtil.getString("user_header")
-    }
-
-    /**
      * 保存登录状态
      */
     fun setIsLogin(isLogin: Boolean) {
