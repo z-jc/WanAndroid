@@ -129,4 +129,20 @@ interface ApiModel {
         pageIndex: Int, cid: Int, a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
+
+    /**
+     * 搜索热词
+     */
+    fun getSearchHot(
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
+
+    /**
+     * 获取搜索结果
+     */
+    fun getSearchResult(
+        query: String, pageIndex: Int, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
 }

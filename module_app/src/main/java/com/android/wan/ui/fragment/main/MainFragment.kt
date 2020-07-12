@@ -17,10 +17,7 @@ import com.android.wan.config.AppDataSourse
 import com.android.wan.model.entity.LogoutEntity
 import com.android.wan.model.model.ApiModel
 import com.android.wan.model.model.ApiModelImpl
-import com.android.wan.ui.activity.IntegralRankingActivity
-import com.android.wan.ui.activity.MainActivity
-import com.android.wan.ui.activity.MyPointsActivity
-import com.android.wan.ui.activity.ShareMyActivity
+import com.android.wan.ui.activity.*
 import com.android.wan.ui.adapter.MainAdapter
 import com.android.wan.ui.fragment.home.HomeFragment
 import com.android.wan.ui.fragment.project.ProjectFragment
@@ -32,7 +29,6 @@ import com.android.wan.util.BrowserUtil
 import com.bumptech.glide.Glide
 import com.dq.login.activity.LoginActivity
 import com.dq.login.config.LoginConfig
-import com.dq.login.fragment.LoginFragment
 import com.dq.login.model.entity.LoginHistoryEntity
 import com.dq.ui.base.BaseFragment
 import com.dq.util.DisplayUtil
@@ -106,8 +102,9 @@ class MainFragment : BaseFragment() {
                     })
             }
         }
+
         imgMainTitle.setOnClickListener {
-            ToastUtil.showShortToast(activity, "去搜索")
+            startAct(activity,SearchActivity())
         }
 
         var lp: DrawerLayout.LayoutParams = layoutMenu.layoutParams as DrawerLayout.LayoutParams

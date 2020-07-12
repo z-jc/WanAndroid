@@ -5,8 +5,6 @@ import android.content.Context
 import com.android.wan.config.AppConfig
 import com.android.wan.config.AppConstant
 import com.android.wan.util.RvAnimUtils
-import com.dq.util.DateUtil
-import com.dq.util.ILog
 import com.dq.util.SPUtil
 import com.dq.util.http.RxhttpUtil
 import com.tencent.bugly.crashreport.CrashReport

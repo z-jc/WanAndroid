@@ -14,7 +14,6 @@ import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 
 import com.android.wan.R;
-import com.dq.util.ILog;
 
 public class SatelliteMenuView extends ViewGroup implements View.OnClickListener, View.OnLongClickListener {
     private static final int POS_LEFT_TOP = 0;

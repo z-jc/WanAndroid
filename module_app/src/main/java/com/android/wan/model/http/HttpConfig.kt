@@ -128,5 +128,19 @@ class HttpConfig {
         ): String? {
             return "https://www.wanandroid.com/article/list/$pageIndx/json?cid=$cid"
         }
+
+        /**
+         * 搜索热词
+         */
+        fun getSearchHotUrl(): String {
+            return "https://www.wanandroid.com//hotkey/json"
+        }
+
+        /**
+         * 获取搜索结果
+         */
+        fun getSearchResultUrl(pageIndex: Int): String {
+            return "https://www.wanandroid.com/article/query/$pageIndex/json"
+        }
     }
 }

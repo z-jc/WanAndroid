@@ -177,4 +177,26 @@ class ApiModelImpl : ApiModel {
     ) {
         RxhttpUtil.getInstance().get(HttpConfig.getSystemActUrl(cid, pageIndex), a, callback)
     }
+
+    /**
+     * 搜索热词
+     */
+    override fun getSearchHot(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
+        RxhttpUtil.getInstance().get(HttpConfig.getSearchHotUrl(), a, callback)
+    }
+
+    /**
+     * 获取搜索结果
+     */
+    override fun getSearchResult(
+        query: String,
+        pageIndex: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        var map:MutableMap<String,String> = mutableMapOf()
+        map.put("k",query)
+        RxhttpUtil.getInstance().post(HttpConfig.getSearchResultUrl(pageIndex),map, a, callback)
+    }
+
 }

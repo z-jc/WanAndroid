@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_recyclerview_item"
+    android:paddingEnd="@dimen/dp8"
+    android:paddingStart="@dimen/dp8">
+
+    <TextView
+        android:id="@+id/tv_author_name"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp30"
+        android:gravity="center_vertical"
+        android:textColor="@color/black_6"
+        android:textSize="@dimen/sp10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="扔无线" />
+
+    <TextView
+        android:id="@+id/tv_home_date"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp30"
+        android:gravity="center_vertical"
+        android:textColor="@color/black_6"
+        android:textSize="@dimen/sp10"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="刚刚" />
+
+    <TextView
+        android:id="@+id/tv_home_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textColor="@color/Color_515151"
+        android:textSize="@dimen/sp14"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_author_name"
+        tools:text="我被Kolin和Android两个官方约谈了" />
+
+    <TextView
+        android:id="@+id/tv_home_source"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center_vertical"
+        android:textColor="@color/black_6"
+        android:textSize="@dimen/sp10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_content"
+        tools:text="发布来源" />
+
+    <ImageView
+        android:id="@+id/img_collection"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:padding="@dimen/dp4"
+        android:layout_marginTop="@dimen/dp8"
+        android:src="@drawable/ic_like"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

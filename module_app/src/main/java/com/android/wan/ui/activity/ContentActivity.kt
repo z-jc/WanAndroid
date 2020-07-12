@@ -7,7 +7,6 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.webkit.*
-import androidx.annotation.RequiresApi
 import com.android.wan.R
 import com.android.wan.ui.view.SatelliteMenuView
 import com.android.wan.util.BrowserUtil
