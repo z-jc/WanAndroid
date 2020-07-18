@@ -16,6 +16,7 @@ public class DateUtil {
     public static String hms = "HH:mm:ss";
     public static String hm = "HH:mm";
     public static String ymd = "yyyy年MM月dd日";
+    public static String y_m_d = "yyyy-MM-dd";
 
     /**
      * 获取当前时间

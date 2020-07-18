@@ -145,4 +145,13 @@ interface ApiModel {
         query: String, pageIndex: Int, a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
+
+    /**
+     * 添加todo
+     */
+    fun postTodo(
+        map: MutableMap<String, String>,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
 }

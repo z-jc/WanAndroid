@@ -194,9 +194,20 @@ class ApiModelImpl : ApiModel {
         a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     ) {
-        var map:MutableMap<String,String> = mutableMapOf()
-        map.put("k",query)
-        RxhttpUtil.getInstance().post(HttpConfig.getSearchResultUrl(pageIndex),map, a, callback)
+        var map: MutableMap<String, String> = mutableMapOf()
+        map.put("k", query)
+        RxhttpUtil.getInstance().post(HttpConfig.getSearchResultUrl(pageIndex), map, a, callback)
+    }
+
+    /**
+     * 添加一个todo
+     */
+    override fun postTodo(
+        map: MutableMap<String, String>,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().post(HttpConfig.getAddTodoUrl(), map, a, callback)
     }
 
 }

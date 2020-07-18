@@ -114,6 +114,18 @@
             android:theme="@style/Theme.Act"
             tools:ignore="Instantiatable" />
 
+        <activity
+            android:name=".ui.activity.TodoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Act"
+            tools:ignore="Instantiatable" />
+
+        <activity
+            android:name=".ui.activity.NewTodoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Act"
+            tools:ignore="Instantiatable" />
+
     </application>
 
 </manifest>

@@ -142,5 +142,12 @@ class HttpConfig {
         fun getSearchResultUrl(pageIndex: Int): String {
             return "https://www.wanandroid.com/article/query/$pageIndex/json"
         }
+
+        /**
+         * 新增todo
+         */
+        fun getAddTodoUrl(): String {
+            return "https://www.wanandroid.com/lg/todo/add/json"
+        }
     }
 }

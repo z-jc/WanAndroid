@@ -104,7 +104,7 @@ class MainFragment : BaseFragment() {
         }
 
         imgMainTitle.setOnClickListener {
-            startAct(activity,SearchActivity())
+            startAct(activity, SearchActivity())
         }
 
         var lp: DrawerLayout.LayoutParams = layoutMenu.layoutParams as DrawerLayout.LayoutParams
@@ -158,7 +158,13 @@ class MainFragment : BaseFragment() {
                     }
                 }
                 3 -> return@setOnItemClickListener
-                4 -> return@setOnItemClickListener
+                4 -> {
+                    if (LoginConfig().getIsLogin()) {
+                        startAct(activity, TodoActivity())
+                    } else {
+                        LoginActivity.start(activity!!)
+                    }
+                }
                 5 -> startQrCode(QrConfig.TYPE_ONCE)
                 6 -> return@setOnItemClickListener
                 7 -> logout()

@@ -1,0 +1,266 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Color_4184F2"
+    android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title_bar_base" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title">
+
+        <TextView
+            android:id="@+id/tvTodoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginStart="@dimen/dp16"
+            android:gravity="center_vertical"
+            android:text="标题:"
+            android:textColor="@color/Color_515151"
+            android:textSize="@dimen/sp16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/edTodoTitle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp16"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="必填"
+            android:maxLength="20"
+            android:singleLine="true"
+            android:textColor="@color/Color_515151"
+            android:textColorHint="@color/black_9"
+            android:textCursorDrawable="@drawable/edit_cursor"
+            android:textSize="@dimen/sp16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvTodoTitle"
+            tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="@color/eee_5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edTodoTitle" />
+
+        <TextView
+            android:id="@+id/tvTodoDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginStart="@dimen/dp16"
+            android:gravity="center_vertical"
+            android:text="详情:"
+            android:textColor="@color/Color_515151"
+            android:textSize="@dimen/sp16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTodoTitle"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/edTodoDetails"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp120"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp16"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="非必填"
+            android:maxLength="100"
+            android:paddingTop="@dimen/dp12"
+            android:textColor="@color/Color_515151"
+            android:textColorHint="@color/black_9"
+            android:textCursorDrawable="@drawable/edit_cursor"
+            android:textSize="@dimen/sp16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvTodoTitle"
+            app:layout_constraintTop_toBottomOf="@id/edTodoTitle"
+            tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="@color/eee_5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edTodoDetails" />
+
+        <TextView
+            android:id="@+id/tvPriority"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginStart="@dimen/dp16"
+            android:gravity="center_vertical"
+            android:text="优先级:"
+            android:textColor="@color/Color_515151"
+            android:textSize="@dimen/sp16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edTodoDetails"
+            tools:ignore="HardcodedText" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginStart="@dimen/dp16"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toRightOf="@id/tvPriority"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edTodoDetails">
+
+            <RadioButton
+                android:id="@+id/radioButtonGeneral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/Color_4184F2"
+                android:checked="true"
+                android:text="一般"
+                android:textColor="@color/Color_515151"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+
+            <RadioButton
+                android:id="@+id/radioButtonImportance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp16"
+                android:buttonTint="@color/Color_4184F2"
+                android:text="重要"
+                android:textColor="@color/Color_515151"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+
+        </RadioGroup>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="@color/eee_5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPriority" />
+
+        <TextView
+            android:id="@+id/tvType"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginStart="@dimen/dp16"
+            android:gravity="center_vertical"
+            android:text="类别:"
+            android:textColor="@color/Color_515151"
+            android:textSize="@dimen/sp16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPriority"
+            tools:ignore="HardcodedText" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupType"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginStart="@dimen/dp16"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toRightOf="@id/tvType"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPriority">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/Color_4184F2"
+                android:checked="true"
+                android:text="工作"
+                android:textColor="@color/Color_515151"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/Color_4184F2"
+                android:text="生活"
+                android:textColor="@color/Color_515151"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/Color_4184F2"
+                android:text="娱乐"
+                android:textColor="@color/Color_515151"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+
+        </RadioGroup>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="@color/eee_5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvType" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginStart="@dimen/dp16"
+            android:gravity="center_vertical"
+            android:text="日期:"
+            android:textColor="@color/Color_515151"
+            android:textSize="@dimen/sp16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvType"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp16"
+            android:drawableEnd="@drawable/icon_right_arrow"
+            android:gravity="center_vertical"
+            android:text="2020-07-18"
+            android:textColor="@color/Color_515151"
+            android:textSize="@dimen/sp16"
+            app:layout_constraintLeft_toRightOf="@id/tvDate"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvType"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="@color/eee_5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_margin="@dimen/dp32"
+            android:background="@drawable/bg_button"
+            android:text="@string/text_save"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="HardcodedText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
