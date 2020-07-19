@@ -30,7 +30,7 @@ class ReadHistoryActivity : BaseActivity() {
         imgBack.setImageResource(R.drawable.icon_back_white)
         imgBack.setOnClickListener { finish() }
         var listEntity: MutableList<ReadHistoryEntity> =
-            LitePal.order("id asc").find(ReadHistoryEntity::class.java)
+            LitePal.order("id desc").find(ReadHistoryEntity::class.java)
         if (listEntity == null || listEntity.size == 0) {
             tvNoData.visibility = View.VISIBLE
             return

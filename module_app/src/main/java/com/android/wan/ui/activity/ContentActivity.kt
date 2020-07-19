@@ -118,7 +118,7 @@ class ContentActivity : BaseActivity() {
         })
 
         var readEntityEntity: MutableList<ReadHistoryEntity> =
-            LitePal.findAll(ReadHistoryEntity::class.java)
+            LitePal.where("link=?", webUrl).find(ReadHistoryEntity::class.java)
         if (readEntityEntity == null || readEntityEntity.size == 0) {
             Handler().postDelayed(Runnable {
                 var historyEntity: ReadHistoryEntity = ReadHistoryEntity()
