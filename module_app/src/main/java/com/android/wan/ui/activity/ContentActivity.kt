@@ -3,17 +3,20 @@ package com.android.wan.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
+import android.os.Handler
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.webkit.*
 import com.android.wan.R
+import com.android.wan.model.entity.ReadHistoryEntity
 import com.android.wan.ui.view.SatelliteMenuView
 import com.android.wan.util.BrowserUtil
 import com.dq.ui.base.BaseActivity
 import com.dq.util.ILog
 import com.dq.util.ShareUtil
 import kotlinx.android.synthetic.main.activity_content.*
+import org.litepal.LitePal
 
 /**
  * Author:ZJC
@@ -37,7 +40,7 @@ class ContentActivity : BaseActivity() {
         settings.javaScriptEnabled = true
         webView.isVerticalScrollBarEnabled = false //隐藏垂直滚动条
 
-        webView.webViewClient = object :WebViewClient(){
+        webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 //该方法在Build.VERSION_CODES.LOLLIPOP以前有效，从Build.VERSION_CODES.LOLLIPOP起，建议使用shouldOverrideUrlLoading(WebView, WebResourceRequest)} instead
                 //返回false，意味着请求过程里，不管有多少次的跳转请求（即新的请求地址），均交给webView自己处理，这也是此方法的默认处理
@@ -113,6 +116,17 @@ class ContentActivity : BaseActivity() {
                 }
             }
         })
+
+        var readEntityEntity: MutableList<ReadHistoryEntity> =
+            LitePal.findAll(ReadHistoryEntity::class.java)
+        if (readEntityEntity == null || readEntityEntity.size == 0) {
+            Handler().postDelayed(Runnable {
+                var historyEntity: ReadHistoryEntity = ReadHistoryEntity()
+                historyEntity.title = webTitle
+                historyEntity.link = webUrl
+                historyEntity.save()
+            }, 5000)
+        }
     }
 
     fun fadeIn(

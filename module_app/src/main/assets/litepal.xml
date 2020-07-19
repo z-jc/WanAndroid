@@ -35,5 +35,6 @@
     <list>
         <mapping class="com.dq.login.model.entity.LoginHistoryEntity" />
         <mapping class="com.android.wan.model.entity.SearchHistoryEntity" />
+        <mapping class="com.android.wan.model.entity.ReadHistoryEntity" />
     </list>
 </litepal>

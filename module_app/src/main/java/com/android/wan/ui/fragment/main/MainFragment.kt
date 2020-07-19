@@ -157,7 +157,9 @@ class MainFragment : BaseFragment() {
                         LoginActivity.start(activity!!)
                     }
                 }
-                3 -> return@setOnItemClickListener
+                3 -> {
+                    startAct(activity, ReadHistoryActivity())
+                }
                 4 -> {
                     if (LoginConfig().getIsLogin()) {
                         startAct(activity, TodoActivity())
