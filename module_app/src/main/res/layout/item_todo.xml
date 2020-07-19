@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.github.czy1121.view.CornerLabelView
+        style="@style/CornerLabelView.Default"
+        app:clvFillColor="@color/red"
+        app:clvFlags="none"
+        app:clvPaddingCenter="@dimen/dp2"
+        app:clvText1="重要"
+        app:clvText1Color="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTodoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp30"
+        android:layout_marginStart="@dimen/dp24"
+        android:layout_marginTop="@dimen/dp16"
+        android:gravity="center_vertical"
+        android:maxLength="15"
+        android:singleLine="true"
+        android:textColor="@color/Color_515151"
+        android:textSize="@dimen/sp18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="标题标题标题标题标题标题标题标题标题标题" />
+
+    <TextView
+        android:id="@+id/tvTodoDate"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp16"
+        android:layout_marginEnd="@dimen/dp24"
+        android:gravity="center_vertical"
+        android:textColor="@color/Color_4184F2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2020-12-20" />
+
+    <TextView
+        android:id="@+id/tvTodoDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp24"
+        android:layout_marginTop="@dimen/dp8"
+        android:layout_marginEnd="@dimen/dp24"
+        android:layout_marginBottom="@dimen/dp16"
+        android:paddingBottom="@dimen/dp16"
+        android:textColor="@color/black_9"
+        android:textSize="@dimen/sp16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTodoTitle"
+        tools:text="详情" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/eee_5"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

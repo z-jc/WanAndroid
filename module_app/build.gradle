@@ -75,6 +75,7 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.9.2'
     implementation 'com.lxj:xpopup:1.8.9-x'
     implementation 'com.contrarywind:Android-PickerView:4.1.9'
+    implementation 'com.github.czy1121:cornerlabelview:1.0.3'
 
     implementation project(path: ':base_util')
     implementation project(path: ':module_setting')

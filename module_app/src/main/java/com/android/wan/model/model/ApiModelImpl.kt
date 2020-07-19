@@ -210,4 +210,34 @@ class ApiModelImpl : ApiModel {
         RxhttpUtil.getInstance().post(HttpConfig.getAddTodoUrl(), map, a, callback)
     }
 
+    /**
+     * 请求Todo列表
+     */
+    override fun getTodoList(
+        map: MutableMap<String, String>,
+        pageIndex: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().post(HttpConfig.getTodoListUrl(pageIndex), map, a, callback)
+    }
+
+    /**
+     * 更新一个Todo
+     */
+    override fun updateTodo(
+        map: MutableMap<String, String>,
+        id: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().post(HttpConfig.getUpdateTodoUrl(id), map, a, callback)
+    }
+
+    /**
+     * 删除一个Todo
+     */
+    override fun deleteTodo(id: Int, a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
+        RxhttpUtil.getInstance().post(HttpConfig.getDeleteTodoUrl(id), a, callback)
+    }
 }

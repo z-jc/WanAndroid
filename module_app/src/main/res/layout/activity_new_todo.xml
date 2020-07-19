@@ -39,7 +39,7 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="必填"
-            android:maxLength="20"
+            android:maxLength="15"
             android:singleLine="true"
             android:textColor="@color/Color_515151"
             android:textColorHint="@color/black_9"

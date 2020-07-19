@@ -149,5 +149,26 @@ class HttpConfig {
         fun getAddTodoUrl(): String {
             return "https://www.wanandroid.com/lg/todo/add/json"
         }
+
+        /**
+         * 请求todo列表
+         */
+        fun getTodoListUrl(pageIndex: Int): String {
+            return "https://www.wanandroid.com/lg/todo/v2/list/$pageIndex/json"
+        }
+
+        /**
+         * 更新某个todo
+         */
+        fun getUpdateTodoUrl(id: Int): String {
+            return "https://www.wanandroid.com/lg/todo/done/$id/json"
+        }
+
+        /**
+         * 删除某个todo
+         */
+        fun getDeleteTodoUrl(id: Int): String {
+            return "https://www.wanandroid.com/lg/todo/delete/$id/json"
+        }
     }
 }

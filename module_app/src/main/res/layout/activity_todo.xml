@@ -10,12 +10,28 @@
         android:id="@+id/title"
         layout="@layout/title_bar_base" />
 
-    <com.yanzhenjie.recyclerview.SwipeRecyclerView
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@id/navigation"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintTop_toBottomOf="@id/title">
+
+        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+            android:id="@+id/swipeRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:scrollbars="none" />
+
+        <com.android.wan.ui.view.SmartFootView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center"
+            android:orientation="horizontal" />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"

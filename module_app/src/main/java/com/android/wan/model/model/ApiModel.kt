@@ -154,4 +154,28 @@ interface ApiModel {
         a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
+
+    /**
+     * 请求todo列表
+     */
+    fun getTodoList(
+        map: MutableMap<String, String>, pageIndex: Int, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
+
+    /**
+     * 更新一个todo
+     */
+    fun updateTodo(
+        map: MutableMap<String, String>, id: Int, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
+
+    /**
+     * 删除一个todo
+     */
+    fun deleteTodo(
+        id: Int, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
 }
