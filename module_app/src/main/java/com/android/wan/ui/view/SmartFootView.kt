@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.android.setting.config.SettingConfig.footView
+import com.android.setting.config.SettingConfig
 import com.android.wan.R
 import com.scwang.smartrefresh.layout.api.RefreshFooter
 import com.scwang.smartrefresh.layout.api.RefreshKernel
@@ -99,8 +99,8 @@ class SmartFootView @JvmOverloads constructor(
         val view =
             View.inflate(context, R.layout.layout_smartfootview, this)
         tvFootView = view.findViewById(R.id.tvFootView)
-        if(!TextUtils.isEmpty(footView)){
-            tvFootView.text = footView
+        if(!TextUtils.isEmpty(SettingConfig.getFootView())){
+            tvFootView.text = SettingConfig.getFootView()
         }
     }
 }

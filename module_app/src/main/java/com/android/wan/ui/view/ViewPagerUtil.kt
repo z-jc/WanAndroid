@@ -12,6 +12,7 @@ class ViewPagerUtil {
                 //渐变大小
                 //page.setScaleX(normalizedposition / 2 + 0.5f);
                 //page.setScaleY(normalizedposition / 2 + 0.5f);
+
                 //page.setRotationY(position * -30);//渐入渐出
             }
         })

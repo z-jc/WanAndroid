@@ -14,5 +14,10 @@
             android:name=".ui.FeedBackActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Act" />
+        <activity
+            android:name=".ui.SettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Act" />
+
     </application>
 </manifest>

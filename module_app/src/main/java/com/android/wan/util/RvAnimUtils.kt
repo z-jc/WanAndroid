@@ -1,5 +1,6 @@
 package com.android.wan.util
 
+import com.android.setting.config.SettingConfig
 import com.android.wan.config.AppConfig
 import com.chad.library.adapter.base.BaseQuickAdapter
 
@@ -21,7 +22,7 @@ object RvAnimUtils {
     }
 
     fun setAnim(adapter: BaseQuickAdapter<*, *>) {
-        when (AppConfig().getAdapterAnim()) {
+        when (SettingConfig.getAdapterAnim()) {
             RvAnim.NONE -> adapter.animationEnable = false
             RvAnim.ALPHAIN -> adapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.AlphaIn)
             RvAnim.SCALEIN -> adapter.setAnimationWithDefault(BaseQuickAdapter.AnimationType.ScaleIn)

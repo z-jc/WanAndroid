@@ -1,5 +1,7 @@
 package com.android.setting.ui
 
+import android.content.Context
+import android.content.Intent
 import android.text.TextUtils
 import android.view.View
 import com.android.setting.R
@@ -17,8 +19,9 @@ class FeedBackActivity : BaseActivity(), View.OnClickListener {
 
     override fun initView() {
         tvTitle.text = getString(R.string.text_feedback)
+        imgBack.setImageResource(R.drawable.icon_back_white)
         btnSubmit.setOnClickListener(this)
-        imgBack.setOnClickListener{finish()}
+        imgBack.setOnClickListener { finish() }
     }
 
     override fun getContentView(): Int? {
@@ -43,6 +46,13 @@ class FeedBackActivity : BaseActivity(), View.OnClickListener {
             }
             ToastUtil.showShortToast(this, "提交成功")
             finish()
+        }
+    }
+
+    companion object {
+        fun startAct(c: Context) {
+            var i = Intent(c, FeedBackActivity::class.java)
+            c.startActivity(i)
         }
     }
 }

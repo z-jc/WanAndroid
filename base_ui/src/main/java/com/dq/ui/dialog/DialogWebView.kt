@@ -6,7 +6,6 @@ import android.content.Context
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.WindowManager
-import android.webkit.WebSettings
 import com.dq.ui.R
 import kotlinx.android.synthetic.main.dialog_webview.*
 

@@ -19,6 +19,7 @@ class UserServiceAgreementActivity : BaseActivity(),
 
     override fun initView() {
         val type = intent.getIntExtra(TYPE, 0)
+        imgBack.setImageResource(R.drawable.icon_back_white)
         imgBack.setOnClickListener(this)
         val settings = webView.settings
         // 设置缩放
@@ -58,7 +59,7 @@ class UserServiceAgreementActivity : BaseActivity(),
         /**
          * 用户隐私政策协议
          */
-        var getAssetsPrivacy = "file:///android_asset/index_policy.html" //隐私协议
+        var getAssetsPrivacy = "file:///android_asset/privacy_policy.html" //隐私协议
         var getAssetsUser = "file:///android_asset/index_user.html"
         fun startAct(activity: Activity, type: Int) {
             val intent = Intent(activity, UserServiceAgreementActivity::class.java)

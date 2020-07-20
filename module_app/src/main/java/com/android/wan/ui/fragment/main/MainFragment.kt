@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.bertsir.zbar.QrConfig
 import cn.bertsir.zbar.QrManager
+import com.android.setting.ui.SettingActivity
 import com.android.wan.R
 import com.android.wan.config.AppConstant
 import com.android.wan.config.AppDataSourse
@@ -168,7 +169,9 @@ class MainFragment : BaseFragment() {
                     }
                 }
                 5 -> startQrCode(QrConfig.TYPE_ONCE)
-                6 -> return@setOnItemClickListener
+                6 -> {
+                    startAct(activity, SettingActivity())
+                }
                 7 -> logout()
             }
         }

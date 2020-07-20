@@ -27,6 +27,7 @@ class AboutActivity : BaseActivity() {
         tvTitle.text = "关于"
         Glide.with(this).load(icon).into(imgIcon)
         tvVersion.text = "$appName\tV$verName"
+        imgBack.setImageResource(R.drawable.icon_back_white)
         imgBack.setOnClickListener { finish() }
     }
 

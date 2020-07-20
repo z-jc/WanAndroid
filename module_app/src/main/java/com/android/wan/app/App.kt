@@ -30,7 +30,6 @@ class App : Application() {
         CrashReport.initCrashReport(this, AppConstant.buglyAppId, false)
         LitePal.initialize(this)
         SPUtil.getInstance(context)
-        AppConfig().setAdapterAnim(RvAnimUtils.RvAnim.SCALEIN)
         RxhttpUtil.init(this, true)
     }
 }
