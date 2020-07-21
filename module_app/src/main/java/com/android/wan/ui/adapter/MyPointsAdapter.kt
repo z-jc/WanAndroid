@@ -22,8 +22,8 @@ class MyPointsAdapter :
         return position
     }
 
-    override fun convert(helper: BaseViewHolder, item: MyPointsEntity.DataBean.DatasBean) {
-        helper.setText(R.id.tvTitle, item.reason)
+    override fun convert(holder: BaseViewHolder, item: MyPointsEntity.DataBean.DatasBean) {
+        holder.setText(R.id.tvTitle, item.reason)
             .setText(R.id.tvDate, DateUtil.getDate(DateUtil.ymdhms, item.date))
             .setText(R.id.tvIntegral, "+" + item.coinCount)
     }

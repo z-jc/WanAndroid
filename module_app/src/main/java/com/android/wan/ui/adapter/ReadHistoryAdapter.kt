@@ -18,13 +18,13 @@ class ReadHistoryAdapter : BaseQuickAdapter<ReadHistoryEntity, BaseViewHolder>(
     null
 ) {
 
-    override fun convert(helper: BaseViewHolder, item: ReadHistoryEntity) {
-        helper.setText(R.id.tvTitle, item.title)
+    override fun convert(holder: BaseViewHolder, item: ReadHistoryEntity) {
+        holder.setText(R.id.tvTitle, item.title)
             .setText(R.id.tvLink, item.link)
 
-        helper.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener {
             ContentActivity.startAct(
-                helper.itemView.context as Activity, item.link!!, item.title!!
+                holder.itemView.context as Activity, item.link!!, item.title!!
             )
         }
     }

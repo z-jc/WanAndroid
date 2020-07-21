@@ -1,5 +1,6 @@
 package com.android.wan.ui.activity
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
@@ -33,6 +34,7 @@ class ContentActivity : BaseActivity() {
 
     var apiModel: ApiModel? = null
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun initView() {
         apiModel = ApiModelImpl()
         webUrl = intent.getStringExtra(URL)
@@ -81,7 +83,7 @@ class ContentActivity : BaseActivity() {
                 if (newProgress == 100) {
                     progressBar.visibility = View.INVISIBLE
                 } else {
-                    if (View.INVISIBLE === progressBar.getVisibility()) {
+                    if (View.INVISIBLE == progressBar.visibility) {
                         progressBar.visibility = View.VISIBLE
                     }
                     progressBar.progress = newProgress
@@ -130,7 +132,7 @@ class ContentActivity : BaseActivity() {
             LitePal.where("link=?", webUrl).find(ReadHistoryEntity::class.java)
         if (readEntityEntity == null || readEntityEntity.size == 0) {
             Handler().postDelayed(Runnable {
-                var historyEntity: ReadHistoryEntity = ReadHistoryEntity()
+                val historyEntity: ReadHistoryEntity = ReadHistoryEntity()
                 historyEntity.title = webTitle
                 historyEntity.link = webUrl
                 historyEntity.save()
@@ -138,7 +140,7 @@ class ContentActivity : BaseActivity() {
         }
     }
 
-    fun fadeIn(
+    private fun fadeIn(
         view: View,
         startAlpha: Float,
         endAlpha: Float,
@@ -197,14 +199,14 @@ class ContentActivity : BaseActivity() {
     }
 
     fun addToolOut() {
-        var map: MutableMap<String, String> = mutableMapOf()
+        val map: MutableMap<String, String> = mutableMapOf()
         map["title"] = webTitle.toString()
         map["author"] = "zjc"
         map["link"] = webUrl.toString()
         apiModel!!.addToolOut(map, this, object : RxhttpUtil.RxHttpCallBack {
             override fun onSuccess(response: String?) {
                 ILog.e("请求成功:$response")
-                var toolAddOutEntity: ToolAddOutEntity = JsonUtil.fromJson<ToolAddOutEntity>(
+                val toolAddOutEntity: ToolAddOutEntity = JsonUtil.fromJson<ToolAddOutEntity>(
                     response,
                     ToolAddOutEntity()
                 ) as ToolAddOutEntity

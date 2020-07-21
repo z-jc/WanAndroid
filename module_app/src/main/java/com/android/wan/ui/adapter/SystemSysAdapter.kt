@@ -12,7 +12,6 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
-import com.zhy.view.flowlayout.TagFlowLayout.OnTagClickListener
 
 /**
  * FileName: SystemSysAdapter
@@ -26,18 +25,18 @@ class SystemSysAdapter :
         null
     ) {
 
-    override fun convert(helper: BaseViewHolder, item: SystemSysEntity.DataBean) {
-        helper.setText(R.id.tvItemTitle, item.name)
-        var flowlayout: TagFlowLayout = helper.getView(R.id.flowLayoutSys)
+    override fun convert(holder: BaseViewHolder, item: SystemSysEntity.DataBean) {
+        holder.setText(R.id.tvItemTitle, item.name)
+        val flowlayout: TagFlowLayout = holder.getView(R.id.flowLayoutSys)
 
-        var list: MutableList<String> = mutableListOf()
-        for (dataBean: SystemSysEntity.DataBean.ChildrenBean? in item!!.children!!) {
+        val list: MutableList<String> = mutableListOf()
+        for (dataBean: SystemSysEntity.DataBean.ChildrenBean? in item.children!!) {
             list.add(dataBean!!.name!!)
         }
 
         flowlayout.adapter = object : TagAdapter<String?>(list as List<String>) {
             override fun getView(parent: FlowLayout?, position: Int, s: String?): View? {
-                val tvItem: TextView = LayoutInflater.from(helper.itemView.context).inflate(
+                val tvItem: TextView = LayoutInflater.from(holder.itemView.context).inflate(
                     R.layout.item_flowlayout,
                     flowlayout, false
                 ) as TextView
@@ -46,9 +45,9 @@ class SystemSysAdapter :
             }
         }
 
-        flowlayout.setOnTagClickListener(OnTagClickListener { _, position, _ ->
-            SystemActivity.startAct(helper.itemView.context as Activity, item,position)
+        flowlayout.setOnTagClickListener { _, position, _ ->
+            SystemActivity.startAct(holder.itemView.context as Activity, item,position)
             false
-        })
+        }
     }
 }

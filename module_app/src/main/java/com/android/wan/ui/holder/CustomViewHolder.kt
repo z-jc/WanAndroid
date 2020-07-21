@@ -1,5 +1,6 @@
 package com.android.wan.ui.holder
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.ms.banner.holder.BannerViewHolder
  */
 class CustomViewHolder : BannerViewHolder<Any?> {
     private var mImageView: ImageView? = null
+    @SuppressLint("InflateParams")
     override fun createView(context: Context?, position: Int, data: Any?): View {
         val view: View =
             LayoutInflater.from(context).inflate(R.layout.banner_item_home, null)

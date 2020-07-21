@@ -17,8 +17,8 @@ class SystemActivity : BaseActivity() {
 
     var entity: SystemSysEntity.DataBean? = null
     var position: Int = 0
-    val mFragments: MutableList<Fragment> = mutableListOf()
-    var titleList: MutableList<String> = mutableListOf()
+    private val mFragments: MutableList<Fragment> = mutableListOf()
+    private var titleList: MutableList<String> = mutableListOf()
 
     override fun getContentView(): Int? {
         setTitleBackground(BG_WHITE)
@@ -37,11 +37,11 @@ class SystemActivity : BaseActivity() {
             if(entity!!.children!=null){
                 for (item: SystemSysEntity.DataBean.ChildrenBean? in entity!!.children!!) {
                     titleList.add(item!!.name!!)
-                    mFragments.add(SystemChildFragment.createFragment(item!!.id))
+                    mFragments.add(SystemChildFragment.createFragment(item.id))
                 }
             }
         }
-        var mAdapter = BaseViewPagerAdapter(
+        val mAdapter = BaseViewPagerAdapter(
             supportFragmentManager,
             mFragments,
             titleList
@@ -57,7 +57,7 @@ class SystemActivity : BaseActivity() {
         var sysEntity = "SYS_ENTITY"
         var mPosition = "POSITION"
         fun startAct(act: Activity, entity: SystemSysEntity.DataBean, pos: Int) {
-            var i = Intent(act, SystemActivity::class.java)
+            val i = Intent(act, SystemActivity::class.java)
             i.putExtra(sysEntity, entity as Parcelable)
             i.putExtra(mPosition, pos)
             act.startActivity(i)

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_system.*
 
 class SystemFragment : BaseFragment() {
 
-    val mFragments: MutableList<Fragment> = mutableListOf()
+    private val mFragments: MutableList<Fragment> = mutableListOf()
     var titleList: MutableList<String> = mutableListOf()
 
     override fun getContentView(): Int? {
@@ -25,7 +25,7 @@ class SystemFragment : BaseFragment() {
         mFragments.add(SystemNavFragment.createFragment())
         titleList.add("体系")
         titleList.add("导航")
-        var mAdapter = BaseViewPagerAdapter(
+        val mAdapter = BaseViewPagerAdapter(
             (activity as MainActivity).supportFragmentManager,
             mFragments,
             titleList
@@ -40,7 +40,7 @@ class SystemFragment : BaseFragment() {
     override fun onSupportInvisible() {
         super.onSupportInvisible()
         if (isIntercept) {
-            Handler().postDelayed(Runnable {
+            Handler().postDelayed({
                 if (tabLayout != null) {
                     tabLayout.currentTab = 0
                     viewPagerSystem.currentItem = 0

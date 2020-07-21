@@ -34,7 +34,7 @@ class MenuAdapter :
             .setText(R.id.tv_menu_content, item.title)
             .setText(R.id.tv_menu_source, item.chapterName + " / " + item.superChapterName)
 
-        var imgItem: ImageView = helper.getView(R.id.img_collection)
+        val imgItem: ImageView = helper.getView(R.id.img_collection)
         if(item.isCollect){
             imgItem.setImageResource(R.drawable.ic_like)
         }else{
@@ -72,11 +72,11 @@ class MenuAdapter :
         id: Int,
         act: AppCompatActivity
     ) {
-        var apiModel: ApiModel = ApiModelImpl()
+        val apiModel: ApiModel = ApiModelImpl()
         apiModel.addToolIn(id, act, object : RxhttpUtil.RxHttpCallBack {
             override fun onSuccess(response: String?) {
                 ILog.e("添加成功:$response")
-                var toolAddInEntity: ToolAddInEntity = JsonUtil.fromJson<ToolAddInEntity>(
+                val toolAddInEntity: ToolAddInEntity = JsonUtil.fromJson<ToolAddInEntity>(
                     response,
                     ToolAddInEntity()
                 ) as ToolAddInEntity
@@ -104,11 +104,11 @@ class MenuAdapter :
         id: Int,
         act: AppCompatActivity
     ) {
-        var apiModel: ApiModel = ApiModelImpl()
+        val apiModel: ApiModel = ApiModelImpl()
         apiModel.cancelToolIn(id, act, object : RxhttpUtil.RxHttpCallBack {
             override fun onSuccess(response: String?) {
                 ILog.e("取消成功:$response")
-                var toolCancelInEntity: ToolCancelInEntity = JsonUtil.fromJson<ToolCancelInEntity>(
+                val toolCancelInEntity: ToolCancelInEntity = JsonUtil.fromJson<ToolCancelInEntity>(
                     response,
                     ToolCancelInEntity()
                 ) as ToolCancelInEntity

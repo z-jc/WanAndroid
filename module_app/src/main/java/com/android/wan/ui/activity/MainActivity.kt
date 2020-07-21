@@ -19,8 +19,8 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : BaseActivity() {
 
-    protected val fragments: MutableList<Fragment> = mutableListOf()
-    protected val titles: MutableList<String> = mutableListOf()
+    private val fragments: MutableList<Fragment> = mutableListOf()
+    private val titles: MutableList<String> = mutableListOf()
 
     override fun initView() {
         super.initView()
@@ -37,7 +37,6 @@ class MainActivity : BaseActivity() {
         setTitleBackground(BG_WHITE)
         return R.layout.activity_main
     }
-
 
     override fun onBackPressedSupport() {
         DialogCustom(this)

@@ -63,17 +63,17 @@ class ShareArticleActivity : BaseActivity() {
         }
     }
 
-    fun postLink() {
-        var map: MutableMap<String, String> = HashMap<String, String>()
-        map.put("title", getEdTitle())
-        map.put("link", getEdLink())
+    private fun postLink() {
+        val map: MutableMap<String, String> = mutableMapOf()
+        map["title"] = getEdTitle()
+        map["link"] = getEdLink()
         apiModel!!.postShareArticle(
             map,
             this@ShareArticleActivity,
             object : RxhttpUtil.RxHttpCallBack {
                 override fun onSuccess(response: String?) {
                     ILog.e("请求成功:$response")
-                    var shareArticleEntity: ShareArticleEntity =
+                    val shareArticleEntity: ShareArticleEntity =
                         JsonUtil.fromJson<ShareArticleEntity>(
                             response,
                             ShareArticleEntity()
@@ -103,11 +103,11 @@ class ShareArticleActivity : BaseActivity() {
             })
     }
 
-    fun getEdTitle(): String {
+    private fun getEdTitle(): String {
         return edTitle.text.toString().trim()
     }
 
-    fun getEdLink(): String {
+    private fun getEdLink(): String {
         return edLink.text.toString().trim()
     }
 

@@ -75,7 +75,7 @@ class MyPointsActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListener {
             val element: Elements = doc1.select("div#blogDetail") //解析题目截图地址
             runOnUiThread {
                 LoadingUtil.dismissLoading()
-                var loadData = element.html()
+                val loadData = element.html()
                     .replace("<div class=\"blog_header\"","<div class=\"blog_header\" style=\"font-size:40px;word-wrap:break-word;\"")
                     .replace("<div id=\"show\"","<div id=\"show\" style=\"font-size:40px;word-wrap:break-word;\"")
                     .replace("<a","<a style=\"text-decoration:none;\"")
@@ -88,11 +88,11 @@ class MyPointsActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListener {
         }.start()
     }
 
-    fun getMyPointsList() {
+    private fun getMyPointsList() {
         apiModel!!.getMyPointsList(pageIndex!!, this, object : RxhttpUtil.RxHttpCallBack {
             override fun onSuccess(response: String?) {
                 ILog.e("请求成功$response")
-                var listEntity: MyPointsEntity =
+                val listEntity: MyPointsEntity =
                     JsonUtil.fromJson<MyPointsEntity>(
                         response,
                         MyPointsEntity()
@@ -141,5 +141,4 @@ class MyPointsActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListener {
         super.onDestroy()
         LoadingUtil.dismissLoading()
     }
-
 }

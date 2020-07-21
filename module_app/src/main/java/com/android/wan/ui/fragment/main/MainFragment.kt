@@ -195,8 +195,8 @@ class MainFragment : BaseFragment() {
      * 扫码界面
      */
     private fun startQrCode(code: Int) {
-        val scan_type = 0
-        val scan_view_type = 0
+        val scanType = 0
+        val scanViewType = 0
         val qrConfig = QrConfig.Builder()
             .setDesText("开始扫码") //扫描框下文字
             .setShowDes(true) //是否显示扫描框下面文字
@@ -206,8 +206,8 @@ class MainFragment : BaseFragment() {
             .setCornerColor(Color.parseColor("#4184F2")) //设置扫描框颜色
             .setLineColor(Color.parseColor("#4184F2")) //设置扫描线颜色
             .setLineSpeed(QrConfig.LINE_FAST) //设置扫描线速度
-            .setScanType(scan_type) //设置扫码类型（二维码，条形码，全部，自定义，默认为二维码）
-            .setScanViewType(scan_view_type) //设置扫描框类型（二维码还是条形码，默认为二维码）
+            .setScanType(scanType) //设置扫码类型（二维码，条形码，全部，自定义，默认为二维码）
+            .setScanViewType(scanViewType) //设置扫描框类型（二维码还是条形码，默认为二维码）
             .setCustombarcodeformat(QrConfig.BARCODE_EAN13) //此项只有在扫码类型为TYPE_CUSTOM时才有效
             .setPlaySound(false) //是否扫描成功后bi~的声音
             .setIsOnlyCenter(true) //是否只识别框中内容(默认为全屏识别)
@@ -219,7 +219,7 @@ class MainFragment : BaseFragment() {
         QrManager.getInstance().init(qrConfig)
             .startScan(
                 activity
-            ) { code, result ->
+            ) { _, result ->
                 vibrator!!.vibrate(30)
                 BrowserUtil.startLocal(activity as MainActivity, result)
             }
@@ -255,10 +255,8 @@ class MainFragment : BaseFragment() {
     }
 
     fun getUserEntity(): MutableList<LoginHistoryEntity> {
-        var historyEntity: MutableList<LoginHistoryEntity> =
-            LitePal.where("userName=?", LoginConfig().getUserName())
-                .find(LoginHistoryEntity::class.java)
-        return historyEntity
+        return LitePal.where("userName=?", LoginConfig().getUserName())
+            .find(LoginHistoryEntity::class.java)
     }
 
     /**

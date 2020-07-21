@@ -35,7 +35,7 @@ class PublicChildFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListene
 
     companion object {
         fun createFragment(parentChapterId: Int): PublicChildFragment {
-            var fragment = PublicChildFragment()
+            val fragment = PublicChildFragment()
             val args = Bundle()
             args.putInt("parentChapterId", parentChapterId)
             fragment.arguments = args
@@ -70,7 +70,7 @@ class PublicChildFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListene
                     it, object : RxhttpUtil.RxHttpCallBack {
                         override fun onSuccess(response: String?) {
                             ILog.e("获取成功$response")
-                            var listEntity: PublicListEntity =
+                            val listEntity: PublicListEntity =
                                 JsonUtil.fromJson<PublicListEntity>(
                                     response,
                                     PublicListEntity()
@@ -120,8 +120,8 @@ class PublicChildFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListene
 
     override fun onSupportVisible() {
         super.onSupportVisible()
-        if (getArguments() != null) {
-            parentChapterId = getArguments()!!.getInt("parentChapterId");
+        if (arguments != null) {
+            parentChapterId = arguments!!.getInt("parentChapterId")
         }
     }
 }

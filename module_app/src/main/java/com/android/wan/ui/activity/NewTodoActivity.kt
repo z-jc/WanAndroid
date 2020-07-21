@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_new_todo.*
 import kotlinx.android.synthetic.main.title_bar_base.*
 import java.text.SimpleDateFormat
 
-
 class NewTodoActivity : BaseActivity() {
 
     var apiModel: ApiModel? = null
@@ -80,21 +79,19 @@ class NewTodoActivity : BaseActivity() {
             }
         })
 
-        radioGroupType.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
-            override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
-                when (checkedId) {
-                    R.id.radioButton1 -> {
-                        isType = 1
-                    }
-                    R.id.radioButton2 -> {
-                        isType = 2
-                    }
-                    R.id.radioButton3 -> {
-                        isType = 3
-                    }
+        radioGroupType.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.radioButton1 -> {
+                    isType = 1
+                }
+                R.id.radioButton2 -> {
+                    isType = 2
+                }
+                R.id.radioButton3 -> {
+                    isType = 3
                 }
             }
-        })
+        }
     }
 
     private fun addTodo() {
@@ -108,11 +105,11 @@ class NewTodoActivity : BaseActivity() {
         }
         EdittorUtil.hideInput(this)
         var map: MutableMap<String, String> = mutableMapOf()
-        map.put("title", getEdTitle())
-        map.put("content", getEdDetails())
-        map.put("date", getTvTime())
-        map.put("type", isType.toString())
-        map.put("priority ", isPriority.toString())
+        map["title"] = getEdTitle()
+        map["content"] = getEdDetails()
+        map["date"] = getTvTime()
+        map["type"] = isType.toString()
+        map["priority "] = isPriority.toString()
         apiModel!!.postTodo(map, this, object : RxhttpUtil.RxHttpCallBack {
             override fun onSuccess(response: String?) {
                 ILog.e("请求成功$response")
@@ -140,19 +137,15 @@ class NewTodoActivity : BaseActivity() {
         })
     }
 
-    fun getEdTitle(): String {
+    private fun getEdTitle(): String {
         return edTodoTitle.text.toString().trim()
     }
 
-    fun getEdDetails(): String {
+    private fun getEdDetails(): String {
         return edTodoDetails.text.toString().trim()
     }
 
-    fun getTvTime(): String {
+    private fun getTvTime(): String {
         return tvTime.text.toString().trim()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 }

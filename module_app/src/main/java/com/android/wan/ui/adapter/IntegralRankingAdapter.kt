@@ -28,42 +28,42 @@ class IntegralRankingAdapter :
         return position
     }
 
-    override fun convert(helper: BaseViewHolder, item: IntegralRankingEnity.DataBean.DatasBean) {
-        helper.setText(R.id.tvRank, item.rank)
+    override fun convert(holder: BaseViewHolder, item: IntegralRankingEnity.DataBean.DatasBean) {
+        holder.setText(R.id.tvRank, item.rank)
             .setText(R.id.tvAuthor, item.username)
             .setText(R.id.tvIntegral, item.coinCount.toString())
 
-        var view: View = helper.getView(R.id.view)
-        var w = data.get(0).coinCount
-        var i = item.coinCount
-        var b: Double = (i * 1.0) / (w * 1.0)                //积分比例
-        var bb = b * 100
-        var lp: ConstraintLayout.LayoutParams = view.layoutParams as ConstraintLayout.LayoutParams
-        lp.width = (DisplayUtil.getScreenWidth(helper.itemView.context) * bb.toInt() / 100)
+        val view: View = holder.getView(R.id.view)
+        val w = data.get(0).coinCount
+        val i = item.coinCount
+        val b: Double = (i * 1.0) / (w * 1.0)                //积分比例
+        val bb = b * 100
+        val lp: ConstraintLayout.LayoutParams = view.layoutParams as ConstraintLayout.LayoutParams
+        lp.width = (DisplayUtil.getScreenWidth(holder.itemView.context) * bb.toInt() / 100)
         view.requestLayout()
 
-        var imgRank = helper.getView<ImageView>(R.id.imgRank)
-        var tvRank = helper.getView<TextView>(R.id.tvRank)
-        when (helper.layoutPosition) {
+        val imgRank = holder.getView<ImageView>(R.id.imgRank)
+        val tvRank = holder.getView<TextView>(R.id.tvRank)
+        when (holder.layoutPosition) {
             0 -> {
                 tvRank.visibility = View.INVISIBLE
                 imgRank.visibility = View.VISIBLE
-                helper.setImageResource(R.id.imgRank, R.drawable.icon_rank_1)
+                holder.setImageResource(R.id.imgRank, R.drawable.icon_rank_1)
             }
             1 -> {
                 tvRank.visibility = View.INVISIBLE
                 imgRank.visibility = View.VISIBLE
-                helper.setImageResource(R.id.imgRank, R.drawable.icon_rank_2)
+                holder.setImageResource(R.id.imgRank, R.drawable.icon_rank_2)
             }
             2 -> {
                 tvRank.visibility = View.INVISIBLE
                 imgRank.visibility = View.VISIBLE
-                helper.setImageResource(R.id.imgRank, R.drawable.icon_rank_3)
+                holder.setImageResource(R.id.imgRank, R.drawable.icon_rank_3)
             }
         }
 
-        helper.itemView.setOnClickListener {
-            SharePersonActivity.start(helper.itemView.context as Activity, item.userId)
+        holder.itemView.setOnClickListener {
+            SharePersonActivity.start(holder.itemView.context as Activity, item.userId)
         }
     }
 }

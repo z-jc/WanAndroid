@@ -13,7 +13,6 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
-import com.zhy.view.flowlayout.TagFlowLayout.OnTagClickListener
 
 /**
  * FileName: SystemNavAdapter
@@ -27,18 +26,18 @@ class SystemNavAdapter :
         null
     ) {
 
-    override fun convert(helper: BaseViewHolder, item: SystemNavEntity.DataBean) {
-        helper.setText(R.id.tvItemTitle, item.name)
-        var flowlayout: TagFlowLayout = helper.getView(R.id.flowLayoutNav)
+    override fun convert(holder: BaseViewHolder, item: SystemNavEntity.DataBean) {
+        holder.setText(R.id.tvItemTitle, item.name)
+        val flowlayout: TagFlowLayout = holder.getView(R.id.flowLayoutNav)
 
-        var list: MutableList<String> = mutableListOf()
-        for (dataBean: SystemNavEntity.DataBean.ArticlesBean in item!!.articles!!) {
-            list.add(dataBean!!.title!!)
+        val list: MutableList<String> = mutableListOf()
+        for (dataBean: SystemNavEntity.DataBean.ArticlesBean in item.articles!!) {
+            list.add(dataBean.title!!)
         }
 
         flowlayout.adapter = object : TagAdapter<String?>(list as List<String>) {
             override fun getView(parent: FlowLayout?, position: Int, s: String?): View? {
-                val tvItem: TextView = LayoutInflater.from(helper.itemView.context).inflate(
+                val tvItem: TextView = LayoutInflater.from(holder.itemView.context).inflate(
                     R.layout.item_flowlayout,
                     flowlayout, false
                 ) as TextView
@@ -47,11 +46,11 @@ class SystemNavAdapter :
             }
         }
 
-        flowlayout.setOnTagClickListener(OnTagClickListener { _, position, _ ->
+        flowlayout.setOnTagClickListener { _, position, _ ->
             SystemFragment.isIntercept = false
-            ContentActivity.startAct(helper.itemView.context as Activity,
-                item.articles!![position]!!.link!!, item.articles!![position]!!.title!!)
+            ContentActivity.startAct(holder.itemView.context as Activity,
+                item.articles!![position].link!!, item.articles!![position].title!!)
             false
-        })
+        }
     }
 }

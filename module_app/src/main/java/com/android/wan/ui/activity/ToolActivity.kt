@@ -19,8 +19,6 @@ import com.scwang.smartrefresh.header.MaterialHeader
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener
-import com.yanzhenjie.recyclerview.OnItemMenuClickListener
-import com.yanzhenjie.recyclerview.SwipeMenuCreator
 import com.yanzhenjie.recyclerview.SwipeMenuItem
 import kotlinx.android.synthetic.main.activity_tool.*
 import kotlinx.android.synthetic.main.title_bar_base.*
@@ -52,23 +50,23 @@ class ToolActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListener {
         toolAdapter = ToolAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        recyclerView.setSwipeMenuCreator(SwipeMenuCreator { _, rightMenu, _ ->
+        recyclerView.setSwipeMenuCreator { _, rightMenu, _ ->
             val deleteItem = SwipeMenuItem(this)
             deleteItem.setBackgroundColor(Color.parseColor("#FF3D39"))
                 .setText("删除")
                 .setTextColor(Color.WHITE)
                 .setHeight(ViewGroup.LayoutParams.MATCH_PARENT).width = 170
             rightMenu.addMenuItem(deleteItem)
-        })
+        }
 
-        recyclerView.setOnItemMenuClickListener(OnItemMenuClickListener { menuBridge, adapterPosition ->
+        recyclerView.setOnItemMenuClickListener { menuBridge, adapterPosition ->
             menuBridge.closeMenu()
             cancelTool(
                 adapterPosition,
                 toolAdapter!!.data[adapterPosition].id,
                 toolAdapter!!.data[adapterPosition].originId
             )
-        })
+        }
 
         recyclerView.adapter = toolAdapter
 
@@ -85,13 +83,13 @@ class ToolActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListener {
         apiModel!!.userTool(pageIndex, this, object : RxhttpUtil.RxHttpCallBack {
             override fun onSuccess(response: String?) {
                 ILog.e("请求成功$response")
-                var listEntity: ToolEntity =
+                val listEntity: ToolEntity =
                     JsonUtil.fromJson<ToolEntity>(
                         response,
                         ToolEntity()
                     ) as ToolEntity
                 if (listEntity.errorCode == 0) {
-                    if (isRefresh!!) {
+                    if (isRefresh) {
                         toolAdapter!!.addData((listEntity.data!!.datas as MutableList<ToolEntity.DataBean.DatasBean>?)!!)
                     } else {
                         toolAdapter!!.setNewInstance((listEntity.data!!.datas as MutableList<ToolEntity.DataBean.DatasBean>?)!!)
@@ -122,12 +120,12 @@ class ToolActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListener {
      * 取消收藏
      */
     private fun cancelTool(pos: Int, id: Int, originId: Int) {
-        var map: MutableMap<String, String> = mutableMapOf()
+        val map: MutableMap<String, String> = mutableMapOf()
         map["originId"] = originId.toString()
         apiModel!!.cancelToolOut(id, map, this, object : RxhttpUtil.RxHttpCallBack {
             override fun onSuccess(response: String?) {
                 ILog.e("请求成功$response")
-                var toolCancelOutEntity: ToolCancelOutEntity =
+                val toolCancelOutEntity: ToolCancelOutEntity =
                     JsonUtil.fromJson<ToolCancelOutEntity>(
                         response,
                         ToolCancelOutEntity()

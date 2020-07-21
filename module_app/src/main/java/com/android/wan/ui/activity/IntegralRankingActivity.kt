@@ -54,11 +54,11 @@ class IntegralRankingActivity : BaseActivity(), OnLoadMoreListener, OnRefreshLis
         refreshLayout.autoRefresh()
     }
 
-    fun getIntegralRankingList() {
+    private fun getIntegralRankingList() {
         apiModel!!.getIntegralRankingList(pageIndex!!, this, object : RxhttpUtil.RxHttpCallBack {
             override fun onSuccess(response: String?) {
                 ILog.e("请求成功$response")
-                var listEntity: IntegralRankingEnity =
+                val listEntity: IntegralRankingEnity =
                     JsonUtil.fromJson<IntegralRankingEnity>(
                         response,
                         IntegralRankingEnity()
@@ -88,7 +88,6 @@ class IntegralRankingActivity : BaseActivity(), OnLoadMoreListener, OnRefreshLis
             override fun onStart() {
                 ILog.e("开始请求")
             }
-
         })
     }
 

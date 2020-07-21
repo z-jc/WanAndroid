@@ -22,8 +22,8 @@ class ProjectFragment : BaseFragment() {
     var mainActivity: MainActivity? = null
     var listEntity: ProjectTitleEntity? = null
     var apiModel: ApiModel? = null
-    protected val mFragments: MutableList<Fragment> = mutableListOf()
-    protected var titleList: MutableList<String> = mutableListOf()
+    private val mFragments: MutableList<Fragment> = mutableListOf()
+    private var titleList: MutableList<String> = mutableListOf()
 
     override fun getContentView(): Int? {
         return R.layout.fragment_project
@@ -37,7 +37,7 @@ class ProjectFragment : BaseFragment() {
         ViewPagerUtil().setAnim(viewPagerProject)
     }
 
-    fun getTitleList() {
+    private fun getTitleList() {
         activity?.let {
             apiModel!!.getProjectTitleList(it, object : RxhttpUtil.RxHttpCallBack {
                 override fun onSuccess(response: String?) {
@@ -74,22 +74,22 @@ class ProjectFragment : BaseFragment() {
     }
 
     fun setTitle() {
-        var mAdapter = BaseViewPagerAdapter(
+        val mAdapter = BaseViewPagerAdapter(
             (activity as MainActivity).supportFragmentManager,
             mFragments,
             titleList
         )
-        viewPagerProject.adapter = mAdapter;
-        viewPagerProject.offscreenPageLimit = mFragments.size;
-        tabLayout.setViewPager(viewPagerProject);
-        tabLayout.currentTab = 0;//指定显示哪个tab
+        viewPagerProject.adapter = mAdapter
+        viewPagerProject.offscreenPageLimit = mFragments.size
+        tabLayout.setViewPager(viewPagerProject)
+        tabLayout.currentTab = 0//指定显示哪个tab
         viewPagerProject.currentItem = 0
     }
 
     override fun onSupportInvisible() {
         super.onSupportInvisible()
         if(isIntercept){
-            Handler().postDelayed(Runnable {
+            Handler().postDelayed({
                 if (tabLayout != null) {
                     tabLayout.currentTab = 0
                     viewPagerProject.currentItem = 0

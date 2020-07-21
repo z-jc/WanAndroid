@@ -33,11 +33,11 @@ class SystemSysFragment : BaseFragment() {
         getList()
     }
 
-    fun getList() {
+    private fun getList() {
         apiModel!!.getSystemSysList(activity as AppCompatActivity,
             object : RxhttpUtil.RxHttpCallBack {
                 override fun onSuccess(response: String?) {
-                    var listEntity: SystemSysEntity =
+                    val listEntity: SystemSysEntity =
                         JsonUtil.fromJson<SystemSysEntity>(
                             response,
                             SystemSysEntity()

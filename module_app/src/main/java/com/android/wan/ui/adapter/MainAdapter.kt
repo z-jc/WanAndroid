@@ -17,12 +17,12 @@ class MainAdapter : BaseQuickAdapter<MenuBean, BaseViewHolder>(R.layout.item_mai
         return position
     }
 
-    override fun convert(helper: BaseViewHolder, item: MenuBean) {
-        val tvItem: TextView = helper.getView(R.id.tv_item)
-        val tvContent: TextView = helper.getView(R.id.tv_content)
+    override fun convert(holder: BaseViewHolder, item: MenuBean) {
+        val tvItem: TextView = holder.getView(R.id.tv_item)
+        val tvContent: TextView = holder.getView(R.id.tv_content)
 
-        val position: Int = helper.layoutPosition
-        val context: Context = helper.itemView.context
+        val position: Int = holder.layoutPosition
+        val context: Context = holder.itemView.context
         val drawableLeft = context.resources.getDrawable(item.menuIcon)
         tvItem.setCompoundDrawablesWithIntrinsicBounds(
             drawableLeft,

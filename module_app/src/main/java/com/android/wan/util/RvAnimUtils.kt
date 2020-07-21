@@ -5,19 +5,17 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 
 object RvAnimUtils {
     fun getName(anim: Int): String {
-        var name: String
-        when (anim) {
-            RvAnim.NONE -> name = "无"
-            RvAnim.ALPHAIN -> name = "渐显"
-            RvAnim.SCALEIN -> name = "缩放"
-            RvAnim.SLIDEIN_BOTTOM -> name = "底部滑入"
-            RvAnim.SLIDEIN_LEFT -> name = "左侧滑入"
-            RvAnim.SLIDEIN_RIGHT -> name = "右侧滑入"
+        return when (anim) {
+            RvAnim.NONE -> "无"
+            RvAnim.ALPHAIN -> "渐显"
+            RvAnim.SCALEIN -> "缩放"
+            RvAnim.SLIDEIN_BOTTOM -> "底部滑入"
+            RvAnim.SLIDEIN_LEFT -> "左侧滑入"
+            RvAnim.SLIDEIN_RIGHT -> "右侧滑入"
             else -> {
-                name = "无"
+                "无"
             }
         }
-        return name
     }
 
     fun setAnim(adapter: BaseQuickAdapter<*, *>) {

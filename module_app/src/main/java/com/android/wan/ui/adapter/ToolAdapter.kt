@@ -18,14 +18,14 @@ class ToolAdapter : BaseQuickAdapter<ToolEntity.DataBean.DatasBean, BaseViewHold
         null
     ) {
 
-    override fun convert(helper: BaseViewHolder, item: ToolEntity.DataBean.DatasBean) {
-        helper.setText(R.id.tv_author_name, item.author)
+    override fun convert(holder: BaseViewHolder, item: ToolEntity.DataBean.DatasBean) {
+        holder.setText(R.id.tv_author_name, item.author)
             .setText(R.id.tv_home_date, item.niceDate)
             .setText(R.id.tv_home_content, item.title)
             .setText(R.id.tv_home_source, item.chapterName)
 
-        helper.itemView.setOnClickListener {
-            ContentActivity.startAct(helper.itemView.context as Activity, item.link!!, item.title!!
+        holder.itemView.setOnClickListener {
+            ContentActivity.startAct(holder.itemView.context as Activity, item.link!!, item.title!!
             )
         }
     }

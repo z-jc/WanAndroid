@@ -58,7 +58,7 @@ class SharePersonActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListene
         refreshLayout.autoRefresh()
     }
 
-    fun getSharePersonList() {
+    private fun getSharePersonList() {
         apiModel!!.getSharePerson(
             userId,
             pageIndex,

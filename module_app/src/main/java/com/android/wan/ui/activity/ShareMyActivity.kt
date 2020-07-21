@@ -76,7 +76,7 @@ class ShareMyActivity : BaseActivity(), OnLoadMoreListener, OnRefreshListener {
         }
     }
 
-    fun getShareMyList() {
+    private fun getShareMyList() {
         apiModel!!.getShareMyList(
             pageIndex,
             this@ShareMyActivity,

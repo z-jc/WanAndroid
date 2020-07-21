@@ -16,8 +16,8 @@ class TodoAdapter : BaseQuickAdapter<TodoListEntity.DataBean.DatasBean, BaseView
         null
     ) {
 
-    override fun convert(helper: BaseViewHolder, item: TodoListEntity.DataBean.DatasBean) {
-        helper.setText(R.id.tvTodoTitle, item.title)
+    override fun convert(holder: BaseViewHolder, item: TodoListEntity.DataBean.DatasBean) {
+        holder.setText(R.id.tvTodoTitle, item.title)
             .setText(R.id.tvTodoDate, item.dateStr)
             .setText(R.id.tvTodoDetails, item.content)
     }

@@ -14,6 +14,7 @@ android {
         targetSdkVersion tsv
         versionCode app_code
         versionName app_version
+        vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
 
         ndk {

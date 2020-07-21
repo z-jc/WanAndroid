@@ -35,15 +35,15 @@ class SystemNavFragment : BaseFragment() {
         mAdapter!!.setOnItemClickListener { _, _, position ->
             SystemFragment.isIntercept = false
             ContentActivity.startAct(activity!!,
-                mAdapter!!.data[position].articles!![position]!!.link!!, mAdapter!!.data[position].articles!![position]!!.title!!)
+                mAdapter!!.data[position].articles!![position].link!!, mAdapter!!.data[position].articles!![position].title!!)
         }
     }
 
-    fun getList() {
+    private fun getList() {
         apiModel!!.getSystemNavList(activity as AppCompatActivity,
             object : RxhttpUtil.RxHttpCallBack {
                 override fun onSuccess(response: String?) {
-                    var listEntity: SystemNavEntity =
+                    val listEntity: SystemNavEntity =
                         JsonUtil.fromJson<SystemNavEntity>(
                             response,
                             SystemNavEntity()

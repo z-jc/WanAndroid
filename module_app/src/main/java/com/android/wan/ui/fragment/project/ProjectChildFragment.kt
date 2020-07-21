@@ -35,7 +35,7 @@ class ProjectChildFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListen
 
     companion object {
         fun createFragment(parentChapterId: Int): ProjectChildFragment {
-            var fragment = ProjectChildFragment()
+            val fragment = ProjectChildFragment()
             val args = Bundle()
             args.putInt("parentChapterId", parentChapterId)
             fragment.arguments = args
@@ -63,14 +63,14 @@ class ProjectChildFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListen
         }
     }
 
-    fun getProjectList() {
+    private fun getProjectList() {
         ILog.e("开始请求:$parentChapterId")
         activity?.let {
             pageIndex?.let { it1 ->
                 apiModel!!.getProjectList(parentChapterId, it1,
                     it, object : RxhttpUtil.RxHttpCallBack {
                         override fun onSuccess(response: String?) {
-                            var listEntity: ProjectListEntity =
+                            val listEntity: ProjectListEntity =
                                 JsonUtil.fromJson<ProjectListEntity>(
                                     response,
                                     ProjectListEntity()
@@ -118,8 +118,8 @@ class ProjectChildFragment : BaseFragment(), OnLoadMoreListener, OnRefreshListen
 
     override fun onSupportVisible() {
         super.onSupportVisible()
-        if (getArguments() != null) {
-            parentChapterId = getArguments()!!.getInt("parentChapterId");
+        if (arguments != null) {
+            parentChapterId = arguments!!.getInt("parentChapterId")
         }
     }
 }

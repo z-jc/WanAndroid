@@ -17,7 +17,7 @@ import org.litepal.LitePal
 
 class ReadHistoryActivity : BaseActivity() {
 
-    var historyAdapter: ReadHistoryAdapter? = null
+    private var historyAdapter: ReadHistoryAdapter? = null
 
     override fun getContentView(): Int? {
         setTitleBackground(BG_WHITE)

@@ -1,7 +1,6 @@
 package com.android.wan.ui.fragment.system
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.wan.R
@@ -12,8 +11,6 @@ import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.activity.ContentActivity
 import com.android.wan.ui.adapter.SystemActAdapter
 import com.android.wan.util.RvAnimUtils
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.dq.ui.base.BaseFragment
 import com.dq.util.ILog
 import com.dq.util.ToastUtil
@@ -27,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_system_act.*
 class SystemChildFragment : BaseFragment() , OnLoadMoreListener, OnRefreshListener {
 
     var apiModel: ApiModel? = null
-    var cid: Int = 0
+    private var cid: Int = 0
     var pageIndex: Int? = 0
     var isRefresh: Boolean? = false
     var mAdapter: SystemActAdapter? = null
@@ -46,11 +43,7 @@ class SystemChildFragment : BaseFragment() , OnLoadMoreListener, OnRefreshListen
         refreshLayout.setOnLoadMoreListener(this)
         refreshLayout.setOnRefreshListener(this)
         refreshLayout.autoRefresh()
-        mAdapter!!.setOnItemClickListener(object:OnItemClickListener{
-            override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
-                ContentActivity.startAct(activity!!, mAdapter!!.data.get(position).link!!, mAdapter!!.data.get(position).title!!)
-            }
-        })
+        mAdapter!!.setOnItemClickListener { _, _, position -> ContentActivity.startAct(activity!!, mAdapter!!.data.get(position).link!!, mAdapter!!.data.get(position).title!!) }
     }
 
     fun getList() {
@@ -58,7 +51,7 @@ class SystemChildFragment : BaseFragment() , OnLoadMoreListener, OnRefreshListen
             object : RxhttpUtil.RxHttpCallBack {
                 override fun onSuccess(response: String?) {
                     ILog.e("请求成功:$response")
-                    var listEntity: SystemActEntity =
+                    val listEntity: SystemActEntity =
                         JsonUtil.fromJson<SystemActEntity>(
                             response,
                             SystemActEntity()
@@ -104,7 +97,7 @@ class SystemChildFragment : BaseFragment() , OnLoadMoreListener, OnRefreshListen
 
     companion object {
         fun createFragment(id: Int): SystemChildFragment {
-            var fragment = SystemChildFragment()
+            val fragment = SystemChildFragment()
             val args = Bundle()
             args.putInt("cid", id)
             fragment.arguments = args
@@ -114,8 +107,8 @@ class SystemChildFragment : BaseFragment() , OnLoadMoreListener, OnRefreshListen
 
     override fun onSupportVisible() {
         super.onSupportVisible()
-        if (getArguments() != null) {
-            cid = getArguments()!!.getInt("cid");
+        if (arguments != null) {
+            cid = arguments!!.getInt("cid");
         }
     }
 }

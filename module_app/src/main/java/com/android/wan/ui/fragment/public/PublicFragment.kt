@@ -35,7 +35,7 @@ class PublicFragment : BaseFragment() {
         ViewPagerUtil().setAnim(viewPagerPublic)
     }
 
-    fun getTitleList() {
+    private fun getTitleList() {
         activity?.let {
             apiModel!!.getPublicTitleList(it, object : RxhttpUtil.RxHttpCallBack {
                 override fun onSuccess(response: String?) {
@@ -72,7 +72,7 @@ class PublicFragment : BaseFragment() {
     }
 
     fun setTitle() {
-        var mAdapter = BaseViewPagerAdapter(
+        val mAdapter = BaseViewPagerAdapter(
             (activity as MainActivity).supportFragmentManager,
             mFragments,
             titleList
@@ -91,7 +91,7 @@ class PublicFragment : BaseFragment() {
     override fun onSupportInvisible() {
         super.onSupportInvisible()
         if(isIntercept){
-            Handler().postDelayed(Runnable {
+            Handler().postDelayed({
                 if (tabLayout != null) {
                     tabLayout.currentTab = 0
                     viewPagerPublic.currentItem = 0

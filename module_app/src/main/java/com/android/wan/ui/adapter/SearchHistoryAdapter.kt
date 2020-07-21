@@ -16,20 +16,20 @@ class SearchHistoryAdapter(itemClickLister: OnItemClickLister) : BaseQuickAdapte
     R.layout.item_search_history,
     null
 ) {
-    var itemClick: OnItemClickLister? = null
+    private var itemClick: OnItemClickLister? = null
 
     init {
         this.itemClick = itemClickLister
     }
 
-    override fun convert(helper: BaseViewHolder, item: SearchHistoryEntity) {
-        helper.setText(R.id.tvQueryName, item.query)
-        helper.getView<ImageView>(R.id.imgDel).setOnClickListener {
-            itemClick?.onDel(helper.layoutPosition, item)
+    override fun convert(holder: BaseViewHolder, item: SearchHistoryEntity) {
+        holder.setText(R.id.tvQueryName, item.query)
+        holder.getView<ImageView>(R.id.imgDel).setOnClickListener {
+            itemClick?.onDel(holder.layoutPosition, item)
         }
 
-        helper.itemView.setOnClickListener {
-            itemClick?.onItem(helper.layoutPosition, item)
+        holder.itemView.setOnClickListener {
+            itemClick?.onItem(holder.layoutPosition, item)
         }
     }
 
