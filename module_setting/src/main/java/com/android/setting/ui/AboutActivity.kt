@@ -1,5 +1,6 @@
 package com.android.setting.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import com.android.setting.R
@@ -20,6 +21,7 @@ class AboutActivity : BaseActivity() {
     private var appName = ""
     private var icon = 0
 
+    @SuppressLint("SetTextI18n")
     override fun initData() {
         verName = intent.getStringExtra(VER_NAME)
         appName = intent.getStringExtra(APP_NAME)

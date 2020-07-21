@@ -33,7 +33,7 @@ class SettingAdapter() :
     BaseQuickAdapter<SettingEntity, BaseViewHolder>(R.layout.item_setting, null) {
     override fun convert(holder: BaseViewHolder, item: SettingEntity) {
         holder.setText(R.id.tvItemName, item.itemName)
-        var tvItemValue = holder.getView<TextView>(R.id.tvItemContent)
+        val tvItemValue = holder.getView<TextView>(R.id.tvItemContent)
         tvItemValue.visibility = View.INVISIBLE
         when (holder.layoutPosition) {
             0 -> {
@@ -139,7 +139,7 @@ class SettingAdapter() :
     }
 
     private fun getName(anim: Int): String {
-        var name: String = when (anim) {
+        return when (anim) {
             0 -> "无"
             1 -> "渐显"
             2 -> "缩放"
@@ -150,6 +150,5 @@ class SettingAdapter() :
                 "无"
             }
         }
-        return name
     }
 }

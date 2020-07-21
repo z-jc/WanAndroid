@@ -107,9 +107,7 @@ class LoginFragment : BaseFragment() {
     }
 
     fun getHistoryList(): MutableList<LoginHistoryEntity> {
-        var list: MutableList<LoginHistoryEntity> =
-            LitePal.order("id desc").find(LoginHistoryEntity::class.java)
-        return list
+        return LitePal.order("id desc").find(LoginHistoryEntity::class.java)
     }
 
     private fun login() {
@@ -120,14 +118,14 @@ class LoginFragment : BaseFragment() {
             apiModel!!.login(map, it, object : RxhttpUtil.RxHttpCallBack {
                 override fun onSuccess(response: String?) {
                     ILog.e("登录成功:$response")
-                    var loginEntity: LoginEntity =
+                    val loginEntity: LoginEntity =
                         JsonUtil.fromJson<LoginEntity>(
                             response,
                             LoginEntity()
                         ) as LoginEntity
                     if (loginEntity.errorCode == 0) {
 
-                        var historyList: MutableList<LoginHistoryEntity> =
+                        val historyList: MutableList<LoginHistoryEntity> =
                             LitePal.where("userName=?", getUserName())
                                 .find(LoginHistoryEntity::class.java)
                         if (historyList != null && historyList.size > 0) {
@@ -140,7 +138,7 @@ class LoginFragment : BaseFragment() {
                             historyEntity.save()
                         }
 
-                        LoginConfig().setUserName(loginEntity!!.data!!.nickname!!)
+                        LoginConfig().setUserName(loginEntity.data!!.nickname!!)
                         LoginConfig().setIsLogin(true)
                         getUserIntegral()
                     } else {
@@ -174,12 +172,12 @@ class LoginFragment : BaseFragment() {
         apiModel!!.getUserIntegral(loginActivity!!, object : RxhttpUtil.RxHttpCallBack {
             override fun onSuccess(response: String?) {
                 ILog.e("个人积分$response")
-                var integralEntity: IntegralEntity =
+                val integralEntity: IntegralEntity =
                     JsonUtil.fromJson<IntegralEntity>(response, IntegralEntity()) as IntegralEntity
                 if (integralEntity.errorCode == 0) {
                     LoginConfig().setUserIntegral(integralEntity.data!!.coinCount)
-                    LoginConfig().setUserRank(integralEntity!!.data!!.rank!!)
-                    LoginConfig().setUserLevel(integralEntity!!.data!!.level!!)
+                    LoginConfig().setUserRank(integralEntity.data!!.rank!!)
+                    LoginConfig().setUserLevel(integralEntity.data!!.level)
                 }
             }
 

@@ -1,5 +1,6 @@
 package com.android.setting.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.view.View
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.title_bar_base.*
 class UserServiceAgreementActivity : BaseActivity(),
     View.OnClickListener {
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun initView() {
         val type = intent.getIntExtra(TYPE, 0)
         imgBack.setImageResource(R.drawable.icon_back_white)

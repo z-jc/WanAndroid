@@ -1,5 +1,7 @@
 package com.android.setting.entity;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * FileName: SettingEntity
  * Author: admin
@@ -32,6 +34,7 @@ public class SettingEntity {
         this.itemValue = itemValue;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "SettingEntity{" +

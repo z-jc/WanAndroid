@@ -51,7 +51,7 @@ class FeedBackActivity : BaseActivity(), View.OnClickListener {
 
     companion object {
         fun startAct(c: Context) {
-            var i = Intent(c, FeedBackActivity::class.java)
+            val i = Intent(c, FeedBackActivity::class.java)
             c.startActivity(i)
         }
     }

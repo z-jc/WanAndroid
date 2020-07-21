@@ -62,7 +62,7 @@ class RegisteredFragment : BaseFragment() {
             apiModel!!.registered(map, it, object : RxhttpUtil.RxHttpCallBack {
                 override fun onSuccess(response: String?) {
                     ILog.e("注册成功:$response")
-                    var registeredEntity: RegistersdEntity =
+                    val registeredEntity: RegistersdEntity =
                         JsonUtil.fromJson<RegistersdEntity>(
                             response,
                             RegistersdEntity()

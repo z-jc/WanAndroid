@@ -35,7 +35,7 @@ class SettingActivity : BaseActivity() {
     }
 
     private fun getList(): MutableList<SettingEntity> {
-        var list: MutableList<SettingEntity> = mutableListOf()
+        val list: MutableList<SettingEntity> = mutableListOf()
         list.add(SettingEntity("列表动画", ""))
         list.add(SettingEntity("上拉加载loading文字", ""))
         list.add(SettingEntity("清除缓存", ""))
@@ -48,5 +48,4 @@ class SettingActivity : BaseActivity() {
         list.add(SettingEntity("源码地址", ""))
         return list
     }
-
 }

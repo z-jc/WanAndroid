@@ -12,27 +12,27 @@ import org.raphets.roundimageview.RoundImageView
 class LoginHistoryAdapter(itemClickLister: OnItemClickLister) :
     BaseQuickAdapter<LoginHistoryEntity, BaseViewHolder>(R.layout.item_login_history, null) {
 
-    var itemClick: OnItemClickLister? = null
+    private var itemClick: OnItemClickLister? = null
 
     init {
         this.itemClick = itemClickLister
     }
 
-    override fun convert(holder: BaseViewHolder, historyEntity: LoginHistoryEntity) {
-        var imgHeader: RoundImageView = holder.getView(R.id.imgHeader)
-        var tvUser: TextView = holder.getView(R.id.tvUser)
-        tvUser.setText(historyEntity.userName)
+    override fun convert(holder: BaseViewHolder, item: LoginHistoryEntity) {
+        val imgHeader: RoundImageView = holder.getView(R.id.imgHeader)
+        val tvUser: TextView = holder.getView(R.id.tvUser)
+        tvUser.text = item.userName
         Glide.with(holder.itemView.context)
-            .load(historyEntity.userPhoto)
+            .load(item.userPhoto)
             .placeholder(R.drawable.ic_default_avatar)
             .error(R.drawable.ic_default_avatar)
             .into(imgHeader)
         holder.getView<ImageView>(R.id.imgDel).setOnClickListener {
-            itemClick?.onDel(holder.layoutPosition, historyEntity)
+            itemClick?.onDel(holder.layoutPosition, item)
         }
 
         holder.itemView.setOnClickListener {
-            itemClick?.onItem(holder.layoutPosition, historyEntity)
+            itemClick?.onItem(holder.layoutPosition, item)
         }
     }
 
