@@ -10,11 +10,17 @@ import android.view.animation.Animation
 import android.webkit.*
 import com.android.wan.R
 import com.android.wan.model.entity.ReadHistoryEntity
+import com.android.wan.model.entity.ToolAddOutEntity
+import com.android.wan.model.http.JsonUtil
+import com.android.wan.model.model.ApiModel
+import com.android.wan.model.model.ApiModelImpl
 import com.android.wan.ui.view.SatelliteMenuView
 import com.android.wan.util.BrowserUtil
 import com.dq.ui.base.BaseActivity
 import com.dq.util.ILog
 import com.dq.util.ShareUtil
+import com.dq.util.ToastUtil
+import com.dq.util.http.RxhttpUtil
 import kotlinx.android.synthetic.main.activity_content.*
 import org.litepal.LitePal
 
@@ -25,7 +31,10 @@ import org.litepal.LitePal
  */
 class ContentActivity : BaseActivity() {
 
+    var apiModel: ApiModel? = null
+
     override fun initView() {
+        apiModel = ApiModelImpl()
         webUrl = intent.getStringExtra(URL)
         webTitle = intent.getStringExtra(TITLE)
 
@@ -86,7 +95,7 @@ class ContentActivity : BaseActivity() {
                 btnPlus.setImageResource(R.drawable.icon_content_edit)
                 fadeOut(rlShan)
                 if (position == 1) {
-                    //收藏
+                    addToolOut()
                 }
                 if (position == 2) {
                     BrowserUtil.startLocal(this@ContentActivity, webUrl)
@@ -138,7 +147,7 @@ class ContentActivity : BaseActivity() {
         if (view.visibility == View.VISIBLE) return
         view.visibility = View.VISIBLE
         val animation: Animation = AlphaAnimation(startAlpha, endAlpha)
-        animation.setDuration(duration)
+        animation.duration = duration
         view.startAnimation(animation)
     }
 
@@ -185,5 +194,39 @@ class ContentActivity : BaseActivity() {
             intent.putExtra(TITLE, title)
             activity.startActivity(intent)
         }
+    }
+
+    fun addToolOut() {
+        var map: MutableMap<String, String> = mutableMapOf()
+        map["title"] = webTitle.toString()
+        map["author"] = "zjc"
+        map["link"] = webUrl.toString()
+        apiModel!!.addToolOut(map, this, object : RxhttpUtil.RxHttpCallBack {
+            override fun onSuccess(response: String?) {
+                ILog.e("请求成功:$response")
+                var toolAddOutEntity: ToolAddOutEntity = JsonUtil.fromJson<ToolAddOutEntity>(
+                    response,
+                    ToolAddOutEntity()
+                ) as ToolAddOutEntity
+                if (toolAddOutEntity.errorCode == 0) {
+                    ToastUtil.showShortToast(this@ContentActivity, "添加成功")
+                } else {
+                    ToastUtil.showShortToast(this@ContentActivity, toolAddOutEntity.errorMsg)
+                }
+            }
+
+            override fun onFinish() {
+
+            }
+
+            override fun onError(error: String?) {
+                ILog.e("网络异常:$error")
+                ToastUtil.showShortToast(this@ContentActivity, "网络异常")
+            }
+
+            override fun onStart() {
+
+            }
+        })
     }
 }

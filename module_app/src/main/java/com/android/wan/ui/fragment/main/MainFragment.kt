@@ -150,7 +150,13 @@ class MainFragment : BaseFragment() {
                         LoginActivity.start(activity!!)
                     }
                 }
-                1 -> return@setOnItemClickListener
+                1 -> {
+                    if (LoginConfig().getIsLogin()) {
+                        startAct(activity, ToolActivity())
+                    } else {
+                        LoginActivity.start(activity!!)
+                    }
+                }
                 2 -> {
                     if (LoginConfig().getIsLogin()) {
                         startAct(activity, ShareMyActivity())

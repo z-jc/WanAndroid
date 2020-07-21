@@ -1,0 +1,38 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Color_4184F2"
+    android:fitsSystemWindows="true"
+    tools:ignore="MissingDefaultResource">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title_bar_base" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title">
+
+        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+
+        <com.android.wan.ui.view.SmartFootView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center"
+            android:orientation="horizontal" />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
