@@ -44,6 +44,8 @@ class SettingActivity : BaseActivity() {
         list.add(SettingEntity("关于我们", ""))
         list.add(SettingEntity("隐私政策", ""))
         list.add(SettingEntity("用户协议", ""))
+        list.add(SettingEntity("作者博客", ""))
+        list.add(SettingEntity("源码地址", ""))
         return list
     }
 

@@ -2,6 +2,8 @@ package com.android.setting.adapter
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.widget.TextView
 import com.android.setting.R
@@ -15,6 +17,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dq.ui.dialog.DialogCustom
 import com.dq.ui.dialog.DialogEdit
 import com.dq.util.CleanDataUtils
+import com.dq.util.ILog
 import com.dq.util.SystemUtil
 import com.dq.util.ToastUtil
 import com.lxj.xpopup.XPopup
@@ -113,21 +116,38 @@ class SettingAdapter() :
                         UserServiceAgreementActivity.TYPE_USER
                     )
                 }
+                8 -> {
+                    startLocal(holder.itemView.context as Activity, "https://blog.csdn.net/qq_32136827")
+                }
+                9 -> {
+                    startLocal(holder.itemView.context as Activity, "https://gitee.com/wasadsdfa/WanAndroid")
+                }
             }
         }
     }
 
-    fun getName(anim: Int): String {
-        var name: String
-        when (anim) {
-            0 -> name = "无"
-            1 -> name = "渐显"
-            2 -> name = "缩放"
-            3 -> name = "底部滑入"
-            4 -> name = "左侧滑入"
-            5 -> name = "右侧滑入"
+    /**
+     * 手机自带浏览器打开
+     */
+    private fun startLocal(a: Activity, url: String?) {
+        ILog.e("跳转到浏览器:${a.javaClass.simpleName}")
+        val uri = Uri.parse(url)
+        val intent =
+            Intent(Intent.ACTION_VIEW, uri)
+        intent.flags = Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT
+        a.startActivity(intent)
+    }
+
+    private fun getName(anim: Int): String {
+        var name: String = when (anim) {
+            0 -> "无"
+            1 -> "渐显"
+            2 -> "缩放"
+            3 -> "底部滑入"
+            4 -> "左侧滑入"
+            5 -> "右侧滑入"
             else -> {
-                name = "无"
+                "无"
             }
         }
         return name
