@@ -1,6 +1,6 @@
 ext {
     app_code = 1
-    app_version = "1.0.0"
+    app_version = "1.0.1"
     csv = 29
     tsv = 29
     msv = 19

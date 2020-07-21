@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <paths>
+        <external-path name="beta_external_path" path="Download/"/>
+        <!--/storage/emulated/0/Android/data/com.bugly.upgrade.demo/files/apk/-->
+        <external-path name="beta_external_files_path" path="Android/data/"/>
         <!-- Context.getFilesDir() + "/path/" -->
         <files-path
             name="my_files"
@@ -40,5 +43,6 @@
             name="name"
             path="DCIM" />
     </paths>
+
 </resources>
 

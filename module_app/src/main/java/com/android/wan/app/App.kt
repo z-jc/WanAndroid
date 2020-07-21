@@ -7,6 +7,7 @@ import com.android.wan.config.AppConstant
 import com.android.wan.util.RvAnimUtils
 import com.dq.util.SPUtil
 import com.dq.util.http.RxhttpUtil
+import com.tencent.bugly.Bugly
 import com.tencent.bugly.crashreport.CrashReport
 import org.litepal.LitePal
 
@@ -27,7 +28,8 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        CrashReport.initCrashReport(this, AppConstant.buglyAppId, false)
+        Bugly.init(this,AppConstant.buglyAppId,false)
+//        CrashReport.initCrashReport(this, AppConstant.buglyAppId, false)
         LitePal.initialize(this)
         SPUtil.getInstance(context)
         RxhttpUtil.init(this, true)
