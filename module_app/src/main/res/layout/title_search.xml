@@ -34,7 +34,7 @@
         android:textSize="@dimen/sp16"
         app:layout_constraintLeft_toRightOf="@id/imgBack"
         app:layout_constraintRight_toLeftOf="@id/imgTitle"
-        tools:ignore="HardcodedText,MissingConstraints" />
+        tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields" />
 
     <ImageView
         android:id="@+id/imgTitle"
@@ -45,6 +45,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription,MissingConstraints" />
+        tools:ignore="ContentDescription,MissingConstraints,VectorDrawableCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

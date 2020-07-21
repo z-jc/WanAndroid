@@ -35,7 +35,7 @@
         android:textCursorDrawable="@drawable/bg_edit_cursor"
         android:textSize="@dimen/sp14"
         android:theme="@style/AppTheme"
-        tools:ignore="HardcodedText" />
+        tools:ignore="Autofill,HardcodedText,TextFields" />
 
     <EditText
         android:id="@+id/edRegisteredPsw"

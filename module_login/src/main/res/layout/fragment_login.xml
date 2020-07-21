@@ -35,18 +35,19 @@
         android:textCursorDrawable="@drawable/bg_edit_cursor"
         android:textSize="@dimen/sp14"
         android:theme="@style/AppTheme"
-        tools:ignore="HardcodedText" />
+        tools:ignore="Autofill,HardcodedText,TextFields" />
 
     <ImageView
         android:id="@+id/imgHistory"
         android:layout_width="@dimen/dp50"
         android:layout_height="@dimen/dp50"
         android:layout_below="@id/tvGotoRegistered"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/dp32"
         android:layout_marginEnd="@dimen/dp50"
         android:padding="@dimen/dp16"
-        android:src="@drawable/icon_login_up" />
+        android:src="@drawable/icon_login_up"
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/edLoginPsw"
@@ -67,7 +68,7 @@
         android:textCursorDrawable="@drawable/bg_edit_cursor"
         android:textSize="@dimen/sp14"
         android:theme="@style/AppTheme"
-        tools:ignore="HardcodedText" />
+        tools:ignore="Autofill,HardcodedText" />
 
     <TextView
         android:id="@+id/tvLogin"
