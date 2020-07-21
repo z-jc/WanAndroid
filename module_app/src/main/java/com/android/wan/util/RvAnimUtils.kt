@@ -1,7 +1,6 @@
 package com.android.wan.util
 
 import com.android.setting.config.SettingConfig
-import com.android.wan.config.AppConfig
 import com.chad.library.adapter.base.BaseQuickAdapter
 
 object RvAnimUtils {

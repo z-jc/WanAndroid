@@ -2,13 +2,10 @@ package com.android.wan.app
 
 import android.app.Application
 import android.content.Context
-import com.android.wan.config.AppConfig
 import com.android.wan.config.AppConstant
-import com.android.wan.util.RvAnimUtils
 import com.dq.util.SPUtil
 import com.dq.util.http.RxhttpUtil
 import com.tencent.bugly.Bugly
-import com.tencent.bugly.crashreport.CrashReport
 import org.litepal.LitePal
 
 /**

@@ -240,4 +240,33 @@ class ApiModelImpl : ApiModel {
     override fun deleteTodo(id: Int, a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
         RxhttpUtil.getInstance().post(HttpConfig.getDeleteTodoUrl(id), a, callback)
     }
+
+    /**
+     * 添加收藏
+     */
+    override fun addTool(
+        map: MutableMap<String, String>,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().post(HttpConfig.addToolUrl(), map, a, callback)
+    }
+
+    /**
+     * 取消收藏
+     */
+    override fun cancelTool(
+        map: MutableMap<String, String>,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().post(HttpConfig.cancelToolUrl(), map, a, callback)
+    }
+
+    /**
+     * 收藏列表
+     */
+    override fun userTool(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
+        RxhttpUtil.getInstance().get(HttpConfig.userToolUrl(), a, callback)
+    }
 }

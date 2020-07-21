@@ -178,4 +178,28 @@ interface ApiModel {
         id: Int, a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
+
+    /**
+     * 添加收藏
+     */
+    fun addTool(
+        map: MutableMap<String, String>, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
+
+    /**
+     * 取消收藏
+     */
+    fun cancelTool(
+        map: MutableMap<String, String>, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
+
+    /**
+     * 我的收藏列表
+     */
+    fun userTool(
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
 }

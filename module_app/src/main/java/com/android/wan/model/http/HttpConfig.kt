@@ -170,5 +170,26 @@ class HttpConfig {
         fun getDeleteTodoUrl(id: Int): String {
             return "https://www.wanandroid.com/lg/todo/delete/$id/json"
         }
+
+        /**
+         * 添加收藏
+         */
+        fun addToolUrl(): String {
+            return "https://www.wanandroid.com/lg/collect/addtool/json"
+        }
+
+        /**
+         * 我的收藏列表
+         */
+        fun userToolUrl(): String {
+            return "https://www.wanandroid.com/lg/collect/usertools/json"
+        }
+
+        /**
+         * 取消收藏
+         */
+        fun cancelToolUrl(): String {
+            return "https://www.wanandroid.com/lg/collect/deletetool/json"
+        }
     }
 }
