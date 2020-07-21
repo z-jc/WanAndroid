@@ -242,31 +242,54 @@ class ApiModelImpl : ApiModel {
     }
 
     /**
-     * 添加收藏
+     * 添加站外收藏
      */
-    override fun addTool(
+    override fun addToolOut(
         map: MutableMap<String, String>,
         a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     ) {
-        RxhttpUtil.getInstance().post(HttpConfig.addToolUrl(), map, a, callback)
+        RxhttpUtil.getInstance().post(HttpConfig.addToolOutUrl(), map, a, callback)
     }
 
     /**
-     * 取消收藏
+     * 添加站内收藏
      */
-    override fun cancelTool(
+    override fun addToolIn(id: Int, a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
+        RxhttpUtil.getInstance().post(HttpConfig.addToolInUrl(id), a, callback)
+    }
+
+    /**
+     * 取消站内收藏
+     */
+    override fun cancelToolIn(
+        id: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().post(HttpConfig.cancelToolInUrl(id), a, callback)
+    }
+
+    /**
+     * 取消站外收藏
+     */
+    override fun cancelToolOut(
+        id: Int,
         map: MutableMap<String, String>,
         a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     ) {
-        RxhttpUtil.getInstance().post(HttpConfig.cancelToolUrl(), map, a, callback)
+        RxhttpUtil.getInstance().post(HttpConfig.cancelToolOutUrl(id), map, a, callback)
     }
 
     /**
      * 收藏列表
      */
-    override fun userTool(a: AppCompatActivity, callback: RxhttpUtil.RxHttpCallBack) {
-        RxhttpUtil.getInstance().get(HttpConfig.userToolUrl(), a, callback)
+    override fun userTool(
+        pageIndex: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    ) {
+        RxhttpUtil.getInstance().get(HttpConfig.userToolUrl(pageIndex), a, callback)
     }
 }

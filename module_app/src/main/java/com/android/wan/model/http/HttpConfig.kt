@@ -2,7 +2,7 @@ package com.android.wan.model.http
 
 /**
  * Author : Z-JC
- * Date : 2020/1/12
+ * Date : 2020/7/12
  * Description : 接口地址
  */
 class HttpConfig {
@@ -172,24 +172,38 @@ class HttpConfig {
         }
 
         /**
-         * 添加收藏
+         * 添加站内文章
          */
-        fun addToolUrl(): String {
-            return "https://www.wanandroid.com/lg/collect/addtool/json"
+        fun addToolInUrl(id: Int): String {
+            return "https://www.wanandroid.com/lg/collect/$id/json"
+        }
+
+        /**
+         * 添加站外文章
+         */
+        fun addToolOutUrl(): String {
+            return "https://www.wanandroid.com/lg/collect/add/json"
         }
 
         /**
          * 我的收藏列表
          */
-        fun userToolUrl(): String {
-            return "https://www.wanandroid.com/lg/collect/usertools/json"
+        fun userToolUrl(pageIndex: Int): String {
+            return "https://www.wanandroid.com/lg/collect/list/$pageIndex/json"
         }
 
         /**
-         * 取消收藏
+         * 取消站内收藏
          */
-        fun cancelToolUrl(): String {
-            return "https://www.wanandroid.com/lg/collect/deletetool/json"
+        fun cancelToolInUrl(id: Int): String {
+            return "https://www.wanandroid.com/lg/uncollect_originId/$id/json"
+        }
+
+        /**
+         * 取消站外收藏
+         */
+        fun cancelToolOutUrl(id: Int): String {
+            return "https://www.wanandroid.com/lg/uncollect/$id/json"
         }
     }
 }

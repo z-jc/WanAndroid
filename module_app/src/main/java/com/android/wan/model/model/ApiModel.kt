@@ -180,26 +180,43 @@ interface ApiModel {
     )
 
     /**
-     * 添加收藏
+     * 添加站内收藏
      */
-    fun addTool(
+    fun addToolIn(
+        id: Int,
+        a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
+
+    /**
+     * 添加站外收藏
+     */
+    fun addToolOut(
         map: MutableMap<String, String>, a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
 
     /**
-     * 取消收藏
+     * 取消站内收藏
      */
-    fun cancelTool(
-        map: MutableMap<String, String>, a: AppCompatActivity,
+    fun cancelToolIn(
+        id: Int, a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
 
     /**
-     * 我的收藏列表
+     * 取消站外收藏
+     */
+    fun cancelToolOut(
+        id: Int, map: MutableMap<String, String>, a: AppCompatActivity,
+        callback: RxhttpUtil.RxHttpCallBack
+    )
+
+    /**
+     * 收藏列表
      */
     fun userTool(
-        a: AppCompatActivity,
+        pageIndex: Int, a: AppCompatActivity,
         callback: RxhttpUtil.RxHttpCallBack
     )
 }
